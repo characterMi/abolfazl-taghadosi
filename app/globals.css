@@ -2,32 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  /* Hide scrollbar for IE, Edge and Firefox */
+  /* -ms-overflow-style: none; 
+  scrollbar-width: none;  */
+  -webkit-tap-highlight-color: transparent;
+  color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Hide scrollbar for Chrome, Safari and Opera */
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+::selection {
+  @apply text-black bg-pink;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.mark {
+  @apply bg-transparent text-pink;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.gray-mark {
+  @apply bg-transparent text-gray-400;
+}
+
+.title {
+  @apply text-[12vw] md:text-[7vw] font-black tracking-tighter font-sans uppercase leading-[0.8];
+}
+
+.button-container:hover .cube {
+  transform: rotateX(-90deg);
+}
+
+.image-container__1 {
+  top: 0%;
+  left: 0%;
+  width: 5rem;
+}
+
+.image-container__2 {
+  top: 30%;
+  left: 5%;
+  width: 3rem;
+}
+
+.image-container__3 {
+  top: 0%;
+  left: 7%;
+  width: 3rem;
+}
+
+.image-container__4 {
+  top: 100%;
+  left: 50%;
+  width: 4rem;
+}
+
+.image-container__5 {
+  top: 0%;
+  left: 1%;
+  width: 5rem;
+}
+
+.image-container__6 {
+  top: 10%;
+  left: 75%;
+  width: 4rem;
+}
+
+.image-container__7 {
+  top: 70%;
+  left: 4%;
+  width: 6rem;
+}
+
+.image-container__8 {
+  top: 10%;
+  left: 60%;
+  width: 6rem;
+}
+
+.image-container__9 {
+  top: 80%;
+  left: 3%;
+  width: 6rem;
+}
+
+.image-container__10 {
+  top: 40%;
+  left: 100%;
+  width: 7rem;
+}
+
+.image-container__11 {
+  top: 40%;
+  right: 5%;
+  width: 8rem;
+}
+
+.image-container__12 {
+  top: 1%;
+  left: 35%;
+  width: 3rem;
+}
+
+.image-container__13 {
+  top: 80%;
+  left: 85%;
+  width: 4rem;
 }
