@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito } from "next/font/google";
+import { Figtree } from "next/font/google";
 
 import Root from "@/providers/root";
 import "./globals.css";
 
-const font = Nunito({ subsets: ["latin"] });
+const font = Figtree({ subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
-  title: "Abolfazl Taghadosi",
+  title: "Abolfazl Taghadosi | Portfolio",
   description: "Abolfazl taghadosi's personal portfolio.",
   keywords: [
     "portfolio",

@@ -1,43 +1,26 @@
 import { screenVariant } from "@/utils/motion";
-import GithubLink from "../shared/github-link";
 import { MotionDiv } from "../shared/motion-div";
+import { HeaderDesc } from "./header-desc";
+import { HeaderInfo } from "./header-info";
 import { HeaderTitle } from "./header-title";
 
 const Hero = () => {
   return (
-    <section className="h-screen">
+    <section className="h-screen flex flex-col gap-12 relative overflow-hidden p-4 md:p-10">
       <MotionDiv
-        className="bg-pink w-full h-screen absolute"
+        className="bg-pink w-[150%] absolute top-0 left-1/2 -translate-x-1/2 z-10 rounded-b-[50%]"
         variants={screenVariant}
         initial="initial"
         animate="animate"
       />
 
-      <div>
+      <div className="flex-1">
         <HeaderTitle />
-        <h2>FRONT-END DEVELOPER</h2>
-        <p>&copy; {new Date().getFullYear()} Abolfazl taghadosi</p>
+
+        <HeaderDesc />
       </div>
 
-      <div>
-        <div>
-          <div>
-            <div />
-            Scroll <br />
-            To Explode.
-          </div>
-
-          <h3>
-            Skilled web developer in creating dynamic and responsive user
-            interfaces, with experience in languages such as TypeScript and
-            JavaScript, and expertise in modern web technologies like React,
-            Next.js, Tailwindcss and Three.js. Let&apos;s work together to bring
-            your ideas to Life!
-          </h3>
-        </div>
-
-        <GithubLink />
-      </div>
+      <HeaderInfo />
     </section>
   );
 };

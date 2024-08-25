@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +9,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      // "smart-watch": "340px",
+      xss: "420px",
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         pink: "#ff98a2",

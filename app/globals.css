@@ -15,8 +15,16 @@
   display: none;
 } */
 
+body {
+  background: #000;
+}
+
 ::selection {
   @apply text-black bg-pink;
+}
+
+.max-w {
+  @apply max-w-screen-2xl mx-auto;
 }
 
 .mark {
@@ -29,6 +37,14 @@
 
 .title {
   @apply text-[12vw] md:text-[7vw] font-black tracking-tighter font-sans uppercase leading-[0.8];
+}
+
+.text {
+  @apply font-black tracking-tighter font-sans uppercase leading-[0.8];
+}
+
+.slide-up-animation {
+  @apply relative inline-flex overflow-hidden;
 }
 
 .button-container:hover .cube {

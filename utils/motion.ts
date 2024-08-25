@@ -1,11 +1,18 @@
+import { Transition } from "framer-motion";
+
+type TextVariant = {
+  padding: string;
+  delay: number;
+};
+
 export const ease = [0.33, 1, 0.68, 1];
 
 export const screenVariant = {
   initial: {
-    height: "100vh",
+    height: "150%",
   },
   animate: {
-    height: "0vh",
+    height: "0%",
     transition: {
       duration: 1,
       delay: 3,
@@ -27,5 +34,40 @@ export const gVariants = {
       type: "tween",
       ease,
     },
+  }),
+};
+
+export const slideUp = {
+  initial: { opacity: 0, y: "100%" },
+  animate: (transition: Transition) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      type: "tween",
+      ease,
+      ...transition,
+    },
+  }),
+};
+
+export const scaleUp = {
+  hidden: { scale: 0 },
+  visible: (delay: number) => ({
+    scale: 1,
+    transition: {
+      delay,
+      duration: 0.5,
+      type: "tween",
+      ease,
+    },
+  }),
+};
+
+export const fadeIn = {
+  initial: { opacity: 0 },
+  animate: (transition: Transition) => ({
+    opacity: 1,
+    transition: { duration: 1, ...transition },
   }),
 };

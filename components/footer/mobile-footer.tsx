@@ -9,7 +9,13 @@ export const MobileFooter = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-col gap-3 text-2xl sm:text-3xl">
           {footerLinks.map(({ link, title }) => (
-            <a href={link} target="_blank" rel="noopener noreferrer">
+            <a
+              key={link}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link"
+            >
               {title}
             </a>
           ))}
@@ -22,7 +28,7 @@ export const MobileFooter = () => {
               href="https://lenis.darkroom.engineering/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mark"
+              className="mark link"
             >
               Lenis Website
             </a>

@@ -5,12 +5,12 @@ import Image from "next/image";
 
 export const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
   const scaleValues: ScaleValues = {
-    scale2: useTransform(scrollY, [0, 1], [0.1, 2]),
-    scale4: useTransform(scrollY, [0, 1], [0.1, 4]),
+    scale2: useTransform(scrollY, [0, 1], [0.2, 2]),
+    scale4: useTransform(scrollY, [0, 1], [0.15, 4]),
     scale5: useTransform(scrollY, [0, 1], [0.1, 5]),
-    scale7: useTransform(scrollY, [0, 1], [0.1, 7]),
-    scale8: useTransform(scrollY, [0, 1], [0.1, 8]),
-    scale9: useTransform(scrollY, [0, 1], [0.1, 9]),
+    scale7: useTransform(scrollY, [0, 1], [0.07, 7]),
+    scale8: useTransform(scrollY, [0, 1], [0.06, 8]),
+    scale9: useTransform(scrollY, [0, 1], [0.05, 9]),
   };
 
   const opacity = useTransform(scrollY, [0, 0.025], [0, 1]);

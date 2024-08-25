@@ -1,8 +1,14 @@
 "use client";
 
+import { arrowSvg } from "@/constants";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 import { RefObject } from "react";
+
+type PathProps = {
+  d: string;
+  range: number[];
+  progress: MotionValue<number>;
+};
 
 const initial = {
   path: "M -1 0 L 1 0 C 1 1 0 1 0 1 C 0 1 -1 1 -1 0",
@@ -12,46 +18,6 @@ const initial = {
 const target = {
   path: "M -1 0 L 1 0 C 1 0 0 0 0 0 C 0 0 -1 0 -1 0",
   viewBox: "-1 0 2 0",
-};
-
-const pathAnimation = {
-  initial: {
-    d: initial.path,
-  },
-  enter: {
-    d: target.path,
-    transition: {
-      duration: 1,
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
-  exit: {
-    d: initial.path,
-    transition: {
-      duration: 1,
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
-};
-
-const viewBoxAnimation = {
-  initial: {
-    viewBox: initial.viewBox,
-  },
-  enter: {
-    viewBox: target.viewBox,
-    transition: {
-      duration: 1,
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
-  exit: {
-    viewBox: initial.viewBox,
-    transition: {
-      duration: 1,
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
 };
 
 function CurveSvg({
@@ -68,6 +34,12 @@ function CurveSvg({
   );
 }
 
+function Path({ d, progress, range }: PathProps) {
+  const opacity = useTransform(progress, range, [0, 1]);
+
+  return <motion.path d={d} opacity={opacity} />;
+}
+
 export const Curve = ({
   footerRef,
 }: {
@@ -75,10 +47,8 @@ export const Curve = ({
 }) => {
   const { scrollYProgress } = useScroll({
     target: footerRef,
-    offset: ["start end", "start 0.25"],
+    offset: ["start end", "start start"],
   });
-
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   const path = useTransform(
     scrollYProgress,
@@ -93,24 +63,36 @@ export const Curve = ({
 
   return (
     <div className="absolute w-full top-0 left-0 flex flex-col items-center z-10">
-      <motion.div
-        className="absolute -top-12"
-        style={{ opacity }}
-        animate={{ y: [0, 28, 0] }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          repeatType: "loop",
-        }}
-      >
-        <Image
-          src="/icons/arrow.svg"
-          alt="Arrow"
-          width={25}
-          height={25}
-          className="size-32 rotate-45"
-        />
-      </motion.div>
+      <div className="absolute -top-48 rotate-45">
+        <svg
+          version="1.0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="9.5rem"
+          height="9.5rem"
+          viewBox="0 0 128.000000 128.000000"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g
+            transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
+            fill="#ff98a2"
+            stroke="none"
+          >
+            {arrowSvg.map((d, i) => {
+              const start = i / arrowSvg.length;
+              const end = start + 1 / arrowSvg.length;
+
+              return (
+                <Path
+                  d={d}
+                  range={[start, end]}
+                  progress={scrollYProgress}
+                  key={d}
+                />
+              );
+            })}
+          </g>
+        </svg>
+      </div>
 
       <CurveSvg path={path} viewBox={viewBox} />
     </div>

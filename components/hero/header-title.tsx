@@ -5,7 +5,7 @@ import { ease, gVariants } from "@/utils/motion";
 import { motion } from "framer-motion";
 
 export const HeaderTitle = () => (
-  <div className="flex w-full m-auto mix-blend-difference">
+  <div className="flex w-full mix-blend-difference z-[11] relative">
     {heroSectionTitle.map((letter, i) => {
       if (i % 2) {
         return (
@@ -29,7 +29,7 @@ export const HeaderTitle = () => (
             }}
             initial="initial"
             animate="animate"
-            key={i}
+            key={letter.id}
           >
             <motion.g
               id={letter.id}
@@ -56,7 +56,7 @@ export const HeaderTitle = () => (
             className=""
             viewBox={letter.svgViewBox}
             xmlns="http://www.w3.org/2000/svg"
-            key={i}
+            key={letter.id}
           >
             <motion.g
               id={letter.id}

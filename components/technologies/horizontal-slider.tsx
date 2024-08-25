@@ -22,7 +22,7 @@ export const HorizontalSlider = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["80%", "-50%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[300vh]">
+    <section ref={targetRef} className="relative h-[300vh] uppercase">
       <div className="flex h-screen items-center justify-center overflow-hidden sticky top-0">
         <motion.div style={{ x }} className="flex gap-10">
           {mainTech.map((tech, index) => {

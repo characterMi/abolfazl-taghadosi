@@ -1,4 +1,12 @@
-import { About, Footer, Hero, Projects, Technologies } from "@/components";
+import {
+  About,
+  Cursor,
+  CustomScroll,
+  Footer,
+  Hero,
+  Projects,
+  Technologies,
+} from "@/components";
 import { wait } from "@/lib";
 import { Suspense } from "react";
 
@@ -10,7 +18,10 @@ const Components = async () => {
       <About />
       <Technologies />
       <div className="bg-white relative">
-        <Projects />
+        <div className="max-w">
+          <Projects />
+        </div>
+
         <Footer />
       </div>
     </section>
@@ -21,13 +32,13 @@ export default function Home() {
   return (
     <main className="bg-black">
       {/* Background */}
-      <div className="bg-background bg-no-repeat bg-cover bg-center fixed top-0 left-0 w-screen h-screen" />
+      <div className="bg-background bg-no-repeat bg-cover bg-center fixed top-0 left-0 w-screen h-screen opacity-60" />
 
       <div className="w-full h-full relative">
         <Hero />
-        {/* <Cursor /> */}
+        <Cursor />
         {/* <Model /> */}
-        {/* <CustomScroll /> */}
+        <CustomScroll />
 
         <Suspense fallback={null}>
           <Components />

@@ -1,5 +1,5 @@
+import { AllProjects } from "./all-projects";
 import { Description } from "./description";
-import { LessImportantProjects } from "./less-important-projects";
 import { MainProjects } from "./main-projects";
 
 const Projects = () => {
@@ -9,7 +9,7 @@ const Projects = () => {
 
       <MainProjects />
 
-      <LessImportantProjects />
+      <AllProjects />
     </div>
   );
 };
