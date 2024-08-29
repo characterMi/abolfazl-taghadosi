@@ -7,8 +7,9 @@ import "./globals.css";
 const font = Figtree({ subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
-  title: "Abolfazl Taghadosi | Portfolio",
-  description: "Abolfazl taghadosi's personal portfolio.",
+  title: "Abolfazl Taghadosi • Software Developer",
+  description:
+    "Transforming ideas into powerful digital experiences. Located in the Iran. Always pushing boundaries, never settling for less.",
   keywords: [
     "portfolio",
     "abolfazl taghadosi",

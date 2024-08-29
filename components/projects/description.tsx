@@ -10,7 +10,7 @@ export const Description = () => {
 
   return (
     <motion.h4
-      className="text-black text-3xl font-thin"
+      className="text-neutral-900 text-3xl lg:text-[2.5vw] leading-tight font-thin"
       variants={fadeIn}
       initial="initial"
       animate={isInView ? "animate" : ""}
@@ -18,10 +18,10 @@ export const Description = () => {
       ref={ref}
     >
       Following projects showcases my skills and experience through{" "}
-      <mark className="mark">real-world examples</mark> of my work. Each project
-      is briefly described with links to code repositories and live demos in it.
-      It reflects my ability to solve complex problems, work with different
-      technologies, and manage projects effectively.
+      <mark className="dark-mark">real-world examples</mark> of my work. Each
+      project is briefly described with links to code repositories and live
+      demos in it. It reflects my ability to solve complex problems, work with
+      different technologies, and manage projects effectively.
     </motion.h4>
   );
 };

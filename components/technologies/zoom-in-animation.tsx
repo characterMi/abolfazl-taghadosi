@@ -21,7 +21,7 @@ export const ZoomInAnimation = () => {
 
   return (
     <div ref={container} className="h-[500vh] relative shadow-[0_10px_0_#fff]">
-      <div className="sticky h-screen top-0 pt-4 md:pt-10 overflow-hidden">
+      <div className="sticky h-screen top-0 pt-4 md:pt-10 lg:pt-[2.5vw] overflow-hidden">
         <SlideOutText scrollY={scrollYProgress} />
 
         <TechImages scrollY={scrollYProgress} />

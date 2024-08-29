@@ -4,12 +4,12 @@ import ArrowIcon from "./arrow-icon";
 const GithubLink = () => {
   return (
     <a
-      className="inline-flex group button-container overflow-hidden text-nowrap w-full outline-none"
+      className="inline-flex group button-container overflow-hidden text-nowrap md:w-full outline-none"
       href="https://github.com/characterMi"
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="flex justify-center items-center size-12 border border-pink group-hover:border-white bg-black">
+      <div className="hidden smart-watch:flex justify-center items-center size-12 lg:size-[4vw] border border-primary group-hover:border-white bg-neutral-900">
         <Image
           src={"/icons/github.svg"}
           alt="Github"
@@ -20,7 +20,7 @@ const GithubLink = () => {
       </div>
 
       <div
-        className="uppercase relative text-sm font-bold font-sans transition-[all_0.85s_cubic-bezier(.17,.67,.14,.93)] cube"
+        className="h-10 smart-watch:h-auto uppercase relative text-sm font-bold font-sans transition-[all_0.85s_cubic-bezier(.17,.67,.14,.93)] cube"
         style={{
           transformStyle: "preserve-3d",
           WebkitTransformStyle: "preserve-3d",
@@ -30,26 +30,20 @@ const GithubLink = () => {
         }}
       >
         <div
-          className="flex items-center gap-2 w-full h-full px-6 bg-white text-black"
+          className="flex items-center gap-2 lg:gap-[0.5vw] lg:text-[1.2vw] w-full h-full px-6 lg:px-[1.5vw] bg-white text-neutral-900"
           style={{
             transform: "rotateX(90deg) translate3d(0, 0, 2em)",
           }}
         >
-          checkout my github <ArrowIcon mode="light" size={9} />
+          checkout my github{" "}
+          <ArrowIcon mode="light" className="size-[9px] lg:size-[0.8vw]" />
         </div>
         <div
-          className="flex items-center gap-2 absolute -translate-x-1/2 text-nowrap top-0 bg-pink text-black w-full h-full px-6"
+          className="flex items-center gap-2 lg:gap-[0.5vw] lg:text-[1.2vw] absolute -translate-x-1/2 text-nowrap top-0 bg-gradient-to-r from-primary to-dark-blue text-neutral-900 w-full h-full px-6 lg:px-[1.5vw]"
           style={{ transform: "translate3d(0, 0, 2em)" }}
         >
           checkout my github{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 11 11"
-            className="size-[9px] group-hover:translate-x-1/3 duration-500"
-          >
-            <ArrowIcon mode="light" size={9} />
-          </svg>
+          <ArrowIcon mode="light" className="size-[9px] lg:size-[0.8vw]" />
         </div>
       </div>
     </a>

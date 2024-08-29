@@ -1,3 +1,11 @@
+import ATBMedia from "@/public/projects/atb-media.png";
+import CarGame from "@/public/projects/car-game.png";
+import DesignWave from "@/public/projects/design-wave.png";
+import FilmHub from "@/public/projects/film-hub.png";
+import GymLovers from "@/public/projects/gym-lovers.png";
+import Lingo from "@/public/projects/lingo.png";
+import MarbleRace from "@/public/projects/marble-race.png";
+import MelodiMix from "@/public/projects/melodi-mix.png";
 import { ScaleValues } from "@/types";
 
 export const heroSectionTitle = [
@@ -40,6 +48,40 @@ export const heroSectionTitle = [
     svgViewBox: "0 0 51.8 74.003",
     id: "L-2",
     d: "M 51.8 56 L 37.2 68.2 L 37.2 68.3 L 30.4 74 A 41.037 41.037 0 0 0 31.632 72.926 Q 33.106 71.594 35.1 69.6 A 4.275 4.275 0 0 0 35.114 69.259 Q 35.114 66.983 32.6 65.4 A 9.733 9.733 0 0 0 30.06 64.299 Q 28.873 63.962 27.452 63.815 A 22.82 22.82 0 0 0 25.1 63.7 Q 18.589 63.7 10.787 66.825 A 63.839 63.839 0 0 0 7.4 68.3 L 0.6 74 A 0.025 0.025 0 0 0 0.597 74.003 Q 0.606 74.003 4 70.9 A 48.712 48.712 0 0 1 5.814 69.181 A 61.677 61.677 0 0 1 7.4 67.8 L 7.4 9.9 L 0 15.6 L 7.4 9.4 L 18.6 0 L 18.6 57.6 L 21.7 54.6 L 21.7 9.4 L 32.9 0 L 32.9 45.6 L 21.7 55 L 18.6 57.6 L 18.6 58.9 A 21.543 21.543 0 0 1 22.818 56.637 A 15.701 15.701 0 0 1 28.6 55.5 A 17.232 17.232 0 0 1 31.108 55.676 A 14.339 14.339 0 0 1 32.5 55.95 A 36.584 36.584 0 0 1 33.946 56.346 Q 34.605 56.54 35.344 56.778 A 78.918 78.918 0 0 1 36.9 57.3 A 66.421 66.421 0 0 0 38.473 57.851 Q 39.251 58.112 39.946 58.32 A 34.361 34.361 0 0 0 40.75 58.55 Q 42.4 59 44.1 59 A 11.086 11.086 0 0 0 49.451 57.586 A 15.425 15.425 0 0 0 51.8 56 Z",
+  },
+];
+
+export const sidebarItems = [
+  {
+    title: "Services",
+    link: "#services",
+  },
+  {
+    title: "Works",
+    link: "#works",
+  },
+  {
+    title: "About",
+    link: "#about",
+  },
+  {
+    title: "Contact",
+    link: "#contact",
+  },
+];
+
+export const services = [
+  {
+    title: ["Front-end", "Development"],
+    desc: "Building modern and user-friendly websites and web applications using React and Next.js frameworks. while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best use experience while enhancing the quality and maintainability of projects",
+  },
+  {
+    title: ["Motion and", "UI Design"],
+    desc: "Creating beautiful, responsive and accessible designs using tailwindcss, and implementing smooth animations and engaging motion designs with framer-motion and gsap. i blend creativity with functionality, ensuring a delightful user journey.",
+  },
+  {
+    title: ["3D web", "Experiences"],
+    desc: "Step into the future of web experiences with 3D Graphics! Utilizing Three.js, I create immersive visual stories that captivate users and make content interactive. whether it's for gameplay, product showcases, or artistic displays, my 3D solutions will leave a lasting impression.",
   },
 ];
 
@@ -149,52 +191,60 @@ export const allTech = (scaleValues: ScaleValues) => [
 
 export const projects = [
   {
-    imgSrc: "/projects/lingo.png",
+    imgSrc: Lingo,
     srcCode: "https://github.com/charactermi/lingo",
     title: "Lingo",
     year: 2024,
+    backgroundColor: "#e5e5e5",
   },
   {
-    imgSrc: "/projects/melodi-mix.png",
+    imgSrc: MelodiMix,
     srcCode: "https://github.com/charactermi/melodi-mix",
     title: "MelodiMix",
     year: 2024,
+    backgroundColor: "#525252",
   },
   {
-    imgSrc: "/projects/design-wave.png",
+    imgSrc: DesignWave,
     srcCode: "https://github.com/charactermi/design-wave",
     title: "DesignWave",
     year: 2023,
+    backgroundColor: "#cbd5e1",
   },
   {
-    imgSrc: "/projects/film-hub.png",
+    imgSrc: FilmHub,
     srcCode: "https://github.com/charactermi/film_hub",
     title: "FilmHub",
     year: 2023,
+    backgroundColor: "#27272a",
   },
   {
-    imgSrc: "/projects/atb-media.png",
-    srcCode: "https://github.com/charactermi/atb_media",
-    title: "ATB Media",
-    year: 2022,
-  },
-  {
-    imgSrc: "/projects/marble-race.png",
+    imgSrc: MarbleRace,
     srcCode: "https://github.com/charactermi/marble-race",
     title: "Marble Race",
     year: 2023,
+    backgroundColor: "#e7e5e4",
   },
   {
-    imgSrc: "/projects/car-game.png",
+    imgSrc: ATBMedia,
+    srcCode: "https://github.com/charactermi/atb_media",
+    title: "ATB Media",
+    year: 2022,
+    backgroundColor: "#292524",
+  },
+  {
+    imgSrc: CarGame,
     srcCode: "https://github.com/charactermi/car-game",
     title: "Car Game",
     year: 2024,
+    backgroundColor: "#e5e7eb",
   },
   {
-    imgSrc: "/projects/gym-lovers.png",
+    imgSrc: GymLovers,
     srcCode: "https://github.com/charactermi/gym-lovers",
     title: "Gym Lovers",
     year: 2022,
+    backgroundColor: "#000000",
   },
 ];
 
@@ -247,26 +297,26 @@ export const allProjects = [
 
 export const arrowSvg = [
   "M133 1258 c-26 -13 -31 -38 -7 -38 18 0 44 23 44 39 0 13 -8 13 -37 -1z",
+  "M48 1123 c-16 -19 -38 -58 -38 -67 0 -24 45 27 68 77 7 14 -15 7 -30 -10z",
+  "M0 973 c0 -35 14 -73 23 -63 7 10 -5 100 -14 100 -5 0 -9 -17 -9 -37z",
+  "M40 871 c0 -14 66 -34 90 -26 35 11 22 24 -24 23 -24 0 -49 3 -55 6 -6 4 -11 3 -11 -3z",
+  "M240 940 c-25 -21 -40 -39 -34 -40 11 0 104 67 104 75 0 15 -31 0 -70 -35z",
+  "M375 1089 c-25 -23 -43 -44 -40 -47 4 -5 115 76 115 84 0 16 -38 -3 -75 -37z",
   "M605 1212 c-60 -12 -95 -24 -90 -32 3 -5 19 -5 38 1 17 5 44 9 59 9 16 0 28 4 28 9 0 14 -12 18 -35 13z",
   "M720 1173 c0 -10 64 -92 73 -93 19 0 4 39 -26 68 -32 31 -47 39 -47 25z",
-  "M48 1123 c-16 -19 -38 -58 -38 -67 0 -24 45 27 68 77 7 14 -15 7 -30 -10z",
-  "M375 1089 c-25 -23 -43 -44 -40 -47 4 -5 115 76 115 84 0 16 -38 -3 -75 -37z",
   "M794 1003 c-3 -16 -10 -44 -15 -63 -10 -41 6 -66 19 -29 15 39 23 119 12 119 -5 0 -12 -12 -16 -27z",
-  "M0 973 c0 -35 14 -73 23 -63 7 10 -5 100 -14 100 -5 0 -9 -17 -9 -37z",
-  "M240 940 c-25 -21 -40 -39 -34 -40 11 0 104 67 104 75 0 15 -31 0 -70 -35z",
-  "M40 871 c0 -14 66 -34 90 -26 35 11 22 24 -24 23 -24 0 -49 3 -55 6 -6 4 -11 3 -11 -3z",
   "M702 783 c-36 -53 -44 -73 -28 -73 11 0 66 80 66 96 0 13 -22 0 -38 -23z",
   "M590 628 c-37 -48 -49 -71 -50 -91 0 -31 22 -14 39 30 9 22 22 47 29 56 8 9 12 21 10 27 -2 6 -15 -4 -28 -22z",
   "M472 423 c-28 -40 -52 -90 -52 -108 0 -21 19 -19 26 3 4 9 17 41 31 70 28 60 26 78 -5 35z",
-  "M1171 387 c-8 -10 -2 -32 24 -85 l34 -72 -34 0 c-39 0 -65 -8 -65 -21 0 -12 137 -12 144 0 6 10 -68 176 -82 185 -6 3 -15 0 -21 -7z",
-  "M1050 346 c0 -5 83 -46 93 -46 18 0 4 21 -23 35 -27 14 -70 21 -70 11z",
-  "M951 274 c-40 -46 -49 -64 -32 -64 15 0 92 90 86 100 -9 15 -10 14 -54 -36z",
   "M420 191 c0 -33 22 -81 41 -92 35 -18 40 2 9 31 -18 17 -30 38 -30 54 0 14 -4 26 -10 26 -5 0 -10 -8 -10 -19z",
-  "M878 170 c-14 -10 -37 -22 -51 -25 -31 -8 -36 -25 -8 -25 32 0 76 20 89 40 17 27 -1 33 -30 10z",
   "M560 61 c0 -5 21 -19 46 -30 49 -24 114 -25 122 -3 3 9 -12 12 -53 12 -31 0 -69 7 -85 15 -17 9 -30 11 -30 6z",
+  "M878 170 c-14 -10 -37 -22 -51 -25 -31 -8 -36 -25 -8 -25 32 0 76 20 89 40 17 27 -1 33 -30 10z",
+  "M951 274 c-40 -46 -49 -64 -32 -64 15 0 92 90 86 100 -9 15 -10 14 -54 -36z",
+  "M1050 346 c0 -5 83 -46 93 -46 18 0 4 21 -23 35 -27 14 -70 21 -70 11z",
+  "M1171 387 c-8 -10 -2 -32 24 -85 l34 -72 -34 0 c-39 0 -65 -8 -65 -21 0 -12 137 -12 144 0 6 10 -68 176 -82 185 -6 3 -15 0 -21 -7z",
 ];
 
-export const footerLinks = [
+export const socials = [
   {
     title: "Linkedin",
     link: "https://linkedin.com/in/abolfazl-taghadosi",

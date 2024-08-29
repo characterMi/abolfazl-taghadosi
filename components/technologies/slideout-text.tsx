@@ -7,7 +7,7 @@ export const SlideOutText = ({ scrollY }: { scrollY: MotionValue<number> }) => {
 
   return (
     <motion.p
-      className="title m-4 md:m-10"
+      className="title m-4 md:m-10 lg:mt-[2.5vw]"
       style={{
         translateY,
         translateX,

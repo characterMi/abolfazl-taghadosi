@@ -1,9 +1,10 @@
 "use client";
 
-import { fadeIn, slideUp } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import GithubLink from "../shared/github-link";
+import SlideUpAnimation from "../shared/slide-up-animation";
 
 const ScrollToExplode = () => {
   const { scrollY } = useScroll();
@@ -25,8 +26,8 @@ const ScrollToExplode = () => {
       animate={isHidden ? "initial" : "animate"}
     >
       <motion.div
-        className="w-1 h-full bg-pink absolute"
-        animate={{ scaleY: [0, 1, 0], opacity: [0, 1, 0] }}
+        className="w-1 h-full bg-primary absolute"
+        animate={{ scaleY: [0, 1, 0], opacity: [0, 0.5, 1, 1, 0] }}
         transition={{
           duration: 3,
           repeat: Infinity,
@@ -37,56 +38,42 @@ const ScrollToExplode = () => {
           WebkitTransformOrigin: "top",
         }}
       />
-      <p className="slide-up-animation ml-2 lg:ml-[1vw]">
-        <motion.span
-          custom={{ duration: 1.2, delay: 4.6 }}
-          variants={slideUp}
-          initial="initial"
-          animate="animate"
-          exit="initial"
-        >
-          Scroll
-        </motion.span>
-      </p>
+      <SlideUpAnimation
+        animate={"animate"}
+        text={"Scroll"}
+        type="single-word"
+        animationProps={{ delay: 4.6 }}
+        containerClassName="ml-4 lg:ml-[1vw]"
+      />
       <br />
-      <p className="slide-up-animation ml-2 lg:ml-[1vw]">
-        <motion.span
-          custom={{ duration: 1.2, delay: 4.8 }}
-          variants={slideUp}
-          initial="initial"
-          animate="animate"
-          exit="initial"
-        >
-          To Explode.
-        </motion.span>
-      </p>
+
+      <SlideUpAnimation
+        animate={"animate"}
+        text={"To Explode."}
+        type="single-word"
+        animationProps={{ delay: 4.8 }}
+        containerClassName="ml-4 lg:ml-[1vw]"
+      />
     </motion.div>
   );
 };
 
 export const HeaderInfo = () => {
   const text =
-    "Skilled web developer with experience in TypeScript and JavaScript, and expertise in frameworks like React, Next.js, TailwindCSS and Three.js.";
+    "Empowering brands and startups to thrive in the digital world. Together, we'll craft innovative, high-impact websites that set new standards. No fluff, just cutting-edge solutions.";
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-8 justify-between">
-      <div className="flex gap-4 lg:gap-20">
+      <div className="flex gap-4 lg:gap-[8vw]">
         <ScrollToExplode />
 
-        <h3 className="text-[5vw] md:text-[1.5vw] lg:text-[1.2vw] lg:max-w-[30vw] slide-up-animation gap-[0.8vw] md:gap-[0.2vw] flex-wrap">
-          {text.split(" ").map((word, i) => (
-            <motion.span
-              key={i}
-              custom={{ duration: 1.2, delay: 5.2 + i * 0.05 }}
-              variants={slideUp}
-              initial="initial"
-              animate="animate"
-              exit="initial"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h3>
+        <SlideUpAnimation
+          animate={"animate"}
+          text={text}
+          type="multiple-word"
+          animationProps={(i) => ({ delay: 5.2 + i * 0.05 })}
+          containerClassName="text-[5vw] md:text-[1.5vw] lg:text-[1.2vw] lg:max-w-[30vw] gap-[0.8vw] md:gap-[0.3vw]"
+        />
       </div>
 
       <motion.div

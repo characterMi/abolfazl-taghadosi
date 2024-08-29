@@ -10,13 +10,15 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      // "smart-watch": "340px",
-      xss: "420px",
+      "smart-watch": "340px",
+      xss: "440px",
       ...defaultTheme.screens,
     },
     extend: {
       colors: {
-        pink: "#ff98a2",
+        primary: "#56ccf2",
+        "light-blue": "#b6edff",
+        "dark-blue": "#32a2c7",
       },
       backgroundImage: {
         background: "url(/images/background.webp)",

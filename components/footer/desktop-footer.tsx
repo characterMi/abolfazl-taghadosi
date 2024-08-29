@@ -1,39 +1,36 @@
 "use client";
 
-import { footerLinks } from "@/constants";
+import { socials } from "@/constants";
 import Magnetic from "../shared/magnetic";
+import SlideUpLink from "../shared/slide-up-link";
 
 export const DesktopFooter = () => {
   return (
-    <div className="hidden md:flex w-full items-center justify-between pt-10 mt-10 border-t border-gray-400">
-      <div className="flex items-center gap-4 text-xs uppercase">
-        {footerLinks.map(({ link, title }) => (
-          <Magnetic key={link}>
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
-              {title}
-            </a>
+    <div className="hidden md:flex w-full items-center justify-between pt-10 lg:pt-[2.5vw] mt-10 lg:mt-[2.5vw] border-t border-gray-400">
+      <div className="flex items-center gap-4 text-xs lg:text-[0.8vw] lg:gap-[1vw] uppercase">
+        {socials.map((link) => (
+          <Magnetic key={link.title}>
+            <SlideUpLink {...link} />
           </Magnetic>
         ))}
 
         <p>
           Inspired by{" "}
-          <a
-            href="https://lenis.darkroom.engineering/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mark link"
-          >
-            Lenis website
-          </a>
+          <SlideUpLink
+            title={"Lenis website"}
+            link={"https://lenis.darkroom.engineering/"}
+            className="mark"
+          />{" "}
+          &{" "}
+          <SlideUpLink
+            title={"denniss's portfolio"}
+            link={"https://dennissnellenberg.com/"}
+            className="mark"
+          />
         </p>
       </div>
 
-      <p className="text-xs">
+      <p className="text-xs md:hidden lg:block lg:text-[0.8vw]">
         &copy; {new Date().getFullYear()} ABOLFAZL TAGHADOSI
       </p>
     </div>

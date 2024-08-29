@@ -10,30 +10,6 @@ type PathProps = {
   progress: MotionValue<number>;
 };
 
-const initial = {
-  path: "M -1 0 L 1 0 C 1 1 0 1 0 1 C 0 1 -1 1 -1 0",
-  viewBox: "-0.5 0 1 1",
-};
-
-const target = {
-  path: "M -1 0 L 1 0 C 1 0 0 0 0 0 C 0 0 -1 0 -1 0",
-  viewBox: "-1 0 2 0",
-};
-
-function CurveSvg({
-  path,
-  viewBox,
-}: {
-  path: MotionValue<string>;
-  viewBox: MotionValue<string>;
-}) {
-  return (
-    <motion.svg className="w-full -mt-1" viewBox={viewBox}>
-      <motion.path d={path} fill="#fff" />
-    </motion.svg>
-  );
-}
-
 function Path({ d, progress, range }: PathProps) {
   const opacity = useTransform(progress, range, [0, 1]);
 
@@ -45,25 +21,33 @@ export const Curve = ({
 }: {
   footerRef: RefObject<HTMLDivElement>;
 }) => {
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: svgCurveAnimation } = useScroll({
     target: footerRef,
     offset: ["start end", "start start"],
   });
 
+  const { scrollYProgress: svgArrowAnimation } = useScroll({
+    target: footerRef,
+    offset: ["start end", "center end"],
+  });
+
   const path = useTransform(
-    scrollYProgress,
+    svgCurveAnimation,
     [0, 1],
-    [initial.path, target.path]
+    [
+      "M -1 0 L 1 0 C 1 1 0 1 0 1 C 0 1 -1 1 -1 0",
+      "M -1 0 L 1 0 C 1 0 0 0 0 0 C 0 0 -1 0 -1 0",
+    ]
   );
   const viewBox = useTransform(
-    scrollYProgress,
+    svgCurveAnimation,
     [0, 1],
-    [initial.viewBox, target.viewBox]
+    ["-0.5 0 1 1", "-1 0 2 0"]
   );
 
   return (
     <div className="absolute w-full top-0 left-0 flex flex-col items-center z-10">
-      <div className="absolute -top-48 rotate-45">
+      <div className="absolute -top-60 rotate-45 min-[1768px]:hidden">
         <svg
           version="1.0"
           xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +58,7 @@ export const Curve = ({
         >
           <g
             transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
-            fill="#ff98a2"
+            className="fill-dark-blue"
             stroke="none"
           >
             {arrowSvg.map((d, i) => {
@@ -85,7 +69,7 @@ export const Curve = ({
                 <Path
                   d={d}
                   range={[start, end]}
-                  progress={scrollYProgress}
+                  progress={svgArrowAnimation}
                   key={d}
                 />
               );
@@ -94,7 +78,9 @@ export const Curve = ({
         </svg>
       </div>
 
-      <CurveSvg path={path} viewBox={viewBox} />
+      <motion.svg className="w-full -mt-1" viewBox={viewBox}>
+        <motion.path d={path} fill="#fff" />
+      </motion.svg>
     </div>
   );
 };

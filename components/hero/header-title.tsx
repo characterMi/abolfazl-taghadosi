@@ -39,7 +39,7 @@ export const HeaderTitle = () => (
               stroke="#ff98a2"
               strokeWidth="0.25mm"
               fill="#ff98a2"
-              className="stroke-pink stroke-[0.25mm] fill-pink"
+              className="stroke-primary stroke-[0.25mm] fill-primary"
               variants={gVariants}
               initial="initial"
               animate="animate"
@@ -66,7 +66,7 @@ export const HeaderTitle = () => (
               stroke="#ff98a2"
               strokeWidth="0.25mm"
               fill="#ff98a2"
-              className="stroke-pink stroke-[0.25mm] fill-pink"
+              className="stroke-primary stroke-[0.25mm] fill-primary"
               variants={gVariants}
               initial="initial"
               animate="animate"

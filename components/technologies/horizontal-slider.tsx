@@ -24,7 +24,7 @@ export const HorizontalSlider = () => {
   return (
     <section ref={targetRef} className="relative h-[300vh] uppercase">
       <div className="flex h-screen items-center justify-center overflow-hidden sticky top-0">
-        <motion.div style={{ x }} className="flex gap-10">
+        <motion.div style={{ x }} className="flex gap-10 lg:gap-[2.5vw]">
           {mainTech.map((tech, index) => {
             return <Card tech={tech} index={index} key={tech.label} />;
           })}
@@ -36,8 +36,8 @@ export const HorizontalSlider = () => {
 
 const Card = ({ tech, index }: CardProps) => {
   return (
-    <div className="relative size-96 overflow-hidden border-pink border p-10">
-      <p className="text-7xl absolute top-6 left-6 text-pink font-black">
+    <div className="relative size-96 lg:size-[24vw] overflow-hidden border-primary border p-10 lg:p-[2.5vw] bg-neutral-900/50">
+      <p className="text-7xl lg:text-[4.5vw] absolute top-6 lg:top-[1.5vw] left-6 lg:left-[1.5vw] text-primary font-black">
         {index < 10 ? `0${index + 1}` : index + 1}
       </p>
 
@@ -52,7 +52,7 @@ const Card = ({ tech, index }: CardProps) => {
           className="w-1/2 h-1/2 object-cover"
         />
 
-        <p className="text-3xl">{tech.label}</p>
+        <p className="text-3xl lg:text-[1.875vw]">{tech.label}</p>
       </div>
     </div>
   );

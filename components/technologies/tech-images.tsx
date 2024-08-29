@@ -17,7 +17,7 @@ export const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
 
   return allTech(scaleValues).map((tech, index) => (
     <motion.div
-      className="w-full h-full absolute top-0"
+      className="w-[200%] md:w-full h-full absolute top-0 -left-1/2 md:left-0"
       key={tech.imgSrc}
       style={{ scale: tech.scale, opacity }}
     >

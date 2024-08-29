@@ -4,7 +4,7 @@ import { MainProjects } from "./main-projects";
 
 const Projects = () => {
   return (
-    <div className="px-4 md:px-10">
+    <div className="px-4 md:px-10 lg:px-[2.5vw]">
       <Description />
 
       <MainProjects />

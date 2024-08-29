@@ -5,7 +5,7 @@
 * {
   /* Hide scrollbar for IE, Edge and Firefox */
   /* -ms-overflow-style: none; 
-  scrollbar-width: none;  */
+  scrollbar-height: none;  */
   -webkit-tap-highlight-color: transparent;
   color: white;
 }
@@ -20,19 +20,53 @@ body {
 }
 
 ::selection {
-  @apply text-black bg-pink;
+  @apply text-neutral-900 bg-primary;
 }
 
-.max-w {
-  @apply max-w-screen-2xl mx-auto;
+.menu-container {
+  @apply fixed top-0 left-0 w-full md:p-5 lg:p-[1.25vw] z-50 flex items-center justify-between mix-blend-difference pointer-events-none;
 }
 
-.mark {
-  @apply bg-transparent text-pink;
+.menu {
+  @apply pointer-events-none size-20 lg:size-[5vw] relative after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto after:transition before:transition;
+}
+
+.menu-active {
+  @apply after:rotate-45 before:-rotate-45 after:top-1/2 before:top-1/2;
+}
+
+.inner-menu {
+  @apply w-full h-full hover:scale-[3] pointer-events-auto;
 }
 
 .gray-mark {
-  @apply bg-transparent text-gray-400;
+  background: transparent;
+  color: #a3a3a3;
+  background: -webkit-linear-gradient(to right, #8b8b8b, #a3a3a3);
+  background: linear-gradient(to right, #8b8b8b, #a3a3a3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mark {
+  background: transparent;
+  color: #56ccf2;
+  background: -webkit-linear-gradient(to top, #5cd6ff, #b6edff);
+  background: linear-gradient(to top, #5cd6ff, #b6edff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark-mark {
+  background: transparent;
+  color: #32a2c7;
+  background: -webkit-linear-gradient(to top, #32a2c7, #5cd6ff);
+  background: linear-gradient(to top, #32a2c7, #5cd6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .title {
@@ -43,10 +77,6 @@ body {
   @apply font-black tracking-tighter font-sans uppercase leading-[0.8];
 }
 
-.slide-up-animation {
-  @apply relative inline-flex overflow-hidden;
-}
-
 .button-container:hover .cube {
   transform: rotateX(-90deg);
 }
@@ -54,77 +84,131 @@ body {
 .image-container__1 {
   top: 0%;
   left: 0%;
-  width: 5rem;
+  height: 5rem;
 }
 
 .image-container__2 {
   top: 30%;
   left: 5%;
-  width: 3rem;
+  height: 3rem;
 }
 
 .image-container__3 {
   top: 0%;
   left: 7%;
-  width: 3rem;
+  height: 3rem;
 }
 
 .image-container__4 {
   top: 100%;
   left: 50%;
-  width: 4rem;
+  height: 4rem;
 }
 
 .image-container__5 {
   top: 0%;
   left: 1%;
-  width: 5rem;
+  height: 5rem;
 }
 
 .image-container__6 {
   top: 10%;
   left: 75%;
-  width: 4rem;
+  height: 4rem;
 }
 
 .image-container__7 {
   top: 70%;
   left: 4%;
-  width: 6rem;
+  height: 6rem;
 }
 
 .image-container__8 {
   top: 10%;
   left: 60%;
-  width: 6rem;
+  height: 6rem;
 }
 
 .image-container__9 {
   top: 80%;
   left: 3%;
-  width: 6rem;
+  height: 6rem;
 }
 
 .image-container__10 {
   top: 40%;
   left: 100%;
-  width: 7rem;
+  height: 7rem;
 }
 
 .image-container__11 {
   top: 40%;
   right: 5%;
-  width: 8rem;
+  height: 8rem;
 }
 
 .image-container__12 {
   top: 1%;
   left: 35%;
-  width: 3rem;
+  height: 3rem;
 }
 
 .image-container__13 {
   top: 80%;
   left: 85%;
-  width: 4rem;
+  height: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .image-container__1 {
+    height: 4vw;
+  }
+
+  .image-container__2 {
+    height: 3vw;
+  }
+
+  .image-container__3 {
+    height: 3vw;
+  }
+
+  .image-container__4 {
+    height: 3vw;
+  }
+
+  .image-container__5 {
+    height: 4vw;
+  }
+
+  .image-container__6 {
+    height: 3.5vw;
+  }
+
+  .image-container__7 {
+    height: 5vw;
+  }
+
+  .image-container__8 {
+    height: 7vw;
+  }
+
+  .image-container__9 {
+    height: 5vw;
+  }
+
+  .image-container__10 {
+    height: 6vw;
+  }
+
+  .image-container__11 {
+    height: 7vw;
+  }
+
+  .image-container__12 {
+    height: 3vw;
+  }
+
+  .image-container__13 {
+    height: 3.5vw;
+  }
 }

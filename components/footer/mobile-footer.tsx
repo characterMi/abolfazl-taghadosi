@@ -1,23 +1,16 @@
 "use client";
 
-import { footerLinks } from "@/constants";
+import { socials } from "@/constants";
 import GithubLink from "../shared/github-link";
+import SlideUpLink from "../shared/slide-up-link";
 
 export const MobileFooter = () => {
   return (
     <div className="flex flex-col md:hidden">
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-col gap-3 text-2xl sm:text-3xl">
-          {footerLinks.map(({ link, title }) => (
-            <a
-              key={link}
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
-              {title}
-            </a>
+          {socials.map((link) => (
+            <SlideUpLink {...link} key={link.title} />
           ))}
         </div>
 
@@ -31,6 +24,16 @@ export const MobileFooter = () => {
               className="mark link"
             >
               Lenis Website
+            </a>{" "}
+            &
+            <br />
+            <a
+              href="https://dennissnellenberg.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mark link"
+            >
+              denniss&apos;s portfolio
             </a>
           </p>
 

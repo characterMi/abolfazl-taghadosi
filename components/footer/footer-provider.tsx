@@ -16,7 +16,7 @@ export const FooterProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <footer
-      className="min-h-[52rem] md:min-h-[28rem] h-screen mt-80 bg-neutral-900 py-6 px-4 sm:p-10 relative"
+      className="min-h-[52rem] md:min-h-[28rem] h-screen mt-96 lg:mt-[24vw] bg-gradient-to-r from-neutral-950 to-neutral-900 py-6 px-4 sm:p-10 lg:p-[2.5vw] relative"
       ref={footer}
     >
       <Curve footerRef={footer} />

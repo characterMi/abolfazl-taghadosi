@@ -25,7 +25,10 @@ const CustomScroll = () => {
   }, []);
 
   return (
-    <div ref={customScroll} className="fixed top-0 left-0 h-1 bg-pink z-50" />
+    <div
+      ref={customScroll}
+      className="fixed top-0 left-0 h-1 bg-primary z-50"
+    />
   );
 };
 
