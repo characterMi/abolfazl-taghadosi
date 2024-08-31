@@ -35,21 +35,23 @@ const SvgCurve = ({
   let x = 0.5;
 
   function setPath(progress: number) {
-    if (!card.current) return;
+    if (!card.current || !ref.current) return;
 
     const { width } = card.current.getBoundingClientRect();
 
     const path = `M0 50 Q${width * x} ${50 + progress}, ${width} 50`;
 
-    ref.current?.setAttributeNS("", "d", path);
+    ref.current.setAttributeNS("", "d", path);
   }
 
   function handleMouseMove(
     e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
   ) {
+    if (!ref.current) return;
+
     const { movementY, clientX } = e;
-    const cliRect = ref.current?.getBoundingClientRect();
-    x = cliRect ? (clientX - cliRect.left) / cliRect.width : 0.5;
+    const cliRect = ref.current.getBoundingClientRect();
+    x = (clientX - cliRect.left) / cliRect.width;
     progress += movementY;
     setPath(progress);
   }

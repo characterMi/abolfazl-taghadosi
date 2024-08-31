@@ -111,19 +111,6 @@ export const slideUp = {
   }),
 };
 
-export const scaleUp = {
-  hidden: { scale: 0 },
-  visible: (delay: number) => ({
-    scale: 1,
-    transition: {
-      delay,
-      duration: 0.5,
-      type: "tween",
-      ease,
-    },
-  }),
-};
-
 export const fadeIn = {
   initial: { opacity: 0 },
   animate: (transition: Transition) => ({

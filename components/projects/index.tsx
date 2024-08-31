@@ -4,13 +4,16 @@ import { MainProjects } from "./main-projects";
 
 const Projects = () => {
   return (
-    <div className="px-4 md:px-10 lg:px-[2.5vw]">
+    <section
+      className="px-4 md:px-10 lg:px-[2.5vw] pb-96 lg:pb-[24vw] overflow-hidden bg-white"
+      id="works"
+    >
       <Description />
 
       <MainProjects />
 
       <AllProjects />
-    </div>
+    </section>
   );
 };
 

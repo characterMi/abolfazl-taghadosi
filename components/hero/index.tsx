@@ -20,7 +20,7 @@ const Hero = () => {
         />
       </MotionDiv>
 
-      <div className="flex-1">
+      <div className="flex-1 overflow-hidden">
         <HeaderTitle />
 
         <HeaderDesc />

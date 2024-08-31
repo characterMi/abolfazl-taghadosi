@@ -10,7 +10,7 @@ export const DesktopFooter = () => {
       <div className="flex items-center gap-4 text-xs lg:text-[0.8vw] lg:gap-[1vw] uppercase">
         {socials.map((link) => (
           <Magnetic key={link.title}>
-            <SlideUpLink {...link} />
+            <SlideUpLink {...link} isBlank />
           </Magnetic>
         ))}
 
@@ -19,13 +19,15 @@ export const DesktopFooter = () => {
           <SlideUpLink
             title={"Lenis website"}
             link={"https://lenis.darkroom.engineering/"}
-            className="mark"
+            childClassName="mark"
+            isBlank
           />{" "}
           &{" "}
           <SlideUpLink
             title={"denniss's portfolio"}
             link={"https://dennissnellenberg.com/"}
-            className="mark"
+            childClassName="mark"
+            isBlank
           />
         </p>
       </div>

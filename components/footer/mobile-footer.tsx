@@ -10,32 +10,32 @@ export const MobileFooter = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-col gap-3 text-2xl sm:text-3xl">
           {socials.map((link) => (
-            <SlideUpLink {...link} key={link.title} />
+            <SlideUpLink {...link} key={link.title} isBlank />
           ))}
         </div>
 
         <div className="flex justify-between items-center flex-wrap mt-10 text-sm sm:text-lg">
-          <p>
-            Inspired by <br />
-            <a
-              href="https://lenis.darkroom.engineering/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mark link"
-            >
-              Lenis Website
-            </a>{" "}
-            &
-            <br />
-            <a
-              href="https://dennissnellenberg.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mark link"
-            >
-              denniss&apos;s portfolio
-            </a>
-          </p>
+          <div className="flex flex-col gap-1">
+            <div>
+              Inspired by <br />
+              <SlideUpLink
+                title="Lenis website"
+                link="https://lenis.darkroom.engineering/"
+                containerClassName="link"
+                childClassName="mark"
+              />{" "}
+              &
+            </div>
+
+            <div>
+              <SlideUpLink
+                title="denniss's portfolio"
+                link="https://dennissnellenberg.com/"
+                containerClassName="link"
+                childClassName="mark"
+              />
+            </div>
+          </div>
 
           <p className="text-xs sm:text-base" style={{ direction: "rtl" }}>
             &copy; {new Date().getFullYear()} <br /> ABOLFAZL TAGHADOSI

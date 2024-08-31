@@ -10,6 +10,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { memo, RefObject, useEffect, useRef, useState } from "react";
+import WaveEffect from "./wave-effect";
 
 const InnerCursor = ({
   cursorScale,
@@ -32,7 +33,7 @@ const InnerCursor = ({
       document.querySelectorAll<HTMLAnchorElement>(".project-card");
 
     function handleMouseEntersProjectCard() {
-      cursorScale.set(4);
+      cursorScale.set(3);
       setIsHoveredOnProjectCard(true);
     }
 
@@ -76,15 +77,7 @@ const InnerCursor = ({
         }}
         ref={menuCursorRef}
       >
-        <span
-          className="h-0 top-0 bg-dark-blue absolute rounded-[50%] duration-1000"
-          style={{
-            top: isHoveredOnProjectCard || isHoveredOnMenu ? "auto" : "0",
-            height: isHoveredOnProjectCard || isHoveredOnMenu ? "200%" : "0",
-            width: isHoveredOnProjectCard || isHoveredOnMenu ? "150%" : "125%",
-            bottom: isHoveredOnProjectCard || isHoveredOnMenu ? "0" : "auto",
-          }}
-        />
+        <WaveEffect condition={isHoveredOnMenu || isHoveredOnProjectCard} />
       </motion.div>
       {"VIEW".split("").map((letter, i) => (
         <motion.span
@@ -103,187 +96,173 @@ const InnerCursor = ({
   );
 };
 
-const Cursor = ({ target }: { target: React.RefObject<HTMLDivElement> }) => {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const menuCursorAnimation = useRef<HTMLDivElement>(null);
-  const [isHoveredOnMenu, setIsHoveredOnMenu] = useState(false);
-
-  const smoothMouseOptions = { damping: 20, stiffness: 300, mass: 0.5 };
-  const cursorSizeWhenHoveringOnMenu =
-    target.current?.parentElement?.getBoundingClientRect().width!;
-  // The reason that we're using '2.5' is because we want the cursor to have a {{ 2.5vw }} width and height
-  const cursorSize = (window.innerWidth / 100) * 2.5;
-
-  const mouse = {
-    x: useMotionValue(0),
-    y: useMotionValue(0),
-    opacity: useMotionValue(0),
-    scale: useMotionValue(1),
-  };
-
-  const smoothMouse = {
-    x: useSpring(mouse.x, smoothMouseOptions),
-    y: useSpring(mouse.y, smoothMouseOptions),
-    opacity: useSpring(mouse.opacity, smoothMouseOptions),
-    scale: useSpring(mouse.scale, smoothMouseOptions),
-  };
-
-  const menuCursorScale = {
-    x: useMotionValue(1),
-    y: useMotionValue(1),
-  };
-
-  useEffect(() => {
-    const links = document.querySelectorAll(".link");
-
-    // Function definition...
-    const handleRemoveOpacity = () => mouse.opacity.set(0);
-
-    const handleSetOpacity = () => mouse.opacity.set(1);
-
-    const handleMouseOverOnLinks = () => mouse.scale.set(0.5);
-
-    const handleMouseLeaveLinks = () => mouse.scale.set(1);
-
-    const handleMouseOverOnMenu = () => setIsHoveredOnMenu(true);
-
-    const handleMouseLeaveMenu = () => {
-      if (!menuCursorAnimation.current) return;
-
-      animate(
-        menuCursorAnimation.current,
-        { scaleX: 1, scaleY: 1 },
-        { duration: 0.1, type: "spring" }
-      );
-
-      setIsHoveredOnMenu(false);
-    };
-
-    window.document.addEventListener("mouseenter", handleSetOpacity);
-    window.document.addEventListener("mouseleave", handleRemoveOpacity);
-    target.current?.addEventListener("mouseover", handleMouseOverOnMenu);
-    target.current?.addEventListener("mouseleave", handleMouseLeaveMenu);
-    links.forEach((element) => {
-      element.addEventListener("mouseover", handleMouseOverOnLinks);
-      element.addEventListener("mouseleave", handleMouseLeaveLinks);
-    });
-
-    return () => {
-      window.document.removeEventListener("mouseenter", handleSetOpacity);
-      window.document.removeEventListener("mouseleave", handleRemoveOpacity);
-      target.current?.removeEventListener("mouseover", handleMouseOverOnMenu);
-      target.current?.removeEventListener("mouseleave", handleMouseLeaveMenu);
-      links.forEach((element) => {
-        element.removeEventListener("mouseover", handleMouseOverOnLinks);
-        element.removeEventListener("mouseleave", handleMouseLeaveLinks);
-      });
-    };
-  }, []);
-
-  useEffect(() => {
-    // Function definition...
-    const rotate = (distance: { x: number; y: number }) => {
-      if (!menuCursorAnimation.current) return;
-
-      // Math.atan2() will give us a rad angle if we specify the x and y axis
-      const angle = Math.atan2(distance.y, distance.x);
-
-      // we animate the cursor using the given angle
-      animate(
-        menuCursorAnimation.current,
-        { rotate: `${angle}rad` },
-        { duration: 0 }
-      );
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!target.current) return;
-
-      mouse.opacity.set(1);
-      const { clientX, clientY } = e;
-      const { top, left, width, height } =
-        target.current.getBoundingClientRect();
-
-      // calculating the center of the target element which is the Burger menu.
-      const center = { x: left + width / 2, y: top + height / 2 };
-
-      // calculating the distance of the cursor and use it while hovering on the Burger menu.
-      const distance = { x: clientX - center.x, y: clientY - center.y };
-
-      if (isHoveredOnMenu) {
-        // rotating the cursor if we hovered on the menu.
-        rotate(distance);
-
-        const absDistance = Math.max(
-          Math.abs(distance.x),
-          Math.abs(distance.y)
-        );
-        const newScaleX = transform(absDistance, [0, width / 2], [1, 1.3]);
-        const newScaleY = transform(absDistance, [0, height / 2], [1, 0.8]);
-
-        menuCursorScale.x.set(newScaleX);
-        menuCursorScale.y.set(newScaleY);
-
-        mouse.x.set(
-          center.x - cursorSizeWhenHoveringOnMenu / 2 + distance.x * 0.1
-        );
-        mouse.y.set(
-          center.y - cursorSizeWhenHoveringOnMenu / 2 + distance.y * 0.1
-        );
-      } else {
-        mouse.x.set(clientX - cursorSize / 2);
-        mouse.y.set(clientY - cursorSize / 2);
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [isHoveredOnMenu]);
-
-  return (
-    <motion.div
-      className="size-[2.5vw] rounded-full fixed pointer-events-none z-[49] text-[0.5vw] flex items-center justify-center"
-      style={{
-        left: smoothMouse.x,
-        top: smoothMouse.y,
-        opacity: smoothMouse.opacity,
-        scale: smoothMouse.scale,
-      }}
-      animate={{
-        width: isHoveredOnMenu ? cursorSizeWhenHoveringOnMenu : cursorSize,
-        height: isHoveredOnMenu ? cursorSizeWhenHoveringOnMenu : cursorSize,
-      }}
-      ref={cursorRef}
-    >
-      <InnerCursor
-        cursorScale={mouse.scale}
-        isHoveredOnMenu={isHoveredOnMenu}
-        menuCursorRef={menuCursorAnimation}
-        menuCursorScale={menuCursorScale}
-      />
-    </motion.div>
-  );
-};
-
-const CursorContainer = memo(
+const Cursor = memo(
   ({ target }: { target: React.RefObject<HTMLDivElement> }) => {
-    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    const cursorRef = useRef<HTMLDivElement>(null);
+    const menuCursorAnimation = useRef<HTMLDivElement>(null);
+    const [isHoveredOnMenu, setIsHoveredOnMenu] = useState(false);
+
+    const smoothMouseOptions = { damping: 20, stiffness: 300, mass: 0.5 };
+    const cursorSizeWhenHoveringOnMenu =
+      target.current?.parentElement?.getBoundingClientRect().width!;
+    // The reason that we're using '2.5' is because we want the cursor to have a {{ 2.5vw }} width and height
+    const cursorSize = (window.innerWidth / 100) * 2.5;
+
+    const mouse = {
+      x: useMotionValue(0),
+      y: useMotionValue(0),
+      opacity: useMotionValue(0),
+      scale: useMotionValue(1),
+    };
+
+    const smoothMouse = {
+      x: useSpring(mouse.x, smoothMouseOptions),
+      y: useSpring(mouse.y, smoothMouseOptions),
+      opacity: useSpring(mouse.opacity, smoothMouseOptions),
+      scale: useSpring(mouse.scale, smoothMouseOptions),
+    };
+
+    const menuCursorScale = {
+      x: useMotionValue(1),
+      y: useMotionValue(1),
+    };
 
     useEffect(() => {
-      const handleTouchStart = () => setIsTouchDevice(true);
+      const links = document.querySelectorAll(".link");
 
-      window.addEventListener("touchstart", handleTouchStart, { once: true });
+      // Function definition...
+      const handleRemoveOpacity = () => mouse.opacity.set(0);
 
-      return () => window.removeEventListener("touchstart", handleTouchStart);
+      const handleSetOpacity = () => mouse.opacity.set(1);
+
+      const handleMouseOverOnLinks = () => mouse.scale.set(0.5);
+
+      const handleMouseLeaveLinks = () => mouse.scale.set(1);
+
+      const handleMouseOverOnMenu = () => setIsHoveredOnMenu(true);
+
+      const handleMouseLeaveMenu = () => {
+        if (!menuCursorAnimation.current) return;
+
+        animate(
+          menuCursorAnimation.current,
+          { scaleX: 1, scaleY: 1 },
+          { duration: 0.1, type: "spring" }
+        );
+
+        setIsHoveredOnMenu(false);
+      };
+
+      window.document.addEventListener("mouseenter", handleSetOpacity);
+      window.document.addEventListener("mouseleave", handleRemoveOpacity);
+      target.current?.addEventListener("mouseover", handleMouseOverOnMenu);
+      target.current?.addEventListener("mouseleave", handleMouseLeaveMenu);
+      links.forEach((element) => {
+        element.addEventListener("mouseover", handleMouseOverOnLinks);
+        element.addEventListener("mouseleave", handleMouseLeaveLinks);
+      });
+
+      return () => {
+        window.document.removeEventListener("mouseenter", handleSetOpacity);
+        window.document.removeEventListener("mouseleave", handleRemoveOpacity);
+        target.current?.removeEventListener("mouseover", handleMouseOverOnMenu);
+        target.current?.removeEventListener("mouseleave", handleMouseLeaveMenu);
+        links.forEach((element) => {
+          element.removeEventListener("mouseover", handleMouseOverOnLinks);
+          element.removeEventListener("mouseleave", handleMouseLeaveLinks);
+        });
+      };
     }, []);
 
-    return !isTouchDevice && <Cursor target={target} />;
+    useEffect(() => {
+      // Function definition...
+      const rotate = (distance: { x: number; y: number }) => {
+        if (!menuCursorAnimation.current) return;
+
+        // Math.atan2() will give us a rad angle if we specify the x and y axis
+        const angle = Math.atan2(distance.y, distance.x);
+
+        // we animate the cursor using the given angle
+        animate(
+          menuCursorAnimation.current,
+          { rotate: `${angle}rad` },
+          { duration: 0 }
+        );
+      };
+
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!target.current) return;
+
+        mouse.opacity.set(1);
+        const { clientX, clientY } = e;
+        const { top, left, width, height } =
+          target.current.getBoundingClientRect();
+
+        // calculating the center of the target element which is the Burger menu.
+        const center = { x: left + width / 2, y: top + height / 2 };
+
+        // calculating the distance of the cursor and use it while hovering on the Burger menu.
+        const distance = { x: clientX - center.x, y: clientY - center.y };
+
+        if (isHoveredOnMenu) {
+          // rotating the cursor if we hovered on the menu.
+          rotate(distance);
+
+          const absDistance = Math.max(
+            Math.abs(distance.x),
+            Math.abs(distance.y)
+          );
+          const newScaleX = transform(absDistance, [0, width / 2], [1, 1.3]);
+          const newScaleY = transform(absDistance, [0, height / 2], [1, 0.8]);
+
+          menuCursorScale.x.set(newScaleX);
+          menuCursorScale.y.set(newScaleY);
+
+          mouse.x.set(
+            center.x - cursorSizeWhenHoveringOnMenu / 2 + distance.x * 0.1
+          );
+          mouse.y.set(
+            center.y - cursorSizeWhenHoveringOnMenu / 2 + distance.y * 0.1
+          );
+        } else {
+          mouse.x.set(clientX - cursorSize / 2);
+          mouse.y.set(clientY - cursorSize / 2);
+        }
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    }, [isHoveredOnMenu]);
+
+    return (
+      <motion.div
+        className="size-[2.5vw] rounded-full fixed pointer-events-none z-[49] text-[0.5vw] flex items-center justify-center"
+        style={{
+          left: smoothMouse.x,
+          top: smoothMouse.y,
+          opacity: smoothMouse.opacity,
+          scale: smoothMouse.scale,
+        }}
+        animate={{
+          width: isHoveredOnMenu ? cursorSizeWhenHoveringOnMenu : cursorSize,
+          height: isHoveredOnMenu ? cursorSizeWhenHoveringOnMenu : cursorSize,
+        }}
+        ref={cursorRef}
+      >
+        <InnerCursor
+          cursorScale={mouse.scale}
+          isHoveredOnMenu={isHoveredOnMenu}
+          menuCursorRef={menuCursorAnimation}
+          menuCursorScale={menuCursorScale}
+        />
+      </motion.div>
+    );
   }
 );
 
-CursorContainer.displayName = "CursorContainer";
+Cursor.displayName = "CustomCursor";
 
-export default CursorContainer;
+export default Cursor;

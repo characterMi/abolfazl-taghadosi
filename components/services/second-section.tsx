@@ -19,7 +19,7 @@ export const SecondSection = () => {
 
   return (
     <div
-      className="mt-80 lg:mt-[20vw] h-screen w-full lg:max-w-[65vw] mx-auto flex flex-col lg:flex-row gap-20 lg:gap-[5vw] relative"
+      className="mt-80 lg:mt-[20vw] h-screen min-h-max w-full lg:max-w-[65vw] mx-auto flex flex-col lg:flex-row gap-20 lg:gap-[5vw] relative"
       ref={target}
     >
       <div className="flex gap-4 xss:gap-8 lg:gap-[2vw] items-center uppercase text-3xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[6vw] font-black relative">
@@ -57,7 +57,7 @@ export const SecondSection = () => {
           <SlideUpLink
             link="mailto:abol1385fx@gmail.com"
             title="reach out"
-            className="mark"
+            childClassName="mark"
           />{" "}
           and let&apos;s start a conversion that could lead to inspiring
           possibilities. Your next big project awaits!

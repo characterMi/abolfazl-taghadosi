@@ -1,6 +1,8 @@
 import { sidebarItems, socials } from "@/constants";
 import { fadeIn, menuSlide, pathAnimation, slide } from "@/utils/motion";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Magnetic from "./magnetic";
 import SlideUpLink from "./slide-up-link";
 
@@ -20,7 +22,42 @@ const Curve = () => (
   </svg>
 );
 
-const Sidebar = () => {
+const Sidebar = ({
+  setIsMenuActive,
+}: {
+  setIsMenuActive: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const lenis = useLenis();
+
+  useEffect(() => {
+    const links = document.querySelectorAll<HTMLAnchorElement>(".sidebar-link");
+    const handleScrollToSection = (e: MouseEvent) => {
+      e.preventDefault();
+
+      // @ts-expect-error: if we change the event type, it's going to give us another error...
+      const targetId = e.currentTarget?.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        const offsetTop = targetElement.offsetTop;
+
+        lenis?.scrollTo(offsetTop);
+
+        setIsMenuActive(false);
+      }
+    };
+
+    links.forEach((element) => {
+      element.addEventListener("click", handleScrollToSection);
+    });
+
+    return () => {
+      links.forEach((element) => {
+        element.removeEventListener("click", handleScrollToSection);
+      });
+    };
+  }, []);
+
   return (
     <>
       {/* Layer... */}
@@ -39,7 +76,7 @@ const Sidebar = () => {
         exit="exit"
         className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-screen bg-neutral-800 text-white z-40 w-full md:w-max"
       >
-        <div className="w-full h-full flex flex-col justify-between overflow-auto">
+        <div className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden">
           <div className="flex flex-col text-xl gap-20 lg:gap-[5vw] mt-20 lg:mt-[5vw] p-6 smart-watch:p-10 xss:p-14 sm:p-20 lg:p-[5vw]">
             <p className="border-b pb-4 lg:pb-[1vw] w-full lg:text-[1vw]">
               Navigation
@@ -55,7 +92,7 @@ const Sidebar = () => {
                   exit="exit"
                   key={item.title}
                 >
-                  <SlideUpLink {...item} />
+                  <SlideUpLink {...item} containerClassName="sidebar-link" />
                 </motion.div>
               ))}
             </div>
@@ -68,7 +105,7 @@ const Sidebar = () => {
             <div className="flex flex-wrap gap-4 lg:gap-[1vw] items-center uppercase text-sm lg:text-[1vw]">
               {socials.map((link) => (
                 <Magnetic key={link.title}>
-                  <SlideUpLink {...link} />
+                  <SlideUpLink {...link} isBlank />
                 </Magnetic>
               ))}
             </div>

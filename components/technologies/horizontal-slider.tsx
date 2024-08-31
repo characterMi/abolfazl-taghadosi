@@ -1,7 +1,13 @@
 "use client";
 
 import { mainTech } from "@/constants";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -19,12 +25,22 @@ export const HorizontalSlider = () => {
     offset: ["start end", "end center"],
   });
 
+  const skewXVelocity = useVelocity(scrollYProgress);
+
+  const rawSkewX = useTransform(skewXVelocity, [-1, 1], ["-5deg", "5deg"]);
+
+  const skewX = useSpring(rawSkewX, {
+    damping: 10,
+    stiffness: 100,
+    mass: 1,
+  });
+
   const x = useTransform(scrollYProgress, [0, 1], ["80%", "-50%"]);
 
   return (
     <section ref={targetRef} className="relative h-[300vh] uppercase">
       <div className="flex h-screen items-center justify-center overflow-hidden sticky top-0">
-        <motion.div style={{ x }} className="flex gap-10 lg:gap-[2.5vw]">
+        <motion.div style={{ x, skewX }} className="flex gap-10 lg:gap-[2.5vw]">
           {mainTech.map((tech, index) => {
             return <Card tech={tech} index={index} key={tech.label} />;
           })}

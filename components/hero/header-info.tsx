@@ -71,8 +71,9 @@ export const HeaderInfo = () => {
           animate={"animate"}
           text={text}
           type="multiple-word"
-          animationProps={(i) => ({ delay: 5.2 + i * 0.05 })}
+          animationProps={(i) => ({ delay: 5.2 + i * 0.025, duration: 0.8 })}
           containerClassName="text-[5vw] md:text-[1.5vw] lg:text-[1.2vw] lg:max-w-[30vw] gap-[0.8vw] md:gap-[0.3vw]"
+          childClassName="leading-tight"
         />
       </div>
 

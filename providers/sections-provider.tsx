@@ -1,8 +1,8 @@
 "use client";
 
-import Cursor from "@/components/shared/cursor";
 import Magnetic from "@/components/shared/magnetic";
-import Sidebar from "@/components/shared/sidebar";
+import WaveEffect from "@/components/shared/wave-effect";
+import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 import {
   AnimatePresence,
   motion,
@@ -11,7 +11,13 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
+import dynamic from "next/dynamic";
 import { RefObject, useRef, useState } from "react";
+
+const Sidebar = dynamic(() => import("@/components/shared/sidebar"));
+const Cursor = dynamic(() => import("@/components/shared/cursor"), {
+  ssr: false,
+});
 
 const Header = ({
   containerRef,
@@ -19,12 +25,12 @@ const Header = ({
   containerRef: RefObject<HTMLDivElement>;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const isTouchDevice = useIsTouchDevice();
   const [isActive, setIsActive] = useState(false);
 
   const menuScale = useMotionValue(0);
   const smoothMenuScale = useSpring(menuScale, {
-    damping: 20,
-    stiffness: 400,
+    stiffness: 100,
     mass: 0.8,
   });
 
@@ -43,7 +49,9 @@ const Header = ({
 
   return (
     <>
-      <div className="menu-container">
+      <header
+        className={`menu-container ${isTouchDevice && "mobile-menu-container"}`}
+      >
         <div />
 
         <Magnetic>
@@ -51,22 +59,27 @@ const Header = ({
             style={{
               scale: smoothMenuScale,
             }}
-            className={`menu ${isActive && "menu-active"}`}
+            className={`menu ${isTouchDevice && "mobile-menu"} ${
+              isActive && "menu-active"
+            }`}
             onClick={() => setIsActive((prev) => !prev)}
           >
+            {isTouchDevice && <WaveEffect condition={isActive} />}
             <div className="inner-menu" ref={ref} />
           </motion.div>
         </Magnetic>
-      </div>
+      </header>
 
-      <AnimatePresence mode="wait">{isActive && <Sidebar />}</AnimatePresence>
+      <AnimatePresence mode="wait">
+        {isActive && <Sidebar setIsMenuActive={setIsActive} />}
+      </AnimatePresence>
 
-      <Cursor target={ref} />
+      {!isTouchDevice && <Cursor target={ref} />}
     </>
   );
 };
 
-const ComponentsProvider = ({ children }: { children: React.ReactNode }) => {
+const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
@@ -77,4 +90,4 @@ const ComponentsProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ComponentsProvider;
+export default SectionsProvider;

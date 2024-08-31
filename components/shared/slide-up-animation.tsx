@@ -34,29 +34,30 @@ const SlideUpAnimation = ({
     initial: "initial",
     exit: "initial",
     animate,
-    className: "leading-[1] " + childClassName,
+    className: "leading-tight " + childClassName,
     style,
   };
 
   return (
     <p
       className={twMerge(
-        "relative inline-flex overflow-hidden leading-tight",
+        "leading-tight",
         containerClassName,
-        type === "multiple-word" && "flex flex-wrap"
+        type === "multiple-word"
+          ? "flex flex-wrap"
+          : "relative inline-flex overflow-hidden"
       )}
     >
       {type === "multiple-word" ? (
-        text
-          .split(" ")
-          .map((word, i) => (
+        text.split(" ").map((word, i) => (
+          <span key={i} className="relative inline-flex overflow-hidden">
             <motion.span
               {...defaultProps}
               custom={animationProps?.(i)}
-              key={i}
               dangerouslySetInnerHTML={{ __html: word }}
             />
-          ))
+          </span>
+        ))
       ) : (
         <motion.span
           {...defaultProps}

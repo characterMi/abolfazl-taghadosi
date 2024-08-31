@@ -57,12 +57,12 @@ export const sidebarItems = [
     link: "#services",
   },
   {
-    title: "Works",
-    link: "#works",
-  },
-  {
     title: "About",
     link: "#about",
+  },
+  {
+    title: "Works",
+    link: "#works",
   },
   {
     title: "Contact",
@@ -73,7 +73,7 @@ export const sidebarItems = [
 export const services = [
   {
     title: ["Front-end", "Development"],
-    desc: "Building modern and user-friendly websites and web applications using React and Next.js frameworks. while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best use experience while enhancing the quality and maintainability of projects",
+    desc: "Building modern and user-friendly websites and web applications using React and Next.js frameworks. while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best use experience while enhancing the quality and maintainability of projects.",
   },
   {
     title: ["Motion and", "UI Design"],

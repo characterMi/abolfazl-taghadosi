@@ -29,7 +29,7 @@ const ServiceCard = ({ desc, title }: (typeof services)[number]) => {
         text={desc}
         type="multiple-word"
         containerClassName="font-semibold text-xs smart-watch:text-base lg:text-[1vw] gap-[0.8vw] md:gap-[0.3vw]"
-        animationProps={(i) => ({ delay: 0.2 + i * 0.05 })}
+        animationProps={(i) => ({ delay: 0.2 + i * 0.025, duration: 0.8 })}
       />
     </div>
   );
@@ -43,7 +43,7 @@ export const FirstSection = () => {
 
   return (
     <div
-      className="h-[250vh] md:h-[400vh] w-full lg:max-w-[65vw] mx-auto flex flex-col lg:flex-row gap-20 lg:gap-[5vw] relative"
+      className="min-h-max h-[250vh] md:h-[400vh] w-full lg:max-w-[65vw] mx-auto flex flex-col lg:flex-row gap-20 lg:gap-[5vw] relative"
       ref={ref}
     >
       <div className="h-max lg:h-screen flex gap-8 lg:gap-[2vw] pt-8 lg:pt-[2vw] lg:items-center uppercase sticky top-0 backdrop-blur-md z-10">
@@ -100,7 +100,7 @@ export const FirstSection = () => {
           animate={isInView ? "animate" : ""}
           text={text}
           type="multiple-word"
-          animationProps={(i) => ({ delay: 1 + i * 0.025 })}
+          animationProps={(i) => ({ delay: 1 + i * 0.025, duration: 0.8 })}
           containerClassName="text-xs smart-watch:text-base lg:text-[1vw] flex flex-wrap gap-1 lg:gap-[0.25vw]"
         />
 

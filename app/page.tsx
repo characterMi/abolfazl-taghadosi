@@ -1,23 +1,8 @@
-import { About, Footer, Hero, Projects, Technologies } from "@/components";
+import { Hero } from "@/components";
 import CustomScroll from "@/components/shared/custom-scroll";
-import { wait } from "@/lib";
-import ComponentsProvider from "@/providers/lazy-components-provider";
-import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
-const Components = async () => {
-  await wait(4800);
-
-  return (
-    <ComponentsProvider>
-      <About />
-      <Technologies />
-      <div className="bg-white relative overflow-hidden">
-        <Projects />
-        <Footer />
-      </div>
-    </ComponentsProvider>
-  );
-};
+const Sections = dynamic(() => import("./sections"));
 
 export default function Home() {
   return (
@@ -30,9 +15,7 @@ export default function Home() {
         {/* <Model /> */}
         <CustomScroll />
 
-        <Suspense fallback={null}>
-          <Components />
-        </Suspense>
+        <Sections />
       </div>
     </main>
   );

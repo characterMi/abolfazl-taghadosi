@@ -83,6 +83,7 @@ export const AllProjects = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="z-[1] xss:hidden link"
+                aria-label={`Checkout ${project.name} project`}
               >
                 <ArrowIcon
                   mode="light"

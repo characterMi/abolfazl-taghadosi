@@ -27,8 +27,16 @@ body {
   @apply fixed top-0 left-0 w-full md:p-5 lg:p-[1.25vw] z-50 flex items-center justify-between mix-blend-difference pointer-events-none;
 }
 
+.mobile-menu-container {
+  @apply mix-blend-normal px-4 py-6;
+}
+
 .menu {
-  @apply pointer-events-none size-20 lg:size-[5vw] relative after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto after:transition before:transition;
+  @apply pointer-events-none size-16 lg:size-[5vw] relative rounded-full after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto after:transition before:transition before:z-[1];
+}
+
+.mobile-menu {
+  @apply bg-primary flex justify-center items-center overflow-hidden;
 }
 
 .menu-active {
