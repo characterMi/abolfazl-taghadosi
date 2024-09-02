@@ -24,6 +24,9 @@ const config: Config = {
         background: "url(/images/background.webp)",
       },
     },
+    fontFamily: {
+      FF: '"FF"',
+    },
   },
   plugins: [],
 };

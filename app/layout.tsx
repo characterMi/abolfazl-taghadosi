@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     "front end",
     "software developer",
   ],
+  icons: {
+    icon: "/icons/logo.png",
+    apple: "/icons/logo.png",
+  },
 };
 
 export const viewport: Viewport = {

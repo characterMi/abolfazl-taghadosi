@@ -151,7 +151,7 @@ const MobileProjectCard = ({
           alt={title}
           width={1000}
           height={1000}
-          className="object-cover w-full h-auto group-hover:scale-[1.025] duration-500"
+          className="object-cover w-full h-auto group-hover:scale-[1.025] group-focus:scale-[1.025] duration-500"
           placeholder="blur"
         />
       </div>
@@ -168,7 +168,7 @@ const MobileProjectCard = ({
           text={title}
           type="single-word"
           animationProps={{ delay: index * 0.15 }}
-          childClassName="text-neutral-900"
+          childClassName="text-neutral-900 leading-snug"
           containerClassName="text-4xl sm:text-6xl md:text-4xl font-thin"
         />
 
@@ -214,14 +214,14 @@ const DesktopProjectCard = ({
         zIndex: index,
       }}
     >
-      <div className="flex justify-between items-center w-full py-[2.5vw] px-[5vw] group-hover:opacity-40 duration-500">
+      <div className="flex justify-between items-center w-full py-[2.5vw] px-[5vw] group-hover:opacity-40 group-focus:opacity-40 duration-500">
         <SlideUpAnimation
           animate={isContainerInView ? "animate" : ""}
           text={title}
           type="single-word"
           animationProps={{ delay: index * 0.15 }}
           childClassName="text-neutral-900 leading-normal"
-          containerClassName="text-[5vw] font-thin group-hover:-translate-x-[1vw] duration-500"
+          containerClassName="text-[5vw] font-thin group-hover:-translate-x-[1vw] group-focus:-translate-x-[1vw] duration-500"
         />
 
         <SlideUpAnimation
@@ -230,7 +230,7 @@ const DesktopProjectCard = ({
           type="single-word"
           animationProps={{ delay: index * 0.175 }}
           childClassName="text-neutral-900"
-          containerClassName="text-[2vw] font-thin opacity-80 group-hover:translate-x-[1vw] duration-500"
+          containerClassName="text-[2vw] font-thin opacity-80 group-hover:translate-x-[1vw] group-focus:translate-x-[1vw] duration-500"
         />
       </div>
 

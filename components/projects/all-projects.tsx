@@ -51,7 +51,7 @@ export const AllProjects = () => {
                   text={project.name}
                   type="single-word"
                   animationProps={{ delay: i * 0.05 + 0.5 }}
-                  childClassName="text-neutral-900"
+                  childClassName="text-neutral-900 leading-tight"
                   containerClassName="font-semibold leading-loose"
                 />
 
@@ -64,7 +64,7 @@ export const AllProjects = () => {
                 href={project.srcCode}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden xss:block link"
+                className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden xss:block link focus:opacity-80"
               >
                 <motion.span
                   className="hidden xss:block text-neutral-900 relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-neutral-900 before:scale-0 group-hover:before:scale-100 before:transition-transform before:duration-500"

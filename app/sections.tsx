@@ -1,4 +1,4 @@
-import { Footer, Projects, Services, Technologies } from "@/components";
+import { About, Footer, Projects, Services, Technologies } from "@/components";
 import { wait } from "@/lib";
 import SectionsProvider from "@/providers/sections-provider";
 
@@ -9,6 +9,7 @@ const Sections = async () => {
     <SectionsProvider>
       <Services />
       <Technologies />
+      <About />
       <Projects />
       <Footer />
     </SectionsProvider>

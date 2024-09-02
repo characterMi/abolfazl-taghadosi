@@ -57,7 +57,7 @@ const Card = ({ tech, index }: CardProps) => {
         {index < 10 ? `0${index + 1}` : index + 1}
       </p>
 
-      <div className="flex flex-col justify-between items-center w-full h-full">
+      <div className="flex flex-col justify-between items-center w-full h-full pt-6 lg:pt-[1.5vw]">
         <div />
 
         <Image
@@ -68,7 +68,9 @@ const Card = ({ tech, index }: CardProps) => {
           className="w-1/2 h-1/2 object-cover"
         />
 
-        <p className="text-3xl lg:text-[1.875vw]">{tech.label}</p>
+        <p className="text-6xl lg:text-[4vw] font-FF tracking-wide leading-[0.6]">
+          {tech.label}
+        </p>
       </div>
     </div>
   );

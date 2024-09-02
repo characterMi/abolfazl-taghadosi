@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "FF";
+  src: url("/fonts/FF.otf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FF";
+  src: url("/fonts/FF.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   /* Hide scrollbar for IE, Edge and Firefox */
   /* -ms-overflow-style: none; 
@@ -21,6 +37,10 @@ body {
 
 ::selection {
   @apply text-neutral-900 bg-primary;
+}
+
+a {
+  outline: none;
 }
 
 .menu-container {
@@ -45,6 +65,10 @@ body {
 
 .inner-menu {
   @apply w-full h-full hover:scale-[3] pointer-events-auto;
+}
+
+.forever-freedom {
+  @apply font-FF leading-tight tracking-wide;
 }
 
 .gray-mark {
@@ -78,14 +102,15 @@ body {
 }
 
 .title {
-  @apply text-[12vw] md:text-[7vw] font-black tracking-tighter font-sans uppercase leading-[0.8];
+  @apply text-[12vw] md:text-[7vw] font-black tracking-tighter uppercase leading-[0.8];
 }
 
 .text {
-  @apply font-black tracking-tighter font-sans uppercase leading-[0.8];
+  @apply font-black tracking-tighter uppercase leading-[0.8];
 }
 
-.button-container:hover .cube {
+.button-container:hover .cube,
+.button-container:focus .cube {
   transform: rotateX(-90deg);
 }
 

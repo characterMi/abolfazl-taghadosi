@@ -28,12 +28,13 @@ export const SecondSection = () => {
           style={{ translateY: indicatorY }}
         />
 
-        <div className="p-4 sm:p-10">
+        <div className="p-4 sm:p-10 leading-[0.8]">
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
             text={"Get in"}
             type="single-word"
             animationProps={{ delay: 0.5 }}
+            childClassName="leading-[0.85]"
           />
 
           <br />
@@ -43,6 +44,7 @@ export const SecondSection = () => {
             text={"Touch"}
             type="single-word"
             animationProps={{ delay: 0.6 }}
+            childClassName="leading-[0.85] mark"
           />
         </div>
       </div>

@@ -34,7 +34,7 @@ const SlideUpAnimation = ({
     initial: "initial",
     exit: "initial",
     animate,
-    className: "leading-tight " + childClassName,
+    className: "leading-[0.85] " + childClassName,
     style,
   };
 

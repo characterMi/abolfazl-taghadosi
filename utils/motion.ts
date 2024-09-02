@@ -118,3 +118,13 @@ export const fadeIn = {
     transition: { duration: 1, ...transition },
   }),
 };
+
+export const fadeInWithBlur = {
+  initial: { opacity: 0, filter: "blur(5px)", WebkitFilter: "blue(5px)" },
+  animate: (transition: Transition) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+    WebkitFilter: "blue(0px)",
+    transition: { duration: 1, ...transition },
+  }),
+};

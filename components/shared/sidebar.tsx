@@ -74,11 +74,11 @@ const Sidebar = ({
         initial="initial"
         animate="enter"
         exit="exit"
-        className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-screen bg-neutral-800 text-white z-40 w-full md:w-max"
+        className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-screen h-svh bg-neutral-800 text-white z-40 w-full md:w-max"
       >
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden">
           <div className="flex flex-col text-xl gap-20 lg:gap-[5vw] mt-20 lg:mt-[5vw] p-6 smart-watch:p-10 xss:p-14 sm:p-20 lg:p-[5vw]">
-            <p className="border-b pb-4 lg:pb-[1vw] w-full lg:text-[1vw]">
+            <p className="border-b pb-4 lg:pb-[1vw] w-full text-4xl lg:text-[2.5vw] font-FF tracking-wider">
               Navigation
             </p>
 

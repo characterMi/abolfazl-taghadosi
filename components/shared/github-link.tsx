@@ -9,7 +9,7 @@ const GithubLink = () => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="hidden smart-watch:flex justify-center items-center size-12 lg:size-[4vw] border border-primary group-hover:border-white bg-neutral-900">
+      <div className="hidden smart-watch:flex justify-center items-center size-12 lg:size-[4vw] border border-primary group-hover:border-white group-focus:border-white bg-neutral-900">
         <Image
           src={"/icons/github.svg"}
           alt="Github"

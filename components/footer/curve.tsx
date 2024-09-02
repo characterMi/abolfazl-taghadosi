@@ -1,20 +1,9 @@
 "use client";
 
 import { arrowSvg } from "@/constants";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { RefObject } from "react";
-
-type PathProps = {
-  d: string;
-  range: number[];
-  progress: MotionValue<number>;
-};
-
-function Path({ d, progress, range }: PathProps) {
-  const opacity = useTransform(progress, range, [0, 1]);
-
-  return <motion.path d={d} opacity={opacity} />;
-}
+import RevealAnimation from "../shared/reveal-animation";
 
 export const Curve = ({
   footerRef,
@@ -66,7 +55,7 @@ export const Curve = ({
               const end = start + 1 / arrowSvg.length;
 
               return (
-                <Path
+                <RevealAnimation
                   d={d}
                   range={[start, end]}
                   progress={svgArrowAnimation}

@@ -33,7 +33,7 @@ const SlideUpLink = ({
       <span className="opacity-0">{title}</span>
       <span
         className={twMerge(
-          "absolute top-0 left-0 group-hover:-top-full duration-500",
+          "absolute top-0 left-0 group-hover:-top-full group-focus:-top-full duration-500",
           childClassName
         )}
       >
@@ -41,7 +41,7 @@ const SlideUpLink = ({
       </span>
       <span
         className={twMerge(
-          "absolute top-full left-0 group-hover:top-0 duration-500",
+          "absolute top-full left-0 group-hover:top-0 group-focus:top-0 duration-500",
           childClassName
         )}
       >
