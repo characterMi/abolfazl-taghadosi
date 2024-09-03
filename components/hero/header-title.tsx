@@ -37,9 +37,8 @@ export const HeaderTitle = () => (
               fillRule="evenodd"
               fontSize="9pt"
               stroke="#ff98a2"
-              strokeWidth="0.25mm"
               fill="#ff98a2"
-              className="stroke-primary stroke-[0.25mm] fill-primary"
+              className="stroke-primary fill-primary"
               variants={gVariants}
               initial="initial"
               animate="animate"
@@ -64,9 +63,8 @@ export const HeaderTitle = () => (
               fillRule="evenodd"
               fontSize="9pt"
               stroke="#ff98a2"
-              strokeWidth="0.25mm"
               fill="#ff98a2"
-              className="stroke-primary stroke-[0.25mm] fill-primary"
+              className="stroke-primary fill-primary"
               variants={gVariants}
               initial="initial"
               animate="animate"

@@ -1,7 +1,7 @@
 "use client";
 
 import { aboutContent, aboutSectionArrowIcon, legends } from "@/constants";
-import { fadeInWithBlur } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 import { motion, useInView, useScroll } from "framer-motion";
 import { useRef } from "react";
 import RevealAnimation from "../shared/reveal-animation";
@@ -33,7 +33,7 @@ const About = () => {
       />
 
       <motion.div
-        variants={fadeInWithBlur}
+        variants={fadeIn}
         initial="initial"
         animate={isInView ? "animate" : ""}
         exit="initial"
@@ -44,7 +44,7 @@ const About = () => {
               - {item.title}
             </p>
 
-            <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] leading-tight font-thin px-4 lg:px-[1vw]">
+            <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw]">
               {item.content}
             </p>
           </div>
@@ -55,7 +55,7 @@ const About = () => {
             - Inspirations and Mentors
           </p>
 
-          <div className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] leading-tight font-thin p-4 lg:p-[1vw]">
+          <div className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin p-4 lg:p-[1vw]">
             Throughout my learning journey, there have been several individuals
             who have had a profound impact on my growth as a developer. Their
             teaching, guidance, and content have inspired me and shaped my
@@ -79,7 +79,7 @@ const About = () => {
           </div>
         </div>
 
-        <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] leading-tight font-normal inline align-top">
+        <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-normal inline align-top">
           Well, that was it! Want to see what I&apos;ve been working on? Scroll
           down a bit and Checkout the projects below to explore some of the work
           I&apos;ve done along the way.

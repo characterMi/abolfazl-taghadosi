@@ -20,27 +20,20 @@
 
 * {
   /* Hide scrollbar for IE, Edge and Firefox */
-  /* -ms-overflow-style: none; 
-  scrollbar-height: none;  */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   -webkit-tap-highlight-color: transparent;
   color: white;
+  outline: none;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
-} */
-
-body {
-  background: #000;
 }
 
 ::selection {
   @apply text-neutral-900 bg-primary;
-}
-
-a {
-  outline: none;
 }
 
 .menu-container {
@@ -65,10 +58,6 @@ a {
 
 .inner-menu {
   @apply w-full h-full hover:scale-[3] pointer-events-auto;
-}
-
-.forever-freedom {
-  @apply font-FF leading-tight tracking-wide;
 }
 
 .gray-mark {
@@ -112,6 +101,11 @@ a {
 .button-container:hover .cube,
 .button-container:focus .cube {
   transform: rotateX(-90deg);
+}
+
+.h-sm-screen {
+  height: 100vh;
+  height: 100svh;
 }
 
 .image-container__1 {

@@ -1,5 +1,3 @@
-"use client";
-
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 export const HeaderDesc = () => {

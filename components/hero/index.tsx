@@ -6,7 +6,7 @@ import { HeaderTitle } from "./header-title";
 
 const Hero = () => {
   return (
-    <section className="h-screen h-svh flex flex-col gap-12 relative p-4 md:p-10 xl:p-[3vw]">
+    <section className="h-sm-screen flex flex-col gap-12 relative p-4 md:p-10 xl:p-[3vw]">
       <MotionDiv
         className="absolute top-0 left-0 z-10 w-full h-full overflow-hidden"
         initial={{ display: "block" }}
@@ -20,7 +20,7 @@ const Hero = () => {
         />
       </MotionDiv>
 
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1">
         <HeaderTitle />
 
         <HeaderDesc />

@@ -1,5 +1,3 @@
-"use client";
-
 import { socials } from "@/constants";
 import GithubLink from "../shared/github-link";
 import SlideUpLink from "../shared/slide-up-link";

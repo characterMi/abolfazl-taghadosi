@@ -74,7 +74,7 @@ const Sidebar = ({
         initial="initial"
         animate="enter"
         exit="exit"
-        className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-screen h-svh bg-neutral-800 text-white z-40 w-full md:w-max"
+        className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-sm-screen bg-gradient-to-r from-neutral-800 to-[#1f1f1f] text-white z-40 w-full md:w-max"
       >
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden">
           <div className="flex flex-col text-xl gap-20 lg:gap-[5vw] mt-20 lg:mt-[5vw] p-6 smart-watch:p-10 xss:p-14 sm:p-20 lg:p-[5vw]">

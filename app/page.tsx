@@ -2,6 +2,7 @@ import { Hero } from "@/components";
 import CustomScroll from "@/components/shared/custom-scroll";
 import dynamic from "next/dynamic";
 
+const Model = dynamic(() => import("./model"), { ssr: false });
 const Sections = dynamic(() => import("./sections"));
 
 export default function Home() {
@@ -10,9 +11,9 @@ export default function Home() {
       {/* Background */}
       <div className="bg-background bg-no-repeat bg-cover bg-center fixed top-0 left-0 w-screen h-screen" />
 
-      <div className="w-full h-full relative">
+      <Model />
+      <div className="relative">
         <Hero />
-        {/* <Model /> */}
         <CustomScroll />
 
         <Sections />

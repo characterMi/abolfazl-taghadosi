@@ -7,7 +7,7 @@ import { useRef } from "react";
 import ArrowIcon from "../shared/arrow-icon";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
-const AllProjectsTitle = ({ isInView }: { isInView: boolean }) => (
+const Title = ({ isInView }: { isInView: boolean }) => (
   <div className="uppercase w-full md:w-[37%] text-6xl md:text-[2.75rem] lg:text-[4vw] font-black mb-6 relative">
     <SlideUpAnimation
       animate={isInView ? "animate" : ""}
@@ -37,7 +37,7 @@ export const AllProjects = () => {
       className="flex flex-col md:flex-row gap-4 mt-80 lg:mt-[20vw]"
       ref={ref}
     >
-      <AllProjectsTitle isInView={isInView} />
+      <Title isInView={isInView} />
 
       <div className="w-full md:w-[63%]">
         {allProjects.map((project, i) => (

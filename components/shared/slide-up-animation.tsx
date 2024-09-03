@@ -1,3 +1,5 @@
+"use client";
+
 import { slideUp } from "@/utils/motion";
 import { motion, Transition } from "framer-motion";
 import { CSSProperties } from "react";

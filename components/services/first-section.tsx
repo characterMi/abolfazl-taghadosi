@@ -47,7 +47,7 @@ export const FirstSection = () => {
       className="min-h-max h-[250vh] md:h-[400vh] w-full lg:max-w-[65vw] mx-auto flex flex-col lg:flex-row gap-20 lg:gap-[5vw] relative"
       ref={ref}
     >
-      <div className="h-max lg:h-screen flex gap-8 lg:gap-[2vw] pt-8 lg:pt-[2vw] lg:items-center uppercase sticky top-0 backdrop-blur-md z-10">
+      <div className="h-max lg:h-screen flex gap-8 lg:gap-[2vw] pt-8 lg:pt-[2vw] lg:items-center uppercase sticky top-0 backdrop-blur-md lg:backdrop-blur-0 z-10">
         <div className="text-3xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[5vw] font-black flex gap-4 xss:gap-8 lg:gap-[2vw] relative">
           <motion.div
             className="h-full lg:h-[18vw] w-1 lg:w-[0.25vw] bg-primary"
@@ -88,6 +88,7 @@ export const FirstSection = () => {
               text={"I offer"}
               type="single-word"
               animationProps={{ delay: 0.7 }}
+              childClassName="mark"
             />
           </div>
         </div>

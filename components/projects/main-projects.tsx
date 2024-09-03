@@ -1,19 +1,19 @@
 "use client";
 
-import { projects } from "@/constants";
-import { fadeIn, slideUp } from "@/utils/motion";
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
-
 import Image from "next/image";
 import {
-  Dispatch,
-  MouseEvent,
-  RefObject,
-  SetStateAction,
+  type Dispatch,
+  type MouseEvent,
+  type RefObject,
+  type SetStateAction,
   useEffect,
   useRef,
   useState,
 } from "react";
+
+import { projects } from "@/constants";
+import { fadeIn, slideUp } from "@/utils/motion";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 type Props = (typeof projects)[number] & {
@@ -54,10 +54,6 @@ const SvgCurve = ({
     x = (clientX - cliRect.left) / cliRect.width;
     progress += movementY;
     setPath(progress);
-  }
-
-  function handleMouseLeave() {
-    animateOut();
   }
 
   function handleMouseEnter() {
@@ -105,7 +101,7 @@ const SvgCurve = ({
       <div
         className="h-[40px] lg:h-[2.5vw] relative -top-5 z-10"
         onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        onMouseLeave={animateOut}
         onMouseEnter={handleMouseEnter}
       />
       <svg className="w-full h-[100px] lg:h-[6vw] absolute -top-12">

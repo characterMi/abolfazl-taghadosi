@@ -1,5 +1,3 @@
-"use client";
-
 import { socials } from "@/constants";
 import Magnetic from "../shared/magnetic";
 import SlideUpLink from "../shared/slide-up-link";

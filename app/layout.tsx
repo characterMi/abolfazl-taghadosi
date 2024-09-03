@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     "front-end",
     "front end",
     "software developer",
+    "software engineer",
   ],
   icons: {
     icon: "/icons/logo.png",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#22c55e",
+  themeColor: "#56ccf2",
   colorScheme: "only light",
   viewportFit: "cover",
 };
