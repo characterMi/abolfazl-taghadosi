@@ -1,6 +1,6 @@
 "use client";
 
-import { fadeIn } from "@/utils/motion";
+import { fadeInWithBlur } from "@/utils/motion";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -11,7 +11,7 @@ export const Description = () => {
   return (
     <motion.p
       className="text-neutral-900 text-3xl lg:text-[2.5vw] leading-tight font-thin"
-      variants={fadeIn}
+      variants={fadeInWithBlur}
       initial="initial"
       animate={isInView ? "animate" : ""}
       exit="initial"

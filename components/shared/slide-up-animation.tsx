@@ -1,7 +1,7 @@
 "use client";
 
-import { slideUp } from "@/utils/motion";
-import { motion, Transition } from "framer-motion";
+import { slideUp, type SlideUpVariant } from "@/utils/motion";
+import { motion } from "framer-motion";
 import { CSSProperties } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -14,11 +14,11 @@ type Props = {
 } & (
   | {
       type: "single-word";
-      animationProps?: Transition;
+      animationProps?: SlideUpVariant;
     }
   | {
       type: "multiple-word";
-      animationProps?: (custom: number) => Transition;
+      animationProps?: (custom: number) => SlideUpVariant;
     }
 );
 
@@ -34,8 +34,8 @@ const SlideUpAnimation = ({
   const defaultProps = {
     variants: slideUp,
     initial: "initial",
-    exit: "initial",
     animate,
+    exit: "exit",
     className: "leading-[0.85] " + childClassName,
     style,
   };

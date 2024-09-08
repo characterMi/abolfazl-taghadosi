@@ -6,7 +6,75 @@ import GymLovers from "@/public/projects/gym-lovers.png";
 import Lingo from "@/public/projects/lingo.png";
 import MarbleRace from "@/public/projects/marble-race.png";
 import MelodiMix from "@/public/projects/melodi-mix.png";
-import { ScaleValues } from "@/types";
+import type { ScaleValues } from "@/types";
+
+// `
+// uniform float uTime;
+// uniform float uSize;
+// attribute float size;
+
+// varying vec3 vColor;
+// varying float vAlpha;
+
+// void main() {
+
+//   gl_PointSize = uSize * (300.0 / -mvPosition.z); // Size attenuation
+//   gl_Position = projectionMatrix * mvPosition;
+// }
+// ` ||
+
+export const vertexShader = `
+    uniform float uTime;
+
+    float random (vec2 st) {
+      return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 9.5453123);
+    }
+
+    float noise(vec2 st) {
+      vec2 i = floor(st);
+      vec2 f = fract(st);
+
+      float a = random(i);
+      float b = random(i + vec2(1.0, 0.0));
+      float c = random(i + vec2(0.0, 1.0));
+      float d = random(i + vec2(1.0, 1.0));
+
+      vec2 u = f * f * (3.0 - 2.0 * f);
+
+      return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+    }
+
+    void main() {
+        float moveX = noise(position.xy * 1.5 + uTime * 0.05);
+        float moveY = noise(position.yz * 1.5 + uTime * 0.05);
+        float moveZ = noise(position.xz * 1.5 + uTime * 0.05);
+
+        vec3 newPosition = position + vec3(moveX, moveY, moveZ);
+        vec4 mvPosition = modelViewMatrix * vec4(newPosition, 1.0);
+
+        float distanceFactor = 2.0 / (0.05 + length(newPosition));
+
+        gl_PointSize = 10.0 * distanceFactor;
+
+        gl_Position = projectionMatrix * mvPosition;
+    }
+`;
+
+export const fragmentShader = `
+    uniform sampler2D uAlphaMap;
+    uniform vec3 uColor;
+
+    void main() {
+        float alpha = texture2D(uAlphaMap, gl_PointCoord).r;
+
+        if (alpha < 0.1) discard;
+
+        vec3 color = uColor;
+        gl_FragColor = vec4(color, alpha);
+    }
+`;
 
 export const heroSectionTitle = [
   {
@@ -191,17 +259,17 @@ export const allTech = (scaleValues: ScaleValues) => [
 
 export const aboutContent = [
   {
-    title: "My Journey",
+    title: "- My Journey",
     content:
       "I've always been drawn to the idea of creating things that I enjoy and that others can benefit from. For me, programming is one of the best ways to achieve that. Much of my knowledge comes from countless hours spent on YouTube, learning and exploring new technologies. My love for problem-solving and mathematics naturally led me to the world of coding, where every new challenge is an opportunity to learn and grow.",
   },
   {
-    title: "Beyond the Code",
+    title: "- Beyond the Code",
     content:
       "Beyond coding, I find joy in several activities, such as painting, sculpting, playing music, working out, and reading. I'm a huge fan of J.R.R. Tolkien's works like *The Lord of the Rings* and *The Silmarillion*, as well as the legendary manga *Berserk* by Kentaro Miura. These rich, imaginative worlds inspire my creativity and drive my desire to tell compelling stories—whether in art, writing, or code. Additionally, I'm a huge fan of music, especially rock, metal, and classical genres. Music not only fuels my focus during work but also sparks inspiration in many of my creative projects.",
   },
   {
-    title: "Future Goals and Vision",
+    title: "- Future Goals and Vision",
     content:
       "I'm currently working towards mastering Three.js at a deeper level. Once I'm confident in my 3D web development skills, I plan to move on to React Native to expand my knowledge of mobile app development. Afterward, I aim to dive into the field of UI/UX design, combining creativity with user-centered principles to craft more intuitive and engaging digital experiences.",
   },

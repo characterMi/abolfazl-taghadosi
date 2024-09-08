@@ -163,7 +163,7 @@ const MobileProjectCard = ({
           animate={isContainerInView ? "animate" : ""}
           text={title}
           type="single-word"
-          animationProps={{ delay: index * 0.15 }}
+          animationProps={{ animate: { delay: index * 0.15 } }}
           childClassName="text-neutral-900 leading-snug"
           containerClassName="text-4xl sm:text-6xl md:text-4xl font-thin"
         />
@@ -172,7 +172,7 @@ const MobileProjectCard = ({
           animate={isContainerInView ? "animate" : ""}
           text={year.toString()}
           type="single-word"
-          animationProps={{ delay: index * 0.175 }}
+          animationProps={{ animate: { delay: index * 0.175 } }}
           childClassName="text-neutral-900"
           containerClassName="text-2xl sm:text-3xl md:text-2xl font-semibold"
         />
@@ -215,7 +215,7 @@ const DesktopProjectCard = ({
           animate={isContainerInView ? "animate" : ""}
           text={title}
           type="single-word"
-          animationProps={{ delay: index * 0.15 }}
+          animationProps={{ animate: { delay: index * 0.15 } }}
           childClassName="text-neutral-900 leading-normal"
           containerClassName="text-[5vw] font-thin group-hover:-translate-x-[1vw] group-focus:-translate-x-[1vw] duration-500"
         />
@@ -224,7 +224,7 @@ const DesktopProjectCard = ({
           animate={isContainerInView ? "animate" : ""}
           text={year.toString()}
           type="single-word"
-          animationProps={{ delay: index * 0.175 }}
+          animationProps={{ animate: { delay: index * 0.175 } }}
           childClassName="text-neutral-900"
           containerClassName="text-[2vw] font-thin opacity-80 group-hover:translate-x-[1vw] group-focus:translate-x-[1vw] duration-500"
         />
@@ -304,11 +304,17 @@ const DesktopProjectsContainer = ({ isInView }: { isInView: boolean }) => {
         transition={{ duration: 0.5 }}
       >
         {projects.map((project) => (
-          <div
+          <motion.div
             key={project.title}
-            className="w-full h-full px-[2vw] flex items-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            className="w-full h-full px-[2vw] flex items-center"
+            animate={{
+              y: `-${activeProject * 100}%`,
+              transition: {
+                duration: 0.5,
+                ease: [0.76, 0, 0.24, 1],
+              },
+            }}
             style={{
-              transform: `translateY(-${activeProject * 100}%)`,
               backgroundColor: project.backgroundColor,
             }}
           >
@@ -318,8 +324,9 @@ const DesktopProjectsContainer = ({ isInView }: { isInView: boolean }) => {
               width={1000}
               height={1000}
               className="w-full"
+              placeholder="blur"
             />
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </div>
@@ -349,7 +356,7 @@ export const MainProjects = () => {
           animate={isInView ? "animate" : ""}
           text={"Projects"}
           type="single-word"
-          animationProps={{ delay: 0.1 }}
+          animationProps={{ animate: { delay: 0.1 } }}
           childClassName="gray-mark"
         />
       </div>

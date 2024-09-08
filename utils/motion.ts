@@ -97,16 +97,33 @@ export const gVariants = {
   }),
 };
 
+export type SlideUpVariant =
+  | {
+      animate: Transition;
+      exit?: Transition;
+    }
+  | undefined;
+
 export const slideUp = {
   initial: { opacity: 0, y: "100%" },
-  animate: (transition: Transition) => ({
+  animate: (transition: SlideUpVariant) => ({
     opacity: 1,
     y: 0,
     transition: {
       duration: 1.5,
       type: "tween",
       ease,
-      ...transition,
+      ...transition?.animate,
+    },
+  }),
+  exit: (transition: SlideUpVariant) => ({
+    opacity: 0,
+    y: "-100%",
+    transition: {
+      duration: 1.5,
+      type: "tween",
+      ease,
+      ...transition?.exit,
     },
   }),
 };
@@ -115,6 +132,16 @@ export const fadeIn = {
   initial: { opacity: 0 },
   animate: (transition: Transition) => ({
     opacity: 1,
+    transition: { duration: 1, ...transition },
+  }),
+};
+
+export const fadeInWithBlur = {
+  initial: { opacity: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)" },
+  animate: (transition: Transition) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+    WebkitFilter: "blur(0px)",
     transition: { duration: 1, ...transition },
   }),
 };

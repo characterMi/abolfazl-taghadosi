@@ -22,7 +22,7 @@ const Title = ({ isInView }: { isInView: boolean }) => (
       animate={isInView ? "animate" : ""}
       text={"Works"}
       type="single-word"
-      animationProps={{ delay: 0.1 }}
+      animationProps={{ animate: { delay: 0.1 } }}
       childClassName="gray-mark"
     />
   </div>
@@ -50,7 +50,7 @@ export const AllProjects = () => {
                   animate={isInView ? "animate" : ""}
                   text={project.name}
                   type="single-word"
-                  animationProps={{ delay: i * 0.05 + 0.5 }}
+                  animationProps={{ animate: { delay: i * 0.05 + 0.5 } }}
                   childClassName="text-neutral-900 leading-tight"
                   containerClassName="font-semibold leading-loose"
                 />

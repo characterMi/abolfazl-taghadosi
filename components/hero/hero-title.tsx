@@ -4,7 +4,7 @@ import { heroSectionTitle } from "@/constants";
 import { ease, gVariants } from "@/utils/motion";
 import { motion } from "framer-motion";
 
-export const HeaderTitle = () => (
+export const HeroTitle = () => (
   <div className="flex w-full mix-blend-difference z-[11] relative">
     {heroSectionTitle.map((letter, i) => {
       if (i % 2) {

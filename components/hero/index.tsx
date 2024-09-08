@@ -1,12 +1,12 @@
 import { screenVariant } from "@/utils/motion";
 import { MotionDiv } from "../shared/motion-div";
-import { HeaderDesc } from "./header-desc";
-import { HeaderInfo } from "./header-info";
-import { HeaderTitle } from "./header-title";
+import { HeroDesc } from "./hero-desc";
+import { HeroInfo } from "./hero-info";
+import { HeroTitle } from "./hero-title";
 
 const Hero = () => {
   return (
-    <section className="h-sm-screen flex flex-col gap-12 relative p-4 md:p-10 xl:p-[3vw]">
+    <section className="h-sm-screen flex flex-col gap-12 relative p-4 md:p-10 xl:p-[3vw] z-[1]">
       <MotionDiv
         className="absolute top-0 left-0 z-10 w-full h-full overflow-hidden"
         initial={{ display: "block" }}
@@ -21,12 +21,12 @@ const Hero = () => {
       </MotionDiv>
 
       <div className="flex-1">
-        <HeaderTitle />
+        <HeroTitle />
 
-        <HeaderDesc />
+        <HeroDesc />
       </div>
 
-      <HeaderInfo />
+      <HeroInfo />
     </section>
   );
 };

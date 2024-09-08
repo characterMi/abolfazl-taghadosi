@@ -33,7 +33,7 @@ export const SecondSection = () => {
             animate={isInView ? "animate" : ""}
             text={"Get in"}
             type="single-word"
-            animationProps={{ delay: 0.5 }}
+            animationProps={{ animate: { delay: 0.5 } }}
             childClassName="leading-[0.85]"
           />
 
@@ -43,7 +43,7 @@ export const SecondSection = () => {
             animate={isInView ? "animate" : ""}
             text={"Touch"}
             type="single-word"
-            animationProps={{ delay: 0.6 }}
+            animationProps={{ animate: { delay: 0.6 } }}
             childClassName="leading-[0.85] mark"
           />
         </div>

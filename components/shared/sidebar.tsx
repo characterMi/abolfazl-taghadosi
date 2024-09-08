@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import Magnetic from "./magnetic";
+import SlideUpAnimation from "./slide-up-animation";
 import SlideUpLink from "./slide-up-link";
 
 const Curve = () => (
@@ -78,9 +79,16 @@ const Sidebar = ({
       >
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden">
           <div className="flex flex-col text-xl gap-20 lg:gap-[5vw] mt-20 lg:mt-[5vw] p-6 smart-watch:p-10 xss:p-14 sm:p-20 lg:p-[5vw]">
-            <p className="border-b pb-4 lg:pb-[1vw] w-full text-4xl lg:text-[2.5vw] font-FF tracking-wider">
-              Navigation
-            </p>
+            <SlideUpAnimation
+              text="Navigation"
+              containerClassName="border-b pb-4 lg:pb-[1vw] w-full text-4xl lg:text-[2.5vw] font-FF tracking-wider"
+              animate="animate"
+              type="single-word"
+              animationProps={{
+                animate: { duration: 0.8, delay: 0.5 },
+                exit: { duration: 0.8 },
+              }}
+            />
 
             <div className="flex flex-col gap-3 lg:gap-[0.75vw] text-4xl lg:text-[3vw] font-thin">
               {sidebarItems.map((item, index) => (

@@ -1,16 +1,18 @@
 "use client";
 
+import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 import { motion } from "framer-motion";
 import { MouseEvent, useRef, useState } from "react";
 
 const Magnetic = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const isTouchDevice = useIsTouchDevice();
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (
     e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
   ) => {
-    if (!ref.current) return;
+    if (!ref.current || isTouchDevice) return;
 
     const { clientX, clientY } = e;
 

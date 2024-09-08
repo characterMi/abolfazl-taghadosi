@@ -30,7 +30,9 @@ const ServiceCard = ({ desc, title }: (typeof services)[number]) => {
         type="multiple-word"
         containerClassName="font-semibold text-xs smart-watch:text-base lg:text-[1vw] gap-[0.8vw] md:gap-[0.3vw]"
         childClassName="leading-tight"
-        animationProps={(i) => ({ delay: 0.2 + i * 0.025, duration: 0.8 })}
+        animationProps={(i) => ({
+          animate: { delay: 0.2 + i * 0.025, duration: 0.8 },
+        })}
       />
     </div>
   );
@@ -71,7 +73,7 @@ export const FirstSection = () => {
               animate={isInView ? "animate" : ""}
               text={"Skills &"}
               type="single-word"
-              animationProps={{ delay: 0.5 }}
+              animationProps={{ animate: { delay: 0.5 } }}
             />
             <br />
 
@@ -79,7 +81,7 @@ export const FirstSection = () => {
               animate={isInView ? "animate" : ""}
               text={"Services"}
               type="single-word"
-              animationProps={{ delay: 0.6 }}
+              animationProps={{ animate: { delay: 0.6 } }}
             />
             <br />
 
@@ -87,7 +89,7 @@ export const FirstSection = () => {
               animate={isInView ? "animate" : ""}
               text={"I offer"}
               type="single-word"
-              animationProps={{ delay: 0.7 }}
+              animationProps={{ animate: { delay: 0.7 } }}
               childClassName="mark"
             />
           </div>
@@ -99,7 +101,9 @@ export const FirstSection = () => {
           animate={isInView ? "animate" : ""}
           text={text}
           type="multiple-word"
-          animationProps={(i) => ({ delay: 1 + i * 0.025, duration: 0.8 })}
+          animationProps={(i) => ({
+            animate: { delay: 1 + i * 0.025, duration: 0.8 },
+          })}
           containerClassName="text-xs smart-watch:text-base lg:text-[1vw] flex flex-wrap gap-1 lg:gap-[0.25vw]"
           childClassName="leading-tight"
         />
