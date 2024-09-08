@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
-const ServiceCard = ({ desc, title }: (typeof services)[number]) => {
+const Service = ({ desc, title }: (typeof services)[number]) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -109,7 +109,7 @@ export const FirstSection = () => {
         />
 
         {services.map((service, i) => (
-          <ServiceCard {...service} key={i} />
+          <Service {...service} key={i} />
         ))}
       </div>
     </div>

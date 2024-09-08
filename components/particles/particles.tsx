@@ -14,7 +14,6 @@ const ParticleMaterial = shaderMaterial(
     uTime: 0,
     uAlphaMap: null,
     uColor: new THREE.Color("#b6edff"),
-    uSize: 0.05,
   },
   vertexShader,
   fragmentShader
@@ -23,7 +22,7 @@ const ParticleMaterial = shaderMaterial(
 extend({ ParticleMaterial });
 
 export const Particles = ({ count = 500 }: { count?: number }) => {
-  const particlesAnimation = useRef({
+  const particlesAnimationData = useRef({
     isInZoomInSection: false,
     positionY: 0,
     positionZ: 0,
@@ -32,18 +31,19 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
   const lenis = useLenis()!;
   const texture = useTexture("/images/1.png");
 
-  const { positions, randomness } = useMemo(() => {
+  const { positions, sizes } = useMemo(() => {
     const positions = new Float32Array(count * 3);
-    const randomness = new Float32Array(count);
+    const sizes = new Float32Array(count);
 
     for (let i = 0; i < count; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 7;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 7;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 7;
-      randomness[i] = (Math.random() - 0.5) * 10;
+
+      sizes[i] = Math.random() * 20;
     }
 
-    return { positions, randomness };
+    return { positions, sizes };
   }, [count]);
 
   useEffect(() => {
@@ -53,41 +53,41 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
     function handleScroll() {
       const zoomInSectionOffsetTop = zoomInSection.offsetTop;
 
-      const lenisProgress =
-        lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
+      const lenisProgress = lenis.scroll / zoomInSectionOffsetTop;
 
       if (lenisProgress >= 1) {
         const scrollOffset =
           (lenis.scroll - zoomInSectionOffsetTop) / zoomInSection.offsetHeight;
 
-        particlesAnimation.current.isInZoomInSection = true;
-        particlesAnimation.current.positionY = scrollOffset;
+        particlesAnimationData.current.isInZoomInSection = true;
+        particlesAnimationData.current.positionY = scrollOffset;
       } else {
-        const scrollOffset = lenis.scroll / zoomInSectionOffsetTop;
-        particlesAnimation.current.isInZoomInSection = false;
-        particlesAnimation.current.positionZ = scrollOffset;
+        const scrollOffset =
+          lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
+        particlesAnimationData.current.isInZoomInSection = false;
+        particlesAnimationData.current.positionZ = scrollOffset;
       }
     }
 
-    lenis?.on("scroll", handleScroll);
+    lenis.on("scroll", handleScroll);
 
     return () => lenis.off("scroll", handleScroll);
   }, []);
 
-  useFrame(({ clock, invalidate }) => {
+  useFrame(({ clock }) => {
     if (!pointsRef.current) return;
 
     pointsRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
 
-    if (particlesAnimation.current.isInZoomInSection) {
-      pointsRef.current.position.setY(particlesAnimation.current.positionY * 3);
+    if (particlesAnimationData.current.isInZoomInSection) {
+      pointsRef.current.position.setY(
+        particlesAnimationData.current.positionY * 6
+      );
     } else {
       pointsRef.current.position.setZ(
-        -particlesAnimation.current.positionZ * 2
+        -particlesAnimationData.current.positionZ * 2.5
       );
     }
-
-    invalidate();
   });
 
   return (
@@ -100,9 +100,9 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
           itemSize={3}
         />
         <bufferAttribute
-          attach={"attributes-aRandomness"}
-          count={randomness.length}
-          array={randomness}
+          attach={"attributes-size"}
+          count={sizes.length}
+          array={sizes}
           itemSize={1}
         />
       </bufferGeometry>

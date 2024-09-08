@@ -8,6 +8,7 @@ const CustomScroll = () => {
   const background = useTransform(
     scrollYProgress,
     [0, 1],
+    // a mix between primary and dark blue...
     ["rgb(86 204 242)", "rgb(50, 162, 199)"]
   );
 

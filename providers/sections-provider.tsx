@@ -6,7 +6,6 @@ import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 import {
   AnimatePresence,
   motion,
-  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useSpring,
@@ -28,8 +27,7 @@ const Header = ({
   const isTouchDevice = useIsTouchDevice();
   const [isActive, setIsActive] = useState(false);
 
-  const menuScale = useMotionValue(0);
-  const smoothMenuScale = useSpring(menuScale, {
+  const menuScale = useSpring(0, {
     stiffness: 100,
     mass: 0.8,
   });
@@ -57,7 +55,7 @@ const Header = ({
         <Magnetic>
           <motion.div
             style={{
-              scale: smoothMenuScale,
+              scale: menuScale,
             }}
             className={`menu ${isTouchDevice && "mobile-menu"} ${
               isActive && "menu-active"

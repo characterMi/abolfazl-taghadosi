@@ -13,6 +13,7 @@ import {
 } from "react";
 
 import { projects } from "@/constants";
+import { lerp } from "@/lib";
 import { fadeIn, slideUp } from "@/utils/motion";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
@@ -62,8 +63,6 @@ const SvgCurve = ({
       resetAnimation();
     }
   }
-
-  const lerp = (x: number, y: number, t: number) => x * (1 - t) + y * t;
 
   function animateOut() {
     const newProgress = progress * Math.sin(time);
@@ -258,7 +257,7 @@ const DesktopProjectsContainer = ({ isInView }: { isInView: boolean }) => {
   useEffect(() => {
     function handleMouseMove(e: globalThis.MouseEvent) {
       const { innerWidth } = window;
-      // we set the modal size to 25vw
+      // we set the modal size to 25vw as we did in css styles
       const modalSize = innerWidth / 4;
 
       modal.x.set(e.clientX - modalSize / 2);

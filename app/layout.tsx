@@ -1,7 +1,7 @@
+import Root from "@/providers/root";
 import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 
-import Root from "@/providers/root";
 import "./globals.css";
 
 const font = Figtree({ subsets: ["latin"], preload: true });

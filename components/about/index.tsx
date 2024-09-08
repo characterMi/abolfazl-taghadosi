@@ -1,6 +1,6 @@
 "use client";
 
-import { aboutSectionArrowIcon } from "@/constants";
+import { arrowSvg } from "@/constants";
 import {
   motion,
   MotionValue,
@@ -11,22 +11,20 @@ import {
 import { useRef } from "react";
 import { SectionsWithAnimation, SectionsWithoutAnimation } from "./sections";
 
-type Props = {
+type PathProps = {
   d: string;
   range: number[];
   progress: MotionValue<number>;
 };
 
-const Path = ({ d, progress, range }: Props) => {
+const Path = ({ d, progress, range }: PathProps) => {
   const opacity = useTransform(progress, range, [0, 1]);
 
   return <motion.path d={d} opacity={opacity} />;
 };
 
-const About = () => {
+const ArrowSvg = () => {
   const arrow = useRef(null);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   const { scrollYProgress } = useScroll({
     target: arrow,
@@ -34,10 +32,51 @@ const About = () => {
   });
 
   return (
+    <svg
+      ref={arrow}
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg"
+      width="4rem"
+      height="12rem"
+      viewBox="-620 350 350.000000 150.000000"
+      preserveAspectRatio="xMidYMid meet"
+      className="inline"
+      style={{
+        transform: "rotateX(180deg)",
+      }}
+    >
+      <g
+        transform="translate(0.000000,900.000000) scale(0.100000,-0.100000) rotate(90)"
+        className="fill-dark-blue"
+        stroke="none"
+      >
+        {arrowSvg.map((d, i) => {
+          const start = i / arrowSvg.length;
+          const end = start + 1 / arrowSvg.length;
+
+          return (
+            <Path
+              d={d}
+              range={[start, end]}
+              progress={scrollYProgress}
+              key={d}
+            />
+          );
+        })}
+      </g>
+    </svg>
+  );
+};
+
+const About = () => {
+  const container = useRef(null);
+  const isInView = useInView(container, { once: true });
+
+  return (
     <section
       id="about"
       className="bg-white px-4 md:px-10 lg:px-[2.5vw] pb-96 lg:pb-[30vw] z-[1] relative"
-      ref={ref}
+      ref={container}
     >
       <SectionsWithAnimation isSectionInView={isInView} />
 
@@ -49,39 +88,7 @@ const About = () => {
         I&apos;ve done along the way.
       </p>
 
-      <svg
-        ref={arrow}
-        version="1.0"
-        xmlns="http://www.w3.org/2000/svg"
-        width="4rem"
-        height="12rem"
-        viewBox="-620 350 350.000000 150.000000"
-        preserveAspectRatio="xMidYMid meet"
-        className="inline"
-        style={{
-          transform: "rotateX(180deg)",
-        }}
-      >
-        <g
-          transform="translate(0.000000,900.000000) scale(0.100000,-0.100000) rotate(90)"
-          className="fill-dark-blue"
-          stroke="none"
-        >
-          {aboutSectionArrowIcon.map((d, i) => {
-            const start = i / aboutSectionArrowIcon.length;
-            const end = start + 1 / aboutSectionArrowIcon.length;
-
-            return (
-              <Path
-                d={d}
-                range={[start, end]}
-                progress={scrollYProgress}
-                key={d}
-              />
-            );
-          })}
-        </g>
-      </svg>
+      <ArrowSvg />
     </section>
   );
 };

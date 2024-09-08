@@ -14,7 +14,7 @@ const SlideUpLink = ({
   containerClassName,
   isBlank,
 }: Props) => {
-  const isBlankOptions = isBlank
+  const linkProps = isBlank
     ? {
         target: "_blank",
         rel: "noopener noreferrer",
@@ -28,7 +28,7 @@ const SlideUpLink = ({
         "link relative overflow-hidden inline-flex group w-max leading-tight",
         containerClassName
       )}
-      {...isBlankOptions}
+      {...linkProps}
     >
       <span className="opacity-0">{title}</span>
       <span

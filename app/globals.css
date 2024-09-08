@@ -22,6 +22,7 @@
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;
   scrollbar-width: none;
+  /*  */
   -webkit-tap-highlight-color: transparent;
   color: white;
   outline: none;
@@ -34,7 +35,10 @@
 
 ::selection {
   @apply text-neutral-900 bg-primary;
+  -webkit-text-fill-color: black;
 }
+
+/* have no idea why, but these tailwind classes doesn't apply when using them directly in className */
 
 .menu-container {
   @apply fixed top-0 left-0 w-full md:p-5 lg:p-[1.25vw] z-50 flex items-center justify-between mix-blend-difference pointer-events-none;
@@ -116,79 +120,79 @@
   display: block;
 }
 
-.image-container__1 {
+.tech-container__1 {
   top: 0%;
   left: 0%;
   height: 5rem;
 }
 
-.image-container__2 {
+.tech-container__2 {
   top: 30%;
   left: 5%;
   height: 3rem;
 }
 
-.image-container__3 {
+.tech-container__3 {
   top: 0%;
   left: 7%;
   height: 3rem;
 }
 
-.image-container__4 {
+.tech-container__4 {
   top: 100%;
   left: 50%;
   height: 4rem;
 }
 
-.image-container__5 {
+.tech-container__5 {
   top: 0%;
   left: 1%;
   height: 5rem;
 }
 
-.image-container__6 {
+.tech-container__6 {
   top: 10%;
   left: 75%;
   height: 4rem;
 }
 
-.image-container__7 {
+.tech-container__7 {
   top: 70%;
   left: 4%;
   height: 6rem;
 }
 
-.image-container__8 {
+.tech-container__8 {
   top: 10%;
   left: 60%;
   height: 6rem;
 }
 
-.image-container__9 {
+.tech-container__9 {
   top: 80%;
   left: 3%;
   height: 6rem;
 }
 
-.image-container__10 {
+.tech-container__10 {
   top: 40%;
   left: 100%;
   height: 7rem;
 }
 
-.image-container__11 {
+.tech-container__11 {
   top: 40%;
   right: 5%;
   height: 8rem;
 }
 
-.image-container__12 {
+.tech-container__12 {
   top: 1%;
   left: 35%;
   height: 3rem;
 }
 
-.image-container__13 {
+.tech-container__13 {
   top: 80%;
   left: 85%;
   height: 4rem;
@@ -231,55 +235,55 @@
 }
 
 @media (min-width: 1024px) {
-  .image-container__1 {
+  .tech-container__1 {
     height: 4vw;
   }
 
-  .image-container__2 {
+  .tech-container__2 {
     height: 3vw;
   }
 
-  .image-container__3 {
+  .tech-container__3 {
     height: 3vw;
   }
 
-  .image-container__4 {
+  .tech-container__4 {
     height: 3vw;
   }
 
-  .image-container__5 {
+  .tech-container__5 {
     height: 4vw;
   }
 
-  .image-container__6 {
+  .tech-container__6 {
     height: 3.5vw;
   }
 
-  .image-container__7 {
+  .tech-container__7 {
     height: 5vw;
   }
 
-  .image-container__8 {
+  .tech-container__8 {
     height: 7vw;
   }
 
-  .image-container__9 {
+  .tech-container__9 {
     height: 5vw;
   }
 
-  .image-container__10 {
+  .tech-container__10 {
     height: 6vw;
   }
 
-  .image-container__11 {
+  .tech-container__11 {
     height: 7vw;
   }
 
-  .image-container__12 {
+  .tech-container__12 {
     height: 3vw;
   }
 
-  .image-container__13 {
+  .tech-container__13 {
     height: 3.5vw;
   }
 }

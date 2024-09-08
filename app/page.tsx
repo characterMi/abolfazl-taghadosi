@@ -1,5 +1,4 @@
 import { Hero } from "@/components";
-import CustomScroll from "@/components/shared/custom-scroll";
 import dynamic from "next/dynamic";
 
 const Sections = dynamic(() => import("./sections"));
@@ -12,8 +11,6 @@ export default function Home() {
 
       <div className="relative">
         <Hero />
-        <CustomScroll />
-
         <Sections />
       </div>
     </main>

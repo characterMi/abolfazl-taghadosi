@@ -15,15 +15,15 @@ import WaveEffect from "./wave-effect";
 const InnerCursor = ({
   cursorScale,
   isHoveredOnMenu,
-  menuCursorRef,
-  menuCursorScale,
+  innerCursorRef,
+  innerCursorScale,
 }: {
   cursorScale: MotionValue<number>;
-  menuCursorScale: {
+  innerCursorScale: {
     x: MotionValue<number>;
     y: MotionValue<number>;
   };
-  menuCursorRef: RefObject<HTMLDivElement>;
+  innerCursorRef: RefObject<HTMLDivElement>;
   isHoveredOnMenu: boolean;
 }) => {
   const [isHoveredOnProjectCard, setIsHoveredOnProjectCard] = useState(false);
@@ -71,11 +71,11 @@ const InnerCursor = ({
         transformTemplate={template}
         className="absolute top-0 left-0 w-full h-full rounded-full overflow-hidden flex items-center justify-center"
         style={{
-          scaleX: menuCursorScale.x,
-          scaleY: menuCursorScale.y,
+          scaleX: innerCursorScale.x,
+          scaleY: innerCursorScale.y,
           background: "radial-gradient(circle, transparent 65%, #56ccf2 65%)",
         }}
-        ref={menuCursorRef}
+        ref={innerCursorRef}
       >
         <WaveEffect condition={isHoveredOnMenu || isHoveredOnProjectCard} />
       </motion.div>
@@ -99,7 +99,7 @@ const InnerCursor = ({
 const Cursor = memo(
   ({ target }: { target: React.RefObject<HTMLDivElement> }) => {
     const cursorRef = useRef<HTMLDivElement>(null);
-    const menuCursorAnimation = useRef<HTMLDivElement>(null);
+    const innerCursorRef = useRef<HTMLDivElement>(null);
     const [isHoveredOnMenu, setIsHoveredOnMenu] = useState(false);
 
     const smoothMouseOptions = { damping: 20, stiffness: 300, mass: 0.5 };
@@ -122,7 +122,7 @@ const Cursor = memo(
       scale: useSpring(mouse.scale, smoothMouseOptions),
     };
 
-    const menuCursorScale = {
+    const innerCursorScale = {
       x: useMotionValue(1),
       y: useMotionValue(1),
     };
@@ -142,10 +142,10 @@ const Cursor = memo(
       const handleMouseOverOnMenu = () => setIsHoveredOnMenu(true);
 
       const handleMouseLeaveMenu = () => {
-        if (!menuCursorAnimation.current) return;
+        if (!innerCursorRef.current) return;
 
         animate(
-          menuCursorAnimation.current,
+          innerCursorRef.current,
           { scaleX: 1, scaleY: 1 },
           { duration: 0.1, type: "spring" }
         );
@@ -177,14 +177,14 @@ const Cursor = memo(
     useEffect(() => {
       // Function definition...
       const rotate = (distance: { x: number; y: number }) => {
-        if (!menuCursorAnimation.current) return;
+        if (!innerCursorRef.current) return;
 
         // Math.atan2() will give us a rad angle if we specify the x and y axis
         const angle = Math.atan2(distance.y, distance.x);
 
         // we animate the cursor using the given angle
         animate(
-          menuCursorAnimation.current,
+          innerCursorRef.current,
           { rotate: `${angle}rad` },
           { duration: 0 }
         );
@@ -215,8 +215,8 @@ const Cursor = memo(
           const newScaleX = transform(absDistance, [0, width / 2], [1, 1.3]);
           const newScaleY = transform(absDistance, [0, height / 2], [1, 0.8]);
 
-          menuCursorScale.x.set(newScaleX);
-          menuCursorScale.y.set(newScaleY);
+          innerCursorScale.x.set(newScaleX);
+          innerCursorScale.y.set(newScaleY);
 
           mouse.x.set(
             center.x - cursorSizeWhenHoveringOnMenu / 2 + distance.x * 0.1
@@ -255,8 +255,8 @@ const Cursor = memo(
         <InnerCursor
           cursorScale={mouse.scale}
           isHoveredOnMenu={isHoveredOnMenu}
-          menuCursorRef={menuCursorAnimation}
-          menuCursorScale={menuCursorScale}
+          innerCursorRef={innerCursorRef}
+          innerCursorScale={innerCursorScale}
         />
       </motion.div>
     );

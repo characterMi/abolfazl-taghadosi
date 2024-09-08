@@ -61,7 +61,6 @@ const Sidebar = ({
 
   return (
     <>
-      {/* Layer... */}
       <motion.div
         className="fixed left-0 top-0 w-screen h-screen z-[39] bg-gradient-to-r from-neutral-900/10 to-neutral-900"
         variants={fadeIn}

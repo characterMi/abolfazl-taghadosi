@@ -1,6 +1,6 @@
 import { screenVariant } from "@/utils/motion";
 import { MotionDiv } from "../shared/motion-div";
-import { HeroDesc } from "./hero-desc";
+import SlideUpAnimation from "../shared/slide-up-animation";
 import { HeroInfo } from "./hero-info";
 import { HeroTitle } from "./hero-title";
 
@@ -23,7 +23,29 @@ const Hero = () => {
       <div className="flex-1">
         <HeroTitle />
 
-        <HeroDesc />
+        <div
+          style={{ direction: "rtl" }}
+          className="uppercase mt-4 lg:mt-[1.5vw]"
+        >
+          <SlideUpAnimation
+            animate={"animate"}
+            text={"SOFTWARE DEVELOPER"}
+            type="single-word"
+            animationProps={{ animate: { delay: 4 } }}
+            containerClassName="font-semibold text-[6vw] sm:text-[5vw] font-black"
+          />
+
+          <br />
+
+          <SlideUpAnimation
+            animate={"animate"}
+            text={`&copy; ${new Date().getFullYear()} Abolfazl taghadosi`}
+            type="single-word"
+            animationProps={{ animate: { delay: 4.2 } }}
+            containerClassName="font-medium mt-4 sm:mt-2 lg:mt-[0.5vw] text-neutral-500 text-[3vw] sm:text-[1.8vw] lg:text-[1vw]"
+            style={{ direction: "ltr" }}
+          />
+        </div>
       </div>
 
       <HeroInfo />
