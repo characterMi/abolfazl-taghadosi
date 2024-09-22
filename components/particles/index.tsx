@@ -8,15 +8,12 @@ import { Particles } from "./particles";
 const ParticlesCanvas = () => {
   return (
     <motion.div
-      className="fixed inset-0"
+      className="fixed w-full h-d-screen top-0 left-0"
       variants={fadeIn}
       initial="initial"
       whileInView="animate"
     >
-      <Canvas
-        camera={{ position: [0, 2, 0] }}
-        className="touch-none pointer-events-none"
-      >
+      <Canvas camera={{ position: [0, 2, 0] }} className="pointer-events-none">
         <Particles />
       </Canvas>
     </motion.div>

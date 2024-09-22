@@ -38,7 +38,7 @@ export const HeroTitle = () => (
               fontSize="9pt"
               stroke="#ff98a2"
               fill="#ff98a2"
-              className="stroke-primary fill-primary"
+              className="stroke-primary fill-primary translate-y-[150%]"
               variants={gVariants}
               initial="initial"
               animate="animate"
@@ -64,7 +64,7 @@ export const HeroTitle = () => (
               fontSize="9pt"
               stroke="#ff98a2"
               fill="#ff98a2"
-              className="stroke-primary fill-primary"
+              className="stroke-primary fill-primary translate-y-[150%]"
               variants={gVariants}
               initial="initial"
               animate="animate"

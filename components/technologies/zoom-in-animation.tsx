@@ -51,11 +51,6 @@ const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
           width={25}
           height={25}
           className="object-cover w-auto h-full"
-          style={{
-            filter: `drop-shadow(${tech.shadow})`,
-            msFilter: `drop-shadow(${tech.shadow})`,
-            WebkitFilter: `drop-shadow(${tech?.shadow})`,
-          }}
         />
       </div>
     </motion.div>

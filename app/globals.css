@@ -38,6 +38,10 @@
   -webkit-text-fill-color: black;
 }
 
+body {
+  cursor: wait;
+}
+
 /* have no idea why, but these tailwind classes doesn't apply when using them directly in className */
 
 .menu-container {
@@ -110,6 +114,11 @@
 .h-sm-screen {
   height: 100vh;
   height: 100svh;
+}
+
+.h-d-screen {
+  height: 100vh;
+  height: 100dvh;
 }
 
 .about-section__with-animation {

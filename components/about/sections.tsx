@@ -30,7 +30,7 @@ export const SectionsWithAnimation = ({
 
   return (
     <div
-      className="min-h-max h-[800vh] about-section__with-animation"
+      className="min-h-max h-[500vh] about-section__with-animation"
       ref={ref}
     >
       <div className="h-screen w-full sticky top-0 pt-6 sm:pt-12 lg:pt-[3vw] overflow-hidden">

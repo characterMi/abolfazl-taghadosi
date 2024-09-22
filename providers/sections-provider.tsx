@@ -6,44 +6,23 @@ import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 import {
   AnimatePresence,
   motion,
+  MotionValue,
   useMotionValueEvent,
   useScroll,
   useSpring,
 } from "framer-motion";
 import dynamic from "next/dynamic";
-import { RefObject, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const Sidebar = dynamic(() => import("@/components/shared/sidebar"));
 const Cursor = dynamic(() => import("@/components/shared/cursor"), {
   ssr: false,
 });
 
-const Header = ({
-  containerRef,
-}: {
-  containerRef: RefObject<HTMLDivElement>;
-}) => {
+const Header = ({ menuScale }: { menuScale: MotionValue<number> }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isTouchDevice = useIsTouchDevice();
   const [isActive, setIsActive] = useState(false);
-
-  const menuScale = useSpring(0, {
-    stiffness: 100,
-    mass: 0.8,
-  });
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0) {
-      menuScale.set(1);
-    } else {
-      !isActive && menuScale.set(0);
-    }
-  });
 
   return (
     <>
@@ -55,7 +34,7 @@ const Header = ({
         <Magnetic>
           <motion.div
             style={{
-              scale: menuScale,
+              scale: isActive ? 1 : 0 || menuScale,
             }}
             className={`menu ${isTouchDevice && "mobile-menu"} ${
               isActive && "menu-active"
@@ -80,9 +59,24 @@ const Header = ({
 const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
 
+  const menuScale = useSpring(0, { mass: 0.3 });
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > 0) {
+      menuScale.set(1);
+    } else {
+      menuScale.set(0);
+    }
+  });
+
   return (
     <>
-      <Header containerRef={ref} />
+      <Header menuScale={menuScale} />
       <section ref={ref}>{children}</section>
     </>
   );

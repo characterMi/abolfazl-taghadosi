@@ -140,12 +140,12 @@ const MobileProjectCard = ({
       className="project-card flex flex-col gap-8 w-full h-full"
       ref={card}
     >
-      <div className="w-full aspect-square bg-neutral-200 px-8 flex items-center group">
+      <div className="w-full aspect-square bg-neutral-100 px-8 flex items-center group">
         <Image
           src={imgSrc}
           alt={title}
-          width={1000}
-          height={1000}
+          width={1200}
+          height={750}
           className="object-cover w-full h-auto group-hover:scale-[1.025] group-focus:scale-[1.025] duration-500"
           placeholder="blur"
         />
@@ -320,8 +320,8 @@ const DesktopProjectsContainer = ({ isInView }: { isInView: boolean }) => {
             <Image
               src={project.imgSrc}
               alt={project.title}
-              width={1000}
-              height={1000}
+              width={1200}
+              height={750}
               className="w-full"
               placeholder="blur"
             />

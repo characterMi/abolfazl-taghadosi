@@ -25,7 +25,7 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
   const particlesAnimationData = useRef({
     isInZoomInSection: false,
     positionY: 0,
-    positionZ: 0,
+    positionZ: -0.5,
   });
   const pointsRef = useRef<ContainerRef>(null);
   const lenis = useLenis()!;
@@ -65,7 +65,7 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
         const scrollOffset =
           lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
         particlesAnimationData.current.isInZoomInSection = false;
-        particlesAnimationData.current.positionZ = scrollOffset;
+        particlesAnimationData.current.positionZ = scrollOffset - 0.5;
       }
     }
 
@@ -85,13 +85,13 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
       );
     } else {
       pointsRef.current.position.setZ(
-        -particlesAnimationData.current.positionZ * 2.5
+        -particlesAnimationData.current.positionZ * 5
       );
     }
   });
 
   return (
-    <points ref={pointsRef}>
+    <points ref={pointsRef} position-z={2.5}>
       <bufferGeometry>
         <bufferAttribute
           attach={"attributes-position"}
