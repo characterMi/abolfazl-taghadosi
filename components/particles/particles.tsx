@@ -21,11 +21,17 @@ const ParticleMaterial = shaderMaterial(
 
 extend({ ParticleMaterial });
 
-export const Particles = ({ count = 500 }: { count?: number }) => {
+export const Particles = ({
+  count = 500,
+  notFound,
+}: {
+  count?: number;
+  notFound?: boolean;
+}) => {
   const particlesAnimationData = useRef({
     isInZoomInSection: false,
-    positionY: 0,
-    positionZ: -0.5,
+    positionY: notFound ? 0.15 : 0,
+    positionZ: notFound ? 0 : -0.5,
   });
   const pointsRef = useRef<ContainerRef>(null);
   const lenis = useLenis()!;
@@ -91,7 +97,11 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
   });
 
   return (
-    <points ref={pointsRef} position-z={2}>
+    <points
+      ref={pointsRef}
+      position-z={notFound ? 0 : 2}
+      position-y={notFound ? 0.9 : 0}
+    >
       <bufferGeometry>
         <bufferAttribute
           attach={"attributes-position"}
