@@ -8,7 +8,7 @@ export const metadata = {
 
 const NotFound = () => {
   return (
-    <main className="bg-black h-screen flex flex-col px-4">
+    <main className="bg-black h-d-screen overflow-auto flex flex-col px-4">
       <Particles notFound />
 
       <div className="flex-1 flex justify-center items-center relative z-10">
