@@ -60,6 +60,7 @@ export const SecondSection = () => {
             link="mailto:abol1385fx@gmail.com"
             title="reach out"
             childClassName="mark"
+            isBlank
           />{" "}
           and let&apos;s start a conversion that could lead to inspiring
           possibilities. Your next big project awaits!

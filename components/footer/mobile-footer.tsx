@@ -21,6 +21,7 @@ export const MobileFooter = () => {
                 link="https://lenis.darkroom.engineering/"
                 containerClassName="link"
                 childClassName="mark"
+                isBlank
               />{" "}
               &
             </div>

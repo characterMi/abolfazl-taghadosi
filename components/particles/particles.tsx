@@ -85,13 +85,13 @@ export const Particles = ({ count = 500 }: { count?: number }) => {
       );
     } else {
       pointsRef.current.position.setZ(
-        -particlesAnimationData.current.positionZ * 5
+        -particlesAnimationData.current.positionZ * 4
       );
     }
   });
 
   return (
-    <points ref={pointsRef} position-z={2.5}>
+    <points ref={pointsRef} position-z={2}>
       <bufferGeometry>
         <bufferAttribute
           attach={"attributes-position"}

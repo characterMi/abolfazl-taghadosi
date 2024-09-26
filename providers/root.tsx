@@ -18,6 +18,7 @@ const Root = ({ children }: { children: React.ReactNode }) => {
       root
       options={{
         syncTouch: true,
+        touchMultiplier: 0.8,
       }}
     >
       {children}
