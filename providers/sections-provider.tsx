@@ -3,6 +3,7 @@
 import Magnetic from "@/components/shared/magnetic";
 import WaveEffect from "@/components/shared/wave-effect";
 import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import { wait } from "@/lib";
 import {
   AnimatePresence,
   motion,
@@ -12,7 +13,7 @@ import {
   useSpring,
 } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const Sidebar = dynamic(() => import("@/components/shared/sidebar"));
 const Cursor = dynamic(() => import("@/components/shared/cursor"), {
@@ -58,6 +59,7 @@ const Header = ({ menuScale }: { menuScale: MotionValue<number> }) => {
 
 const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   const menuScale = useSpring(0, { mass: 0.3 });
 
@@ -67,6 +69,8 @@ const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (!isPageLoaded) return;
+
     if (latest > 0) {
       menuScale.set(1);
     } else {
@@ -74,10 +78,18 @@ const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
     }
   });
 
+  useLayoutEffect(() => {
+    (async () => {
+      await wait(4800);
+
+      setIsPageLoaded(true);
+    })();
+  }, []);
+
   return (
     <>
-      <Header menuScale={menuScale} />
-      <section ref={ref}>{children}</section>
+      {isPageLoaded && <Header menuScale={menuScale} />}
+      <section ref={ref}>{isPageLoaded && children}</section>
     </>
   );
 };

@@ -66,6 +66,8 @@ const Card = ({ tech, index }: CardProps) => {
           width={25}
           height={25}
           className="w-1/2 h-1/2 object-cover"
+          loading="eager"
+          priority
         />
 
         <p className="text-6xl lg:text-[4vw] font-FF tracking-wide leading-[0.6]">

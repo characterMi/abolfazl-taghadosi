@@ -51,6 +51,8 @@ const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
           width={25}
           height={25}
           className="object-cover w-auto h-full"
+          loading="eager"
+          priority
         />
       </div>
     </motion.div>

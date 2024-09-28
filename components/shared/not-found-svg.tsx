@@ -37,8 +37,8 @@ const Gradient = ({
       const percentX = width / 100;
       const percentY = height / 100;
 
-      const x = Math.floor(clientX - left) / percentX;
-      const y = Math.floor(clientY - top) / percentY;
+      const x = (clientX - left) / percentX;
+      const y = (clientY - top) / percentY;
 
       tracker.x.set(`${x}%`);
       tracker.y.set(`${y}%`);
