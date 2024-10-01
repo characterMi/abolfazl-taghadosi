@@ -33,13 +33,10 @@ export const AllProjects = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <div
-      className="flex flex-col md:flex-row gap-4 mt-80 lg:mt-[20vw]"
-      ref={ref}
-    >
+    <div className="flex flex-col md:flex-row gap-4 mt-80 lg:mt-[20vw]">
       <Title isInView={isInView} />
 
-      <div className="w-full md:w-[63%]">
+      <div className="w-full md:w-[63%]" ref={ref}>
         {allProjects.map((project, i) => (
           <div key={project.srcCode} className="group">
             <div className="w-full flex flex-wrap gap-4 lg:gap-[1vw] items-center justify-between px-4 lg:px-[1vw] py-8 lg:py-[2vw] text-neutral-900 cursor-pointer text-xl xss:text-2xl sm:text-3xl lg:text-[2vw] relative">

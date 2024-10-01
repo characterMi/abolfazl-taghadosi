@@ -99,7 +99,7 @@ body {
 }
 
 .title {
-  @apply text-[12vw] md:text-[7vw] font-black tracking-tighter uppercase leading-[0.8];
+  @apply text-[12vw] md:text-[7vw] font-black tracking-tighter uppercase leading-[0.9];
 }
 
 .text {

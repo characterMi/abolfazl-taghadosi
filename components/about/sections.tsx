@@ -21,11 +21,11 @@ export const SectionsWithAnimation = ({
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest >= 0) setActiveSection(0);
 
-    if (latest >= 0.3) setActiveSection(1);
+    if (latest >= 0.25) setActiveSection(1);
 
-    if (latest >= 0.6) setActiveSection(2);
+    if (latest >= 0.5) setActiveSection(2);
 
-    if (latest >= 0.9) setActiveSection(3);
+    if (latest >= 0.75) setActiveSection(3);
   });
 
   return (

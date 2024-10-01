@@ -1,27 +1,10 @@
 "use client";
 
 import { arrowSvg } from "@/constants";
-import {
-  motion,
-  MotionValue,
-  useInView,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useInView, useScroll } from "framer-motion";
 import { useRef } from "react";
+import RevealAnimation from "../shared/reveal-animation";
 import { SectionsWithAnimation, SectionsWithoutAnimation } from "./sections";
-
-type PathProps = {
-  d: string;
-  range: number[];
-  progress: MotionValue<number>;
-};
-
-const Path = ({ d, progress, range }: PathProps) => {
-  const opacity = useTransform(progress, range, [0, 1]);
-
-  return <motion.path d={d} opacity={opacity} />;
-};
 
 const ArrowSvg = () => {
   const arrow = useRef(null);
@@ -55,7 +38,7 @@ const ArrowSvg = () => {
           const end = start + 1 / arrowSvg.length;
 
           return (
-            <Path
+            <RevealAnimation
               d={d}
               range={[start, end]}
               progress={scrollYProgress}

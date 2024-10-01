@@ -1,5 +1,11 @@
 import { sidebarItems, socials } from "@/constants";
-import { fadeIn, menuSlide, pathAnimation, slide } from "@/utils/motion";
+import {
+  fadeIn,
+  menuContainerSlide,
+  menuSlide,
+  pathAnimation,
+  slide,
+} from "@/utils/motion";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -76,9 +82,13 @@ const Sidebar = ({
         exit="exit"
         className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-d-screen bg-gradient-to-r from-neutral-800 to-[#1f1f1f] text-white z-40 w-full md:w-max"
       >
-        <div
+        <motion.div
           data-lenis-prevent
           className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden"
+          variants={menuContainerSlide}
+          initial="initial"
+          animate="enter"
+          exit="exit"
         >
           <div className="flex flex-col text-xl gap-20 lg:gap-[5vw] mt-20 lg:mt-[5vw] p-6 smart-watch:p-10 xss:p-14 sm:p-20 lg:p-[5vw]">
             <SlideUpAnimation
@@ -120,7 +130,7 @@ const Sidebar = ({
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <Curve />
       </motion.nav>

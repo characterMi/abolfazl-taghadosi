@@ -10,7 +10,7 @@ const Footer = () => {
         <h3 className="title !text-[10vw] md:text-[12vw]">
           AVAILABLE <br /> <mark className="mark">FOR WORK</mark>
           <span className="block md:hidden text-[10vw]">
-            & OPEN TO <br /> NEW OPPORTUNITIES
+            & OPEN TO NEW <br /> OPPORTUNITIES
           </span>
         </h3>
 

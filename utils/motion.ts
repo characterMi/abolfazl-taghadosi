@@ -23,6 +23,26 @@ export const menuSlide = {
   },
 };
 
+export const menuContainerSlide = {
+  initial: {
+    x: "400px",
+  },
+  enter: {
+    x: "0px",
+    transition: {
+      duration: 0.8,
+      ease: menuEasing,
+    },
+  },
+  exit: {
+    x: "400px",
+    transition: {
+      duration: 0.8,
+      ease: menuEasing,
+    },
+  },
+};
+
 export const slide = {
   initial: {
     x: "80px",
