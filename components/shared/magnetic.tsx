@@ -7,12 +7,10 @@ import { MouseEvent, useRef } from "react";
 const Magnetic = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isTouchDevice = useIsTouchDevice();
-  const smoothPositionOptions = { stiffness: 100, damping: 5, mass: 0.5 };
+  const positionOptions = { stiffness: 100, damping: 5, mass: 0.5 };
 
-  const smoothPosition = {
-    x: useSpring(0, smoothPositionOptions),
-    y: useSpring(0, smoothPositionOptions),
-  };
+  const x = useSpring(0, positionOptions),
+    y = useSpring(0, positionOptions);
 
   const handleMouseMove = (
     e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
@@ -24,8 +22,8 @@ const Magnetic = ({ children }: { children: React.ReactNode }) => {
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    smoothPosition.x.set(middleX * 0.3);
-    smoothPosition.y.set(middleY * 0.3);
+    x.set(middleX * 0.3);
+    y.set(middleY * 0.3);
   };
 
   return (
@@ -34,13 +32,10 @@ const Magnetic = ({ children }: { children: React.ReactNode }) => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
-        smoothPosition.x.set(0);
-        smoothPosition.y.set(0);
+        x.set(0);
+        y.set(0);
       }}
-      style={{
-        x: smoothPosition.x,
-        y: smoothPosition.y,
-      }}
+      style={{ x, y }}
     >
       {children}
     </motion.div>

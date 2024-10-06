@@ -53,7 +53,7 @@ export const HorizontalSlider = () => {
 const Card = ({ tech, index }: CardProps) => {
   return (
     <div className="relative size-96 lg:size-[24vw] overflow-hidden border-primary border p-10 lg:p-[2.5vw] bg-neutral-900/50">
-      <p className="text-7xl lg:text-[4.5vw] absolute top-6 lg:top-[1.5vw] left-6 lg:left-[1.5vw] text-primary font-black">
+      <p className="text-7xl lg:text-[4.5vw] absolute top-6 lg:top-[1.5vw] left-6 lg:left-[1.5vw] font-black mark">
         {index < 10 ? `0${index + 1}` : index + 1}
       </p>
 

@@ -58,6 +58,7 @@ body {
 
 .mobile-menu {
   @apply bg-primary flex justify-center items-center overflow-hidden;
+  background: radial-gradient(circle, #b6edff, #56ccf2 75%);
 }
 
 .menu-active {

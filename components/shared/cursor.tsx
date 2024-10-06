@@ -1,6 +1,6 @@
 "use client";
 
-import { fadeIn } from "@/utils/motion";
+import { fadeInWithBlur } from "@/utils/motion";
 import {
   animate,
   motion,
@@ -69,11 +69,10 @@ const InnerCursor = ({
     <>
       <motion.div
         transformTemplate={template}
-        className="absolute top-0 left-0 w-full h-full rounded-full overflow-hidden flex items-center justify-center"
+        className="absolute top-0 left-0 w-full h-full rounded-full overflow-hidden flex items-center justify-center border border-primary"
         style={{
           scaleX: innerCursorScale.x,
           scaleY: innerCursorScale.y,
-          background: "radial-gradient(circle, transparent 65%, #56ccf2 65%)",
         }}
         ref={innerCursorRef}
       >
@@ -83,11 +82,11 @@ const InnerCursor = ({
         <motion.span
           className="pointer-events-none z-[1]"
           key={letter}
-          variants={fadeIn}
+          variants={fadeInWithBlur}
           custom={{ delay: (i + 1) * 0.1, duration: 0.3 }}
           initial="initial"
           animate={isHoveredOnProjectCard ? "animate" : ""}
-          exit="animate"
+          exit="exit"
         >
           {letter}
         </motion.span>
@@ -108,18 +107,11 @@ const Cursor = memo(
     // The reason that we're using '2.5' is because we want the cursor to have a {{ 2.5vw }} width and height
     const cursorSize = (window.innerWidth / 100) * 2.5;
 
-    const mouse = {
-      x: useMotionValue(0),
-      y: useMotionValue(0),
-      opacity: useMotionValue(0),
-      scale: useMotionValue(1),
-    };
-
     const smoothMouse = {
-      x: useSpring(mouse.x, smoothMouseOptions),
-      y: useSpring(mouse.y, smoothMouseOptions),
-      opacity: useSpring(mouse.opacity, smoothMouseOptions),
-      scale: useSpring(mouse.scale, smoothMouseOptions),
+      x: useSpring(0, smoothMouseOptions),
+      y: useSpring(0, smoothMouseOptions),
+      opacity: useSpring(0, smoothMouseOptions),
+      scale: useSpring(1, smoothMouseOptions),
     };
 
     const innerCursorScale = {
@@ -129,15 +121,16 @@ const Cursor = memo(
 
     useEffect(() => {
       const links = document.querySelectorAll(".link");
+      const currentTarget = target.current;
 
       // Function definition...
-      const handleRemoveOpacity = () => mouse.opacity.set(0);
+      const handleRemoveOpacity = () => smoothMouse.opacity.set(0);
 
-      const handleSetOpacity = () => mouse.opacity.set(1);
+      const handleSetOpacity = () => smoothMouse.opacity.set(1);
 
-      const handleMouseOverOnLinks = () => mouse.scale.set(0.5);
+      const handleMouseOverOnLinks = () => smoothMouse.scale.set(0.5);
 
-      const handleMouseLeaveLinks = () => mouse.scale.set(1);
+      const handleMouseLeaveLinks = () => smoothMouse.scale.set(1);
 
       const handleMouseOverOnMenu = () => setIsHoveredOnMenu(true);
 
@@ -155,8 +148,8 @@ const Cursor = memo(
 
       window.document.addEventListener("mouseenter", handleSetOpacity);
       window.document.addEventListener("mouseleave", handleRemoveOpacity);
-      target.current?.addEventListener("mouseover", handleMouseOverOnMenu);
-      target.current?.addEventListener("mouseleave", handleMouseLeaveMenu);
+      currentTarget?.addEventListener("mouseover", handleMouseOverOnMenu);
+      currentTarget?.addEventListener("mouseleave", handleMouseLeaveMenu);
       links.forEach((element) => {
         element.addEventListener("mouseover", handleMouseOverOnLinks);
         element.addEventListener("mouseleave", handleMouseLeaveLinks);
@@ -165,8 +158,8 @@ const Cursor = memo(
       return () => {
         window.document.removeEventListener("mouseenter", handleSetOpacity);
         window.document.removeEventListener("mouseleave", handleRemoveOpacity);
-        target.current?.removeEventListener("mouseover", handleMouseOverOnMenu);
-        target.current?.removeEventListener("mouseleave", handleMouseLeaveMenu);
+        currentTarget?.removeEventListener("mouseover", handleMouseOverOnMenu);
+        currentTarget?.removeEventListener("mouseleave", handleMouseLeaveMenu);
         links.forEach((element) => {
           element.removeEventListener("mouseover", handleMouseOverOnLinks);
           element.removeEventListener("mouseleave", handleMouseLeaveLinks);
@@ -193,7 +186,7 @@ const Cursor = memo(
       const handleMouseMove = (e: MouseEvent) => {
         if (!target.current) return;
 
-        mouse.opacity.set(1);
+        smoothMouse.opacity.set(1);
         const { clientX, clientY } = e;
         const { top, left, width, height } =
           target.current.getBoundingClientRect();
@@ -218,15 +211,15 @@ const Cursor = memo(
           innerCursorScale.x.set(newScaleX);
           innerCursorScale.y.set(newScaleY);
 
-          mouse.x.set(
+          smoothMouse.x.set(
             center.x - cursorSizeWhenHoveringOnMenu / 2 + distance.x * 0.1
           );
-          mouse.y.set(
+          smoothMouse.y.set(
             center.y - cursorSizeWhenHoveringOnMenu / 2 + distance.y * 0.1
           );
         } else {
-          mouse.x.set(clientX - cursorSize / 2);
-          mouse.y.set(clientY - cursorSize / 2);
+          smoothMouse.x.set(clientX - cursorSize / 2);
+          smoothMouse.y.set(clientY - cursorSize / 2);
         }
       };
 
@@ -253,7 +246,7 @@ const Cursor = memo(
         ref={cursorRef}
       >
         <InnerCursor
-          cursorScale={mouse.scale}
+          cursorScale={smoothMouse.scale}
           isHoveredOnMenu={isHoveredOnMenu}
           innerCursorRef={innerCursorRef}
           innerCursorScale={innerCursorScale}

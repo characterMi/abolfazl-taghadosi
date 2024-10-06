@@ -164,4 +164,10 @@ export const fadeInWithBlur = {
     WebkitFilter: "blur(0px)",
     transition: { duration: 1, ...transition },
   }),
+  exit: (transition: Transition) => ({
+    opacity: 0,
+    filter: "blur(5px)",
+    WebkitFilter: "blur(5px)",
+    transition: { duration: 1, ...transition },
+  }),
 };
