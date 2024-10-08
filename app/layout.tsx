@@ -6,10 +6,14 @@ import "./globals.css";
 
 const font = Figtree({ subsets: ["latin"], preload: true });
 
-export const metadata: Metadata = {
-  title: "Abolfazl Taghadosi • Software Developer",
-  description:
+const title = "Abolfazl Taghadosi • Software Developer",
+  description =
     "Transforming ideas into powerful digital experiences. Located in the Iran. Always pushing boundaries, never settling for less.",
+  baseUrl = "https://abolfazl-taghadosi.vercel.app";
+
+export const metadata: Metadata = {
+  title,
+  description,
   keywords: [
     "portfolio",
     "abolfazl taghadosi",
@@ -22,6 +26,15 @@ export const metadata: Metadata = {
     icon: "/icons/logo.png",
     apple: "/icons/logo.png",
   },
+  openGraph: {
+    title,
+    description,
+  },
+  twitter: {
+    title,
+    description,
+  },
+  metadataBase: new URL(baseUrl),
 };
 
 export const viewport: Viewport = {

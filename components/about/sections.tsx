@@ -2,8 +2,8 @@ import { aboutContent, legends } from "@/constants";
 import { fadeInWithBlur } from "@/utils/motion";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
+import FlipLink from "../shared/flip-link";
 import SlideUpAnimation from "../shared/slide-up-animation";
-import SlideUpLink from "../shared/slide-up-link";
 
 export const SectionsWithAnimation = ({
   isSectionInView,
@@ -66,9 +66,9 @@ export const SectionsWithAnimation = ({
               variants={fadeInWithBlur}
               initial="initial"
               animate={
-                isSectionInView && activeSection === i ? "animate" : "initial"
+                isSectionInView && activeSection === i ? "animate" : "exit"
               }
-              exit="initial"
+              exit="exit"
             >
               {item.content}
             </motion.p>
@@ -95,8 +95,8 @@ export const SectionsWithAnimation = ({
             className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw]"
             variants={fadeInWithBlur}
             initial="initial"
-            animate={activeSection === 3 ? "animate" : "initial"}
-            exit="initial"
+            animate={activeSection === 3 ? "animate" : "exit"}
+            exit="exit"
           >
             Throughout my learning journey, there have been several individuals
             who have had a profound impact on my growth as a developer. Their
@@ -109,7 +109,7 @@ export const SectionsWithAnimation = ({
                 <div key={legend.name} className="inline text-neutral-900">
                   {index === 0 && " "}
                   {index === lastIndex && "and "}
-                  <SlideUpLink
+                  <FlipLink
                     title={legend.name}
                     link={legend.link}
                     childClassName="dark-mark"
@@ -175,7 +175,7 @@ export const SectionsWithoutAnimation = ({
             <div key={legend.name} className="inline text-neutral-900">
               {index === 0 && " "}
               {index === legends.length - 1 && "and "}
-              <SlideUpLink
+              <FlipLink
                 title={legend.name}
                 link={legend.link}
                 childClassName="dark-mark"

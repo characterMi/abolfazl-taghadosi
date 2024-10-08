@@ -118,10 +118,13 @@ const MobileProjectCard = ({
   srcCode,
   title,
   year,
+  backgroundColor,
   index,
   isContainerInView,
 }: Props) => {
   const card = useRef<HTMLAnchorElement>(null);
+
+  const MotionImage = motion(Image);
 
   return (
     <motion.a
@@ -140,14 +143,32 @@ const MobileProjectCard = ({
       className="project-card flex flex-col gap-8 w-full h-full"
       ref={card}
     >
-      <div className="w-full aspect-square bg-neutral-100 px-8 flex items-center group">
-        <Image
+      <div className="w-full aspect-square bg-neutral-100 px-8 flex items-center group relative">
+        <div
+          className="w-[calc(100%-4rem)] aspect-[8/5] absolute"
+          style={{ backgroundColor }}
+        />
+        <MotionImage
           src={imgSrc}
           alt={title}
           width={1200}
           height={750}
           className="object-cover w-full h-auto group-hover:scale-[1.025] group-focus:scale-[1.025] duration-500"
           placeholder="blur"
+          initial={{
+            clipPath: "polygon(100% 0, 0 0, 0 0, 100% 0)",
+          }}
+          animate={
+            isContainerInView
+              ? {
+                  clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)",
+                  transition: {
+                    duration: 1,
+                    delay: index * 0.05 + 1,
+                  },
+                }
+              : {}
+          }
         />
       </div>
 

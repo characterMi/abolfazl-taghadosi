@@ -2,8 +2,8 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import FlipLink from "../shared/flip-link";
 import SlideUpAnimation from "../shared/slide-up-animation";
-import SlideUpLink from "../shared/slide-up-link";
 
 export const SecondSection = () => {
   const target = useRef(null);
@@ -56,7 +56,7 @@ export const SecondSection = () => {
         <p className="font-semibold text-xs smart-watch:text-base lg:text-[1vw] !leading-tight">
           I&apos;m exited to hear from You! whether you have questions, ideas,
           or want to collaborate,{" "}
-          <SlideUpLink
+          <FlipLink
             link="mailto:abol1385fx@gmail.com"
             title="reach out"
             childClassName="mark"

@@ -1,6 +1,6 @@
 import { socials } from "@/constants";
+import FlipLink from "../shared/flip-link";
 import GithubLink from "../shared/github-link";
-import SlideUpLink from "../shared/slide-up-link";
 
 export const MobileFooter = () => {
   return (
@@ -8,7 +8,7 @@ export const MobileFooter = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-col gap-3 text-2xl sm:text-3xl">
           {socials.map((link) => (
-            <SlideUpLink {...link} key={link.title} isBlank />
+            <FlipLink {...link} key={link.title} isBlank />
           ))}
         </div>
 
@@ -16,7 +16,7 @@ export const MobileFooter = () => {
           <div className="flex flex-col gap-1">
             <div>
               Inspired by <br />
-              <SlideUpLink
+              <FlipLink
                 title="Lenis website"
                 link="https://lenis.darkroom.engineering/"
                 containerClassName="link"
@@ -27,7 +27,7 @@ export const MobileFooter = () => {
             </div>
 
             <div>
-              <SlideUpLink
+              <FlipLink
                 title="denniss's portfolio"
                 link="https://dennissnellenberg.com/"
                 containerClassName="link"

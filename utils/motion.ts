@@ -157,17 +157,24 @@ export const fadeIn = {
 };
 
 export const fadeInWithBlur = {
-  initial: { opacity: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)" },
+  initial: {
+    opacity: 0,
+    filter: "blur(5px)",
+    WebkitFilter: "blur(5px)",
+    scale: 0.975,
+  },
   animate: (transition: Transition) => ({
     opacity: 1,
     filter: "blur(0px)",
     WebkitFilter: "blur(0px)",
+    scale: 1,
     transition: { duration: 1, ...transition },
   }),
   exit: (transition: Transition) => ({
     opacity: 0,
     filter: "blur(5px)",
     WebkitFilter: "blur(5px)",
+    scale: 1.025,
     transition: { duration: 1, ...transition },
   }),
 };

@@ -39,6 +39,7 @@
 }
 
 body {
+  background: black;
   cursor: wait;
 }
 
@@ -58,7 +59,7 @@ body {
 
 .mobile-menu {
   @apply bg-primary flex justify-center items-center overflow-hidden;
-  background: radial-gradient(circle, #b6edff, #56ccf2 75%);
+  background: radial-gradient(circle, #b6edff, #56ccf2);
 }
 
 .menu-active {
@@ -120,6 +121,7 @@ body {
 .h-d-screen {
   height: 100vh;
   height: 100dvh;
+  transition: all 0.3;
 }
 
 .about-section__with-animation {

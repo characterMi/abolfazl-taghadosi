@@ -9,9 +9,9 @@ import {
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import FlipLink from "./flip-link";
 import Magnetic from "./magnetic";
 import SlideUpAnimation from "./slide-up-animation";
-import SlideUpLink from "./slide-up-link";
 
 const Curve = () => (
   <svg className="absolute top-0 -left-24 w-28 h-full fill-neutral-800 stroke-none">
@@ -112,7 +112,7 @@ const Sidebar = ({
                   exit="exit"
                   key={item.title}
                 >
-                  <SlideUpLink {...item} containerClassName="sidebar-link" />
+                  <FlipLink {...item} containerClassName="sidebar-link" />
                 </motion.div>
               ))}
             </div>
@@ -125,7 +125,7 @@ const Sidebar = ({
             <div className="flex flex-wrap gap-4 lg:gap-[1vw] items-center uppercase text-sm lg:text-[1vw]">
               {socials.map((link) => (
                 <Magnetic key={link.title}>
-                  <SlideUpLink {...link} isBlank />
+                  <FlipLink {...link} isBlank />
                 </Magnetic>
               ))}
             </div>

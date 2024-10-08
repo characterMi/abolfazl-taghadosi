@@ -53,10 +53,10 @@ export const Particles = ({
   }, [count]);
 
   useEffect(() => {
-    const zoomInSection =
-      document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
-
     function handleScroll() {
+      const zoomInSection =
+        document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
+
       const zoomInSectionOffsetTop = zoomInSection.offsetTop;
 
       const lenisProgress = lenis.scroll / zoomInSectionOffsetTop;

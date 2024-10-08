@@ -1,5 +1,6 @@
 "use client";
 
+import CustomScroll from "@/components/shared/custom-scroll";
 import Magnetic from "@/components/shared/magnetic";
 import WaveEffect from "@/components/shared/wave-effect";
 import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
@@ -57,7 +58,13 @@ const Header = ({ menuScale }: { menuScale: MotionValue<number> }) => {
   );
 };
 
-const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
+const ContentProvider = ({
+  children,
+  heroSection,
+}: {
+  children: React.ReactNode;
+  heroSection: React.ReactNode;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
@@ -80,7 +87,7 @@ const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
 
   useLayoutEffect(() => {
     (async () => {
-      await wait(4800);
+      await wait(6800);
 
       setIsPageLoaded(true);
     })();
@@ -88,10 +95,24 @@ const SectionsProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {isPageLoaded && <Header menuScale={menuScale} />}
-      <section ref={ref}>{isPageLoaded && children}</section>
+      <Header menuScale={menuScale} />
+      <main>
+        {/* Background */}
+        <div className="bg-background bg-no-repeat bg-cover bg-center fixed top-0 left-0 w-screen h-screen" />
+
+        {isPageLoaded && <CustomScroll />}
+
+        {heroSection}
+
+        <section
+          ref={ref}
+          style={{ position: isPageLoaded ? "unset" : "fixed" }}
+        >
+          {children}
+        </section>
+      </main>
     </>
   );
 };
 
-export default SectionsProvider;
+export default ContentProvider;

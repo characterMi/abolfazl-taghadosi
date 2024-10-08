@@ -40,7 +40,7 @@ export const AllProjects = () => {
         {allProjects.map((project, i) => (
           <div key={project.srcCode} className="group">
             <div className="w-full flex flex-wrap gap-4 lg:gap-[1vw] items-center justify-between px-4 lg:px-[1vw] py-8 lg:py-[2vw] text-neutral-900 cursor-pointer text-xl xss:text-2xl sm:text-3xl lg:text-[2vw] relative">
-              <div className="absolute w-full h-0 top-0 left-0 bg-gradient-to-r from-primary to-light-blue group-hover:top-auto group-hover:bottom-0 group-hover:h-full transition-all duration-300" />
+              <div className="absolute w-full h-0 top-0 left-0 bg-gradient-to-t from-primary to-light-blue group-hover:top-auto group-hover:bottom-0 group-hover:h-full transition-all duration-300" />
 
               <div className="flex items-center gap-4 z-[1] group-hover:translate-x-3 lg:group-hover:translate-x-[1vw] duration-500">
                 <SlideUpAnimation

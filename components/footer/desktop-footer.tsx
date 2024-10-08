@@ -1,6 +1,6 @@
 import { socials } from "@/constants";
+import FlipLink from "../shared/flip-link";
 import Magnetic from "../shared/magnetic";
-import SlideUpLink from "../shared/slide-up-link";
 
 export const DesktopFooter = () => {
   return (
@@ -8,20 +8,20 @@ export const DesktopFooter = () => {
       <div className="flex items-center gap-4 text-xs lg:text-[0.8vw] lg:gap-[1vw] uppercase">
         {socials.map((link) => (
           <Magnetic key={link.title}>
-            <SlideUpLink {...link} isBlank />
+            <FlipLink {...link} isBlank />
           </Magnetic>
         ))}
 
         <p>
           Inspired by{" "}
-          <SlideUpLink
+          <FlipLink
             title={"Lenis website"}
             link={"https://lenis.darkroom.engineering/"}
             childClassName="mark"
             isBlank
           />{" "}
           &{" "}
-          <SlideUpLink
+          <FlipLink
             title={"denniss's portfolio"}
             link={"https://dennissnellenberg.com/"}
             childClassName="mark"

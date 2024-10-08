@@ -232,6 +232,7 @@ const Cursor = memo(
 
     return (
       <motion.div
+        id="cursor"
         className="size-[2.5vw] rounded-full fixed pointer-events-none z-[49] text-[0.5vw] flex items-center justify-center"
         style={{
           left: smoothMouse.x,
