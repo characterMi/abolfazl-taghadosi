@@ -36,11 +36,12 @@ export const SectionsWithAnimation = ({
       <div className="h-screen w-full sticky top-0 pt-6 sm:pt-12 lg:pt-[3vw] overflow-hidden">
         <SlideUpAnimation
           animate={isSectionInView ? "animate" : ""}
-          text={"Who I Am?"}
           type="single-word"
           childClassName="text-neutral-900 leading-[0.85]"
           containerClassName="text-4xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[6vw] font-black uppercase mb-6 sm:mb-10 lg:mb-[2.5vw]"
-        />
+        >
+          Who I Am?
+        </SlideUpAnimation>
 
         {aboutContent.map((item, i) => (
           <div
@@ -50,7 +51,6 @@ export const SectionsWithAnimation = ({
           >
             <SlideUpAnimation
               type="single-word"
-              text={item.title}
               animate={
                 isSectionInView && activeSection === i ? "animate" : "initial"
               }
@@ -59,7 +59,9 @@ export const SectionsWithAnimation = ({
               }}
               containerClassName="text-2xl xss:text-3xl sm:text-5xl lg:text-[3vw] font-semibold mb-6 lg:mb-[1.5vw]"
               childClassName="text-neutral-900 leading-tight"
-            />
+            >
+              {item.title}
+            </SlideUpAnimation>
 
             <motion.p
               className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw]"
@@ -81,7 +83,6 @@ export const SectionsWithAnimation = ({
         >
           <SlideUpAnimation
             type="single-word"
-            text={"- Inspirations and Mentors"}
             animate={activeSection === 3 ? "animate" : "initial"}
             animationProps={{
               animate: { duration: 0.8 },
@@ -89,7 +90,9 @@ export const SectionsWithAnimation = ({
             }}
             containerClassName="text-2xl xss:text-3xl sm:text-5xl lg:text-[3vw] font-semibold mb-6 lg:mb-[1.5vw]"
             childClassName="text-neutral-900 leading-tight"
-          />
+          >
+            - Inspirations and Mentors
+          </SlideUpAnimation>
 
           <motion.div
             className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw]"
@@ -137,11 +140,12 @@ export const SectionsWithoutAnimation = ({
   <div className="about-section__without-animation">
     <SlideUpAnimation
       animate={isSectionInView ? "animate" : ""}
-      text={"Who I Am?"}
       type="single-word"
       childClassName="text-neutral-900 leading-[0.85]"
       containerClassName="text-4xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[6vw] font-black uppercase mb-6 sm:mb-10 lg:mb-[2.5vw]"
-    />
+    >
+      Who I Am?
+    </SlideUpAnimation>
 
     <motion.div
       variants={fadeInWithBlur}

@@ -40,22 +40,24 @@ const ScrollToExplode = () => {
       />
       <SlideUpAnimation
         animate={"animate"}
-        text={"Scroll"}
         type="single-word"
         animationProps={{ animate: { delay: 4.6 } }}
         containerClassName="ml-4 lg:ml-[1vw]"
         childClassName="leading-[0.85]"
-      />
+      >
+        Scroll
+      </SlideUpAnimation>
       <br />
 
       <SlideUpAnimation
         animate={"animate"}
-        text={"To Explode."}
         type="single-word"
         animationProps={{ animate: { delay: 4.8 } }}
         containerClassName="ml-4 lg:ml-[1vw]"
         childClassName="leading-[0.85]"
-      />
+      >
+        To Explode.
+      </SlideUpAnimation>
     </motion.div>
   );
 };
@@ -71,14 +73,15 @@ export const HeroInfo = () => {
 
         <SlideUpAnimation
           animate={"animate"}
-          text={text}
           type="multiple-word"
           animationProps={(i) => ({
             animate: { delay: 5.2 + i * 0.025, duration: 0.8 },
           })}
           containerClassName="text-[5vw] md:text-[1.5vw] lg:text-[1.2vw] lg:max-w-[30vw] gap-x-[0.8vw] md:gap-x-[0.3vw] leading-[0]"
           childClassName="leading-snug"
-        />
+        >
+          {text.split(" ")}
+        </SlideUpAnimation>
       </div>
 
       <motion.div

@@ -31,21 +31,23 @@ export const SecondSection = () => {
         <div className="p-4 sm:p-10 leading-[0.8]">
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
-            text={"Get in"}
             type="single-word"
             animationProps={{ animate: { delay: 0.5 } }}
             childClassName="leading-[0.85]"
-          />
+          >
+            Get in
+          </SlideUpAnimation>
 
           <br />
 
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
-            text={"Touch"}
             type="single-word"
             animationProps={{ animate: { delay: 0.6 } }}
             childClassName="leading-[0.85] mark"
-          />
+          >
+            Touch
+          </SlideUpAnimation>
         </div>
       </div>
 

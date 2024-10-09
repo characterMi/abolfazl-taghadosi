@@ -181,21 +181,23 @@ const MobileProjectCard = ({
       <div className="w-full flex items-center justify-between">
         <SlideUpAnimation
           animate={isContainerInView ? "animate" : ""}
-          text={title}
           type="single-word"
           animationProps={{ animate: { delay: index * 0.15 } }}
           childClassName="text-neutral-900 leading-snug"
           containerClassName="text-4xl sm:text-6xl md:text-4xl font-thin"
-        />
+        >
+          {title}
+        </SlideUpAnimation>
 
         <SlideUpAnimation
           animate={isContainerInView ? "animate" : ""}
-          text={year.toString()}
           type="single-word"
           animationProps={{ animate: { delay: index * 0.175 } }}
           childClassName="text-neutral-900"
           containerClassName="text-2xl sm:text-3xl md:text-2xl font-semibold"
-        />
+        >
+          {year.toString()}
+        </SlideUpAnimation>
       </div>
     </motion.a>
   );
@@ -233,21 +235,23 @@ const DesktopProjectCard = ({
       <div className="flex justify-between items-center w-full py-[2.5vw] px-[5vw] group-hover:opacity-40 group-focus:opacity-40 duration-500">
         <SlideUpAnimation
           animate={isContainerInView ? "animate" : ""}
-          text={title}
           type="single-word"
           animationProps={{ animate: { delay: index * 0.15 } }}
           childClassName="text-neutral-900 leading-normal"
           containerClassName="text-[5vw] font-thin group-hover:-translate-x-[1vw] group-focus:-translate-x-[1vw] duration-500"
-        />
+        >
+          {title}
+        </SlideUpAnimation>
 
         <SlideUpAnimation
           animate={isContainerInView ? "animate" : ""}
-          text={year.toString()}
           type="single-word"
           animationProps={{ animate: { delay: index * 0.175 } }}
           childClassName="text-neutral-900"
           containerClassName="text-[2vw] font-thin opacity-80 group-hover:translate-x-[1vw] group-focus:translate-x-[1vw] duration-500"
-        />
+        >
+          {year.toString()}
+        </SlideUpAnimation>
       </div>
 
       <SvgCurve
@@ -365,20 +369,22 @@ export const MainProjects = () => {
       >
         <SlideUpAnimation
           animate={isInView ? "animate" : ""}
-          text={"Real world"}
           type="single-word"
           childClassName="text-neutral-900"
-        />
+        >
+          Real world
+        </SlideUpAnimation>
 
         <br />
 
         <SlideUpAnimation
           animate={isInView ? "animate" : ""}
-          text={"Projects"}
           type="single-word"
           animationProps={{ animate: { delay: 0.1 } }}
           childClassName="gray-mark"
-        />
+        >
+          Projects
+        </SlideUpAnimation>
       </div>
 
       <div ref={ref}>

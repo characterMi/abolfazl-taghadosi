@@ -1,7 +1,7 @@
 import { fragmentShader, vertexShader } from "@/constants";
+import { useLenis } from "@/providers/root";
 import { shaderMaterial, useTexture } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { useLenis } from "lenis/react";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -53,10 +53,10 @@ export const Particles = ({
   }, [count]);
 
   useEffect(() => {
-    function handleScroll() {
-      const zoomInSection =
-        document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
+    const zoomInSection =
+      document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
 
+    function handleScroll() {
       const zoomInSectionOffsetTop = zoomInSection.offsetTop;
 
       const lenisProgress = lenis.scroll / zoomInSectionOffsetTop;
@@ -75,10 +75,10 @@ export const Particles = ({
       }
     }
 
-    lenis.on("scroll", handleScroll);
+    lenis?.on("scroll", handleScroll);
 
-    return () => lenis.off("scroll", handleScroll);
-  }, []);
+    return () => lenis?.off("scroll", handleScroll);
+  }, [lenis]);
 
   useFrame(({ clock }) => {
     if (!pointsRef.current) return;

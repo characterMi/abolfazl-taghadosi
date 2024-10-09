@@ -2,7 +2,6 @@
 
 import { socials } from "@/constants";
 import { ease } from "@/utils/motion";
-import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 type Props = (typeof socials)[number] & {
@@ -25,21 +24,17 @@ const FlipLink = ({
       }
     : {};
   const transition = (i: number) => ({
-    ease,
-    type: "tween",
-    duration: 0.5,
-    delay: i * 0.015,
+    transition: `transform 500ms cubic-bezier(${ease})`,
+    transitionDelay: `${i * 0.015}s`,
   });
 
   return (
-    <motion.a
+    <a
       href={link}
       className={twMerge(
         "link relative overflow-hidden inline-flex group w-max leading-tight",
         containerClassName
       )}
-      initial="initial"
-      whileHover="hovered"
       {...linkProps}
     >
       <span>
@@ -47,19 +42,16 @@ const FlipLink = ({
           return letter === " " ? (
             " "
           ) : (
-            <motion.span
+            <span
               key={i}
-              variants={{
-                initial: { y: 0 },
-                hovered: {
-                  y: "-100%",
-                },
-              }}
-              transition={transition(i)}
-              className={twMerge("inline-block", childClassName)}
+              className={twMerge(
+                "inline-block group-hover:-translate-y-full group-focus:-translate-y-full",
+                childClassName
+              )}
+              style={transition(i)}
             >
               {letter}
-            </motion.span>
+            </span>
           );
         })}
       </span>
@@ -68,23 +60,20 @@ const FlipLink = ({
           return letter === " " ? (
             " "
           ) : (
-            <motion.span
+            <span
               key={i}
-              variants={{
-                initial: { y: "100%" },
-                hovered: {
-                  y: 0,
-                },
-              }}
-              transition={transition(i)}
-              className={twMerge("inline-block", childClassName)}
+              className={twMerge(
+                "inline-block translate-y-full group-hover:translate-y-0 group-focus:translate-y-0",
+                childClassName
+              )}
+              style={transition(i)}
             >
               {letter}
-            </motion.span>
+            </span>
           );
         })}
       </span>
-    </motion.a>
+    </a>
   );
 };
 

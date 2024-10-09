@@ -9,22 +9,23 @@ type Props = {
   containerClassName?: string;
   childClassName?: string;
   animate: string;
-  text: string;
   style?: CSSProperties;
 } & (
   | {
       type: "single-word";
+      children: string;
       animationProps?: SlideUpVariant;
     }
   | {
       type: "multiple-word";
+      children: string[];
       animationProps?: (custom: number) => SlideUpVariant;
     }
 );
 
 const SlideUpAnimation = ({
   type,
-  text,
+  children,
   containerClassName,
   animate,
   animationProps,
@@ -51,7 +52,7 @@ const SlideUpAnimation = ({
       )}
     >
       {type === "multiple-word" ? (
-        text.split(" ").map((word, i) => (
+        children.map((word, i) => (
           <span key={i} className={textContainerDefaultClass}>
             <motion.span
               {...defaultProps}
@@ -64,7 +65,7 @@ const SlideUpAnimation = ({
         <motion.span
           {...defaultProps}
           custom={animationProps}
-          dangerouslySetInnerHTML={{ __html: text }}
+          dangerouslySetInnerHTML={{ __html: children }}
         />
       )}
     </p>

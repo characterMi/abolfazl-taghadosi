@@ -11,20 +11,22 @@ const Title = ({ isInView }: { isInView: boolean }) => (
   <div className="uppercase w-full md:w-[37%] text-6xl md:text-[2.75rem] lg:text-[4vw] font-black mb-6 relative">
     <SlideUpAnimation
       animate={isInView ? "animate" : ""}
-      text={"All of my"}
       type="single-word"
       childClassName="text-neutral-900"
-    />
+    >
+      All of my
+    </SlideUpAnimation>
 
     <br />
 
     <SlideUpAnimation
       animate={isInView ? "animate" : ""}
-      text={"Works"}
       type="single-word"
       animationProps={{ animate: { delay: 0.1 } }}
       childClassName="gray-mark"
-    />
+    >
+      Works
+    </SlideUpAnimation>
   </div>
 );
 
@@ -45,12 +47,13 @@ export const AllProjects = () => {
               <div className="flex items-center gap-4 z-[1] group-hover:translate-x-3 lg:group-hover:translate-x-[1vw] duration-500">
                 <SlideUpAnimation
                   animate={isInView ? "animate" : ""}
-                  text={project.name}
                   type="single-word"
                   animationProps={{ animate: { delay: i * 0.05 + 0.5 } }}
                   childClassName="text-neutral-900 leading-tight"
                   containerClassName="font-semibold leading-loose"
-                />
+                >
+                  {project.name}
+                </SlideUpAnimation>
 
                 <ArrowIcon
                   mode="light"

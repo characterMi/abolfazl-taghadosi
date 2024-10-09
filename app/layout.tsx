@@ -23,16 +23,38 @@ export const metadata: Metadata = {
     "software engineer",
   ],
   icons: {
-    icon: "/icons/logo.png",
-    apple: "/icons/logo.png",
+    icon: "/icons/logo-icon.png",
+    apple: "/icons/logo-icon.png",
   },
   openGraph: {
     title,
     description,
+    url: baseUrl,
+    type: "website",
+    images: [
+      {
+        url: `${baseUrl}/icons/logo.png`,
+        width: 500,
+        height: 500,
+        alt: "Website Logo",
+      },
+    ],
+    locale: "en_US",
+    siteName: title,
   },
   twitter: {
     title,
     description,
+    site: baseUrl,
+    images: [
+      {
+        url: `${baseUrl}/icons/logo.png`,
+        width: 500,
+        height: 500,
+        alt: "Website Logo",
+      },
+    ],
+    card: "summary",
   },
   metadataBase: new URL(baseUrl),
 };
