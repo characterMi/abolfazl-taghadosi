@@ -211,12 +211,30 @@ body {
   }
 }
 
-@media (min-width: 1024px) and (min-height: 400px) {
+@media (min-width: 1024px) and (max-width: 1500px) and (min-height: 500px) {
   .about-section__with-animation {
     display: block;
   }
   .about-section__without-animation {
     display: none;
+  }
+}
+
+@media (min-width: 1501px) and (max-width: 2000px) and (min-height: 600px) {
+  .about-section__with-animation {
+    display: block;
+  }
+  .about-section__without-animation {
+    display: none;
+  }
+}
+
+@media (min-width: 2001px) {
+  .about-section__with-animation {
+    display: none;
+  }
+  .about-section__without-animation {
+    display: block;
   }
 }
 

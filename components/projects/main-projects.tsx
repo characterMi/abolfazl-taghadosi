@@ -8,6 +8,7 @@ import {
   type RefObject,
   type SetStateAction,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -124,7 +125,7 @@ const MobileProjectCard = ({
 }: Props) => {
   const card = useRef<HTMLAnchorElement>(null);
 
-  const MotionImage = motion(Image);
+  const MotionImage = useMemo(() => motion(Image), []);
 
   return (
     <motion.a

@@ -50,6 +50,9 @@ const Header = () => {
           <motion.div
             style={{
               scale: isActive ? 1 : 0 || menuScale,
+              background: isTouchDevice
+                ? "radial-gradient(circle, #b6edff, #56ccf2)"
+                : "transparent",
             }}
             className={twMerge(
               "pointer-events-none size-16 lg:size-[5vw] relative rounded-full after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto after:transition before:transition before:z-[1]",
