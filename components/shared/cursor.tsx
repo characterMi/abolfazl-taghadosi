@@ -13,8 +13,6 @@ import {
 import { memo, RefObject, useEffect, useRef, useState } from "react";
 import WaveEffect from "./wave-effect";
 
-let timeoutId: NodeJS.Timeout | null = null;
-
 const InnerCursor = ({
   cursorScale,
   isHoveredOnMenu,
@@ -41,19 +39,13 @@ const InnerCursor = ({
       document.querySelectorAll<HTMLAnchorElement>(".github-link");
 
     function handleMouseEntersProjectCard() {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-        timeoutId = null;
-      }
       cursorScale.set(3);
       setIsHoveredOnProjectCardOrGithubLink(true);
     }
 
     function handleMouseLeavesProjectCard() {
       cursorScale.set(1);
-      timeoutId = setTimeout(() => {
-        setIsHoveredOnProjectCardOrGithubLink(false);
-      }, 400);
+      setIsHoveredOnProjectCardOrGithubLink(false);
     }
 
     projectCards.forEach((element) => {
