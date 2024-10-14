@@ -178,3 +178,32 @@ export const fadeInWithBlur = {
     transition: { duration: 1, ...transition },
   }),
 };
+
+export const waveAnimationVariants = {
+  initial: {
+    top: "auto",
+    height: "0",
+    width: "100%",
+    bottom: "0",
+  },
+  animate: {
+    top: "auto",
+    height: "100%",
+    width: "125%",
+    bottom: "0",
+    transition: {
+      duration: 0.4,
+      ease,
+    },
+  },
+  exit: {
+    top: "0",
+    height: "0",
+    width: "100%",
+    bottom: "auto",
+    transition: {
+      duration: 0.25,
+      ease,
+    },
+  },
+};

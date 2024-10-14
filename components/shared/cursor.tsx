@@ -13,6 +13,8 @@ import {
 import { memo, RefObject, useEffect, useRef, useState } from "react";
 import WaveEffect from "./wave-effect";
 
+let timeoutId: NodeJS.Timeout | null = null;
+
 const InnerCursor = ({
   cursorScale,
   isHoveredOnMenu,
@@ -27,20 +29,31 @@ const InnerCursor = ({
   innerCursorRef: RefObject<HTMLDivElement>;
   isHoveredOnMenu: boolean;
 }) => {
-  const [isHoveredOnProjectCard, setIsHoveredOnProjectCard] = useState(false);
+  const [
+    isHoveredOnProjectCardOrGithubLink,
+    setIsHoveredOnProjectCardOrGithubLink,
+  ] = useState(false);
 
   useEffect(() => {
     const projectCards =
       document.querySelectorAll<HTMLAnchorElement>(".project-card");
+    const githubLinks =
+      document.querySelectorAll<HTMLAnchorElement>(".github-link");
 
     function handleMouseEntersProjectCard() {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
       cursorScale.set(3);
-      setIsHoveredOnProjectCard(true);
+      setIsHoveredOnProjectCardOrGithubLink(true);
     }
 
     function handleMouseLeavesProjectCard() {
       cursorScale.set(1);
-      setIsHoveredOnProjectCard(false);
+      timeoutId = setTimeout(() => {
+        setIsHoveredOnProjectCardOrGithubLink(false);
+      }, 400);
     }
 
     projectCards.forEach((element) => {
@@ -48,8 +61,18 @@ const InnerCursor = ({
       element.addEventListener("mouseleave", handleMouseLeavesProjectCard);
     });
 
+    githubLinks.forEach((element) => {
+      element.addEventListener("mouseenter", handleMouseEntersProjectCard);
+      element.addEventListener("mouseleave", handleMouseLeavesProjectCard);
+    });
+
     return () => {
       projectCards.forEach((element) => {
+        element.removeEventListener("mouseenter", handleMouseEntersProjectCard);
+        element.removeEventListener("mouseleave", handleMouseLeavesProjectCard);
+      });
+
+      githubLinks.forEach((element) => {
         element.removeEventListener("mouseenter", handleMouseEntersProjectCard);
         element.removeEventListener("mouseleave", handleMouseLeavesProjectCard);
       });
@@ -77,17 +100,19 @@ const InnerCursor = ({
         }}
         ref={innerCursorRef}
       >
-        <WaveEffect condition={isHoveredOnMenu || isHoveredOnProjectCard} />
+        <WaveEffect
+          condition={isHoveredOnMenu || isHoveredOnProjectCardOrGithubLink}
+        />
       </motion.div>
+
       {"VIEW".split("").map((letter, i) => (
         <motion.span
           className="pointer-events-none z-[1]"
           key={letter}
           variants={fadeInWithBlur}
-          custom={{ delay: (i + 1) * 0.1, duration: 0.3 }}
+          custom={{ delay: (i + 1) * 0.1, duration: 0.2 }}
           initial="initial"
-          animate={isHoveredOnProjectCard ? "animate" : ""}
-          exit="exit"
+          animate={isHoveredOnProjectCardOrGithubLink ? "animate" : ""}
         >
           {letter}
         </motion.span>

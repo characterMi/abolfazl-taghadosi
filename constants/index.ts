@@ -25,6 +25,7 @@ export const notFound = [
 
 export const vertexShader = `
     uniform float uTime;
+    uniform float uPixelRatio;
     attribute float size;
 
     float random (vec2 st) {
@@ -52,10 +53,14 @@ export const vertexShader = `
         float moveY = noise(position.yz * 1.5 + uTime * 0.05);
         float moveZ = noise(position.xz * 1.5 + uTime * 0.05);
 
+        moveX = clamp(moveX, -1.0, 1.0);
+        moveY = clamp(moveY, -1.0, 1.0);
+        moveZ = clamp(moveZ, -1.0, 1.0);
+
         vec3 newPosition = position + vec3(moveX, moveY, moveZ);
         vec4 mvPosition = modelViewMatrix * vec4(newPosition, 1.0);
 
-        gl_PointSize = size;
+        gl_PointSize = size * uPixelRatio;
 
         gl_Position = projectionMatrix * mvPosition;
     }

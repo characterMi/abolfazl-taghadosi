@@ -9,11 +9,14 @@ type ContainerRef = THREE.Points & {
   material: { uniforms: { uTime: { value: number } } };
 };
 
+const PIXEL_RATIO = window.devicePixelRatio || 1;
+
 const ParticleMaterial = shaderMaterial(
   {
     uTime: 0,
     uAlphaMap: null,
     uColor: new THREE.Color("#b6edff"),
+    uPixelRatio: Math.min(PIXEL_RATIO, 2),
   },
   vertexShader,
   fragmentShader

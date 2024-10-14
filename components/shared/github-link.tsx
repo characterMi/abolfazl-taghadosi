@@ -4,7 +4,7 @@ import ArrowIcon from "./arrow-icon";
 const GithubLink = () => {
   return (
     <a
-      className="inline-flex group button-container overflow-hidden text-nowrap md:w-full outline-none"
+      className="inline-flex group button-container overflow-hidden text-nowrap md:w-full outline-none github-link"
       href="https://github.com/characterMi"
       target="_blank"
       rel="noopener noreferrer"
