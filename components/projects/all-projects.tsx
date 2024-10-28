@@ -40,7 +40,14 @@ export const AllProjects = () => {
 
       <div className="w-full md:w-[63%]" ref={ref}>
         {allProjects.map((project, i) => (
-          <div key={project.srcCode} className="group">
+          <a
+            key={project.srcCode}
+            className="group project-card"
+            href={project.srcCode}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Checkout ${project.name} project`}
+          >
             <div className="w-full flex flex-wrap gap-4 lg:gap-[1vw] items-center justify-between px-4 lg:px-[1vw] py-8 lg:py-[2vw] text-neutral-900 cursor-pointer text-xl xss:text-2xl sm:text-3xl lg:text-[2vw] relative">
               <div className="absolute w-full h-0 top-0 left-0 bg-gradient-to-t from-primary to-light-blue group-hover:top-auto group-hover:bottom-0 group-hover:h-full transition-all duration-300" />
 
@@ -60,12 +67,7 @@ export const AllProjects = () => {
                   className="size-4 lg:size-[1vw] hidden xss:block opacity-0 group-hover:opacity-100 translate-y-1/2 -translate-x-1/2 group-hover:translate-y-0 group-hover:translate-x-0"
                 />
               </div>
-              <a
-                href={project.srcCode}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden xss:block link focus:opacity-80"
-              >
+              <p className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden xss:block link focus:opacity-80">
                 <motion.span
                   className="hidden xss:block text-neutral-900 relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-neutral-900 before:scale-0 group-hover:before:scale-100 before:transition-transform before:duration-500"
                   variants={slideUp}
@@ -74,22 +76,16 @@ export const AllProjects = () => {
                   exit="initial"
                   custom={{ delay: 0.55 + i * 0.05 }}
                 >
-                  Link
+                  {project.year}
                 </motion.span>
-              </a>
+              </p>
 
-              <a
-                href={project.srcCode}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="z-[1] xss:hidden link"
-                aria-label={`Checkout ${project.name} project`}
-              >
+              <p className="z-[1] xss:hidden link">
                 <ArrowIcon
                   mode="light"
                   className="size-5 block xss:hidden group-hover:-translate-x-1/2"
                 />
-              </a>
+              </p>
             </div>
 
             <motion.hr
@@ -109,7 +105,7 @@ export const AllProjects = () => {
                 WebkitTransformOrigin: "right",
               }}
             />
-          </div>
+          </a>
         ))}
       </div>
     </div>

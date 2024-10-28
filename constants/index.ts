@@ -383,46 +383,57 @@ export const allProjects = [
   {
     name: "Hoobank Project",
     srcCode: "https://github.com/characterMi/hoobank_project",
+    year: 2022,
   },
   {
     name: "Metaversus",
     srcCode: "https://github.com/characterMi/metaversus",
+    year: 2023,
   },
   {
     name: "Hilink travel app",
     srcCode: "https://github.com/characterMi/hilink-travel_app",
+    year: 2022,
   },
   {
     name: "iPhone 15 pro",
     srcCode: "https://github.com/characterMi/apple_iphone-15",
+    year: 2024,
   },
   {
     name: "AnimeVault",
     srcCode: "https://github.com/characterMi/anime_vault",
+    year: 2023,
   },
   {
     name: "Nike Website",
     srcCode: "https://github.com/characterMi/nike-website",
+    year: 2022,
   },
   {
     name: "Admin Panel",
     srcCode: "https://github.com/characterMi/react-admin-dashboard",
+    year: 2022,
   },
   {
     name: "Customizable shirt",
     srcCode: "https://github.com/characterMi/customizable-shirt",
+    year: 2022,
   },
   {
     name: "Coca-Cola",
     srcCode: "https://github.com/characterMi/coca-cola_zero",
+    year: 2023,
   },
   {
     name: "Nexus rocket",
     srcCode: "https://github.com/characterMi/nasa_nexus",
+    year: 2023,
   },
   {
     name: "Movies",
     srcCode: "https://github.com/characterMi/movies",
+    year: 2022,
   },
 ];
 
