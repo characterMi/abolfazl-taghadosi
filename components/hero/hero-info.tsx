@@ -24,6 +24,7 @@ const ScrollToExplode = () => {
       variants={fadeIn}
       initial="initial"
       animate={isHidden ? "initial" : "animate"}
+      aria-hidden
     >
       <motion.div
         className="w-1 h-full bg-primary absolute"

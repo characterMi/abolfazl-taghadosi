@@ -8,11 +8,12 @@ const GithubLink = () => {
       href="https://github.com/characterMi"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Check my github"
     >
       <div className="hidden smart-watch:flex justify-center items-center size-12 lg:size-[4vw] border border-primary group-hover:border-white group-focus:border-white bg-neutral-900">
         <Image
           src={"/icons/github.svg"}
-          alt="Github"
+          alt="Github icon"
           width={20}
           height={20}
           className="object-cover w-2/3 h-2/3"
@@ -41,6 +42,7 @@ const GithubLink = () => {
         <div
           className="flex items-center gap-2 lg:gap-[0.5vw] lg:text-[1.2vw] absolute -translate-x-1/2 text-nowrap top-0 bg-gradient-to-r from-primary to-dark-blue text-neutral-900 w-full h-full px-6 lg:px-[1.5vw]"
           style={{ transform: "translate3d(0, 0, 2em)" }}
+          aria-hidden
         >
           checkout my github{" "}
           <ArrowIcon mode="light" className="size-[9px] lg:size-[0.8vw]" />

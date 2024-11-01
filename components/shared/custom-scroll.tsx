@@ -13,6 +13,7 @@ const CustomScroll = () => {
         WebkitTransformOrigin: "left",
         scaleX,
       }}
+      aria-hidden
     />
   );
 };

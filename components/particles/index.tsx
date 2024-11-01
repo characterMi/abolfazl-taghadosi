@@ -8,6 +8,7 @@ import { Particles } from "./particles";
 const ParticlesCanvas = ({ notFound }: { notFound?: boolean }) => {
   return (
     <motion.div
+      aria-hidden
       className="fixed w-full h-d-screen top-0 left-0"
       variants={fadeIn}
       initial="initial"

@@ -14,7 +14,10 @@ const NotFound = () => {
     >
       <Particles notFound />
 
-      <div className="flex-1 flex justify-center items-center relative z-10">
+      <div
+        className="flex-1 flex justify-center items-center relative z-10"
+        aria-hidden
+      >
         {notFound.map((item, i) => (
           <Svg {...item} index={i} key={i} />
         ))}

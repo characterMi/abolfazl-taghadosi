@@ -12,7 +12,10 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
 
   return (
     <div className="flex flex-col gap-6 lg:gap-[1.5vw]" ref={ref}>
-      <div className="flex flex-col tracking-tight text-2xl smart-watch:text-4xl lg:text-[2.25vw] font-bold uppercase">
+      <div
+        className="flex flex-col tracking-tight text-2xl smart-watch:text-4xl lg:text-[2.25vw] font-bold uppercase"
+        aria-label={title[0] + " " + title[1]}
+      >
         {title.map((word) => (
           <SlideUpAnimation
             key={word}
@@ -68,9 +71,13 @@ export const FirstSection = () => {
               transformOrigin: "top",
               WebkitTransformOrigin: "top",
             }}
+            aria-hidden
           />
 
-          <div className="tracking-tighter leading-[0.8] p-4 sm:p-10 lg:p-[2.5vw] text-nowrap">
+          <div
+            className="tracking-tighter leading-[0.8] p-4 sm:p-10 lg:p-[2.5vw] text-nowrap"
+            aria-label="Skills & Services I offer"
+          >
             <SlideUpAnimation
               animate={isInView ? "animate" : ""}
               type="single-word"

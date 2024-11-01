@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useSpring } from "framer-motion";
 import Image from "next/image";
 import {
   type Dispatch,
@@ -97,6 +97,7 @@ const SvgCurve = ({
       custom={{
         delay: index * 0.125,
       }}
+      aria-hidden
     >
       <div
         className="h-[40px] lg:h-[2.5vw] relative -top-5 z-10"
@@ -143,15 +144,17 @@ const MobileProjectCard = ({
       key={title}
       className="project-card flex flex-col gap-8 w-full h-full"
       ref={card}
+      aria-label={"Checkout " + title + " project"}
     >
       <div className="w-full aspect-square bg-neutral-100 px-8 flex items-center group relative">
         <div
           className="w-[calc(100%-4rem)] aspect-[8/5] absolute"
           style={{ backgroundColor }}
+          aria-hidden
         />
         <MotionImage
           src={imgSrc}
-          alt={title}
+          alt={title + " image"}
           width={1200}
           height={750}
           className="object-cover w-full h-auto group-hover:scale-[1.025] group-focus:scale-[1.025] duration-500"
@@ -232,6 +235,7 @@ const DesktopProjectCard = ({
       style={{
         zIndex: index,
       }}
+      aria-label={"Checkout " + title + " project"}
     >
       <div className="flex justify-between items-center w-full py-[2.5vw] px-[5vw] group-hover:opacity-40 group-focus:opacity-40 duration-500">
         <SlideUpAnimation
@@ -269,15 +273,9 @@ const DesktopProjectsContainer = ({ isInView }: { isInView: boolean }) => {
   const smoothModalOptions = { damping: 20, stiffness: 200, mass: 0.5 };
 
   const modal = {
-    x: useMotionValue(0),
-    y: useMotionValue(0),
-    scale: useMotionValue(0),
-  };
-
-  const smoothModal = {
-    x: useSpring(modal.x, smoothModalOptions),
-    y: useSpring(modal.y, smoothModalOptions),
-    scale: useSpring(modal.scale, smoothModalOptions),
+    x: useSpring(0, smoothModalOptions),
+    y: useSpring(0, smoothModalOptions),
+    scale: useSpring(0, smoothModalOptions),
   };
 
   useEffect(() => {
@@ -320,11 +318,12 @@ const DesktopProjectsContainer = ({ isInView }: { isInView: boolean }) => {
       </div>
 
       <motion.div
+        aria-hidden
         className="hidden lg:block fixed top-0 left-0 w-[25vw] h-[25vw] overflow-hidden pointer-events-none z-40"
         style={{
-          left: smoothModal.x,
-          top: smoothModal.y,
-          scale: smoothModal.scale,
+          left: modal.x,
+          top: modal.y,
+          scale: modal.scale,
         }}
         transition={{ duration: 0.5 }}
       >
@@ -367,6 +366,7 @@ export const MainProjects = () => {
       <div
         className="uppercase text-neutral-900 text-4xl xss:text-5xl sm:text-7xl lg:text-[5vw] font-black mb-10 lg:mb-[2.5vw] relative z-[1]"
         style={{ direction: "rtl" }}
+        aria-label="Real world projects"
       >
         <SlideUpAnimation
           animate={isInView ? "animate" : ""}

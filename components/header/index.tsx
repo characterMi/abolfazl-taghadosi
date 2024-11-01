@@ -14,8 +14,8 @@ import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const Sidebar = dynamic(() => import("@/components/shared/sidebar"));
-const Cursor = dynamic(() => import("@/components/shared/cursor"), {
+const Sidebar = dynamic(() => import("./sidebar"));
+const Cursor = dynamic(() => import("./cursor"), {
   ssr: false,
 });
 
@@ -44,7 +44,7 @@ const Header = () => {
           isTouchDevice && "mix-blend-normal px-4 py-6"
         )}
       >
-        <div />
+        <div aria-hidden />
 
         <Magnetic>
           <motion.div
@@ -62,11 +62,16 @@ const Header = () => {
                 "after:rotate-45 before:-rotate-45 after:top-1/2 before:top-1/2"
             )}
             onClick={() => setIsActive((prev) => !prev)}
+            role="button"
+            aria-controls="sidebar"
+            aria-expanded={isActive}
+            id="menu-toggle"
           >
             {isTouchDevice && <WaveEffect condition={isActive} />}
             <div
               className="w-full h-full hover:scale-[3] pointer-events-auto"
               ref={ref}
+              aria-hidden
             />
           </motion.div>
         </Magnetic>

@@ -13,6 +13,7 @@ const WaveEffect = ({ condition }: { condition: boolean }) => (
         initial="initial"
         animate="animate"
         exit="exit"
+        aria-hidden
       />
     )}
   </AnimatePresence>

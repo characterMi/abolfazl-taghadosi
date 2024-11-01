@@ -20,7 +20,10 @@ export default function Home() {
       <Header />
       <main>
         {/* Background */}
-        <div className="bg-background bg-no-repeat bg-cover bg-center fixed top-0 left-0 w-screen h-screen" />
+        <div
+          className="bg-background bg-no-repeat bg-cover bg-center fixed top-0 left-0 w-screen h-screen"
+          aria-hidden
+        />
 
         <CustomScroll />
         <Particles />

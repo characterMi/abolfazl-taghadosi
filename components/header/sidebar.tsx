@@ -1,3 +1,6 @@
+import FlipLink from "@/components/shared/flip-link";
+import Magnetic from "@/components/shared/magnetic";
+import SlideUpAnimation from "@/components/shared/slide-up-animation";
 import { sidebarItems, socials } from "@/constants";
 import { useLenis } from "@/providers/root";
 import {
@@ -9,12 +12,12 @@ import {
 } from "@/utils/motion";
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import FlipLink from "./flip-link";
-import Magnetic from "./magnetic";
-import SlideUpAnimation from "./slide-up-animation";
 
 const Curve = () => (
-  <svg className="absolute top-0 -left-24 w-28 h-full fill-neutral-800 stroke-none">
+  <svg
+    className="absolute top-0 -left-24 w-28 h-full fill-neutral-800 stroke-none"
+    aria-hidden
+  >
     <motion.path
       variants={pathAnimation(
         `M100 0 L100 ${window.innerHeight} Q-100 ${
@@ -73,16 +76,20 @@ const Sidebar = ({
         initial="initial"
         animate="animate"
         exit="initial"
+        aria-hidden
       />
 
-      <motion.nav
+      <motion.aside
         variants={menuSlide}
         initial="initial"
         animate="enter"
         exit="exit"
         className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-d-screen bg-gradient-to-r from-neutral-800 to-[#1f1f1f] text-white z-40 w-full md:w-max"
+        id="sidebar"
+        aria-labelledby="menu-toggle"
+        role="menu"
       >
-        <motion.div
+        <motion.nav
           data-lenis-prevent
           className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden"
           variants={menuContainerSlide}
@@ -112,6 +119,7 @@ const Sidebar = ({
                   animate="enter"
                   exit="exit"
                   key={item.title}
+                  role="menuitem"
                 >
                   <FlipLink {...item} containerClassName="sidebar-link" />
                 </motion.div>
@@ -120,10 +128,16 @@ const Sidebar = ({
           </div>
 
           <div className="py-6 px-6 smart-watch:px-10 xss:px-14 xss:pb-20 lg:pb-[5vw] sm:px-20 lg:px-[5vw] border-t xss:border-t-0 border-neutral-600 flex flex-col gap-3 lg:gap-[0.75vw]">
-            <p className="text-neutral-500 text-sm lg:text-[0.875vw]">
+            <p
+              className="text-neutral-500 text-sm lg:text-[0.875vw]"
+              id="socials"
+            >
               socials
             </p>
-            <div className="flex flex-wrap gap-4 lg:gap-[1vw] items-center uppercase text-sm lg:text-[1vw]">
+            <div
+              className="flex flex-wrap gap-4 lg:gap-[1vw] items-center uppercase text-sm lg:text-[1vw]"
+              aria-labelledby="socials"
+            >
               {socials.map((link) => (
                 <Magnetic key={link.title}>
                   <FlipLink {...link} isBlank />
@@ -131,10 +145,10 @@ const Sidebar = ({
               ))}
             </div>
           </div>
-        </motion.div>
+        </motion.nav>
 
         <Curve />
-      </motion.nav>
+      </motion.aside>
     </>
   );
 };

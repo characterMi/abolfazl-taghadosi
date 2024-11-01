@@ -26,9 +26,10 @@ export const SecondSection = () => {
         <motion.div
           className="h-[30vw] w-1 lg:w-[0.25vw] bg-primary"
           style={{ translateY: indicatorY }}
+          aria-hidden
         />
 
-        <div className="p-4 sm:p-10 leading-[0.8]">
+        <div className="p-4 sm:p-10 leading-[0.8]" aria-label="Get in touch">
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
             type="single-word"

@@ -1,5 +1,6 @@
 "use client";
 
+import WaveEffect from "@/components/shared/wave-effect";
 import { wait } from "@/lib";
 import { fadeInWithBlur } from "@/utils/motion";
 import {
@@ -11,7 +12,6 @@ import {
   useSpring,
 } from "framer-motion";
 import { memo, RefObject, useEffect, useRef, useState } from "react";
-import WaveEffect from "./wave-effect";
 
 const InnerCursor = ({
   cursorScale,
@@ -248,6 +248,7 @@ const Cursor = ({ menu }: { menu: React.RefObject<HTMLDivElement> }) => {
 
   return (
     <motion.div
+      aria-hidden
       id="cursor"
       className="size-[2.5vw] rounded-full fixed pointer-events-none z-[49] text-[0.5vw] flex items-center justify-center"
       style={{

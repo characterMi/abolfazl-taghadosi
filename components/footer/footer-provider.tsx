@@ -13,7 +13,10 @@ const Curve = ({
   svgArrowAnimation: MotionValue<number>;
 }) => {
   return (
-    <div className="absolute w-full top-0 left-0 z-10 pointer-events-none">
+    <div
+      className="absolute w-full top-0 left-0 z-10 pointer-events-none"
+      aria-hidden
+    >
       <div className="absolute -top-60 left-1/2 -translate-x-1/2 rotate-45 min-[1768px]:hidden">
         <svg
           version="1.0"

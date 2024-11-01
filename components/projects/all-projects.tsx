@@ -8,7 +8,10 @@ import ArrowIcon from "../shared/arrow-icon";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 const Title = ({ isInView }: { isInView: boolean }) => (
-  <div className="uppercase w-full md:w-[37%] text-6xl md:text-[2.75rem] lg:text-[4vw] font-black mb-6 relative">
+  <div
+    className="uppercase w-full md:w-[37%] text-6xl md:text-[2.75rem] lg:text-[4vw] font-black mb-6 relative"
+    aria-label="All of my projects"
+  >
     <SlideUpAnimation
       animate={isInView ? "animate" : ""}
       type="single-word"
@@ -48,7 +51,10 @@ export const AllProjects = () => {
             rel="noopener noreferrer"
             aria-label={`Checkout ${project.name} project`}
           >
-            <div className="w-full flex flex-wrap gap-4 lg:gap-[1vw] items-center justify-between px-4 lg:px-[1vw] py-8 lg:py-[2vw] text-neutral-900 cursor-pointer text-xl xss:text-2xl sm:text-3xl lg:text-[2vw] relative">
+            <div
+              aria-hidden
+              className="w-full flex flex-wrap gap-4 lg:gap-[1vw] items-center justify-between px-4 lg:px-[1vw] py-8 lg:py-[2vw] text-neutral-900 cursor-pointer text-xl xss:text-2xl sm:text-3xl lg:text-[2vw] relative"
+            >
               <div className="absolute w-full h-0 top-0 left-0 bg-gradient-to-t from-primary to-light-blue group-hover:top-auto group-hover:bottom-0 group-hover:h-full transition-all duration-300" />
 
               <div className="flex items-center gap-4 z-[1] group-hover:translate-x-3 lg:group-hover:translate-x-[1vw] duration-500">

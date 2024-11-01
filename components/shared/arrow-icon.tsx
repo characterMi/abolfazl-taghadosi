@@ -8,6 +8,7 @@ const ArrowIcon = ({ mode, className }: Props) => (
     fill="none"
     viewBox="0 0 11 11"
     className={twMerge("group-hover:translate-x-1/3 duration-500", className)}
+    aria-hidden
   >
     <path
       stroke={mode === "dark" ? "#fff" : "#000"}

@@ -27,6 +27,7 @@ const ArrowSvg = () => {
       style={{
         transform: "rotateX(180deg)",
       }}
+      aria-hidden
     >
       <g
         transform="translate(0.000000,900.000000) scale(0.100000,-0.100000) rotate(90)"

@@ -5,7 +5,7 @@ import { ease, gVariants } from "@/utils/motion";
 import { motion } from "framer-motion";
 
 export const HeroTitle = () => (
-  <div className="flex w-full mix-blend-difference z-[11] relative">
+  <div className="flex w-full mix-blend-difference z-[11] relative" aria-hidden>
     {heroSectionTitle.map((letter, i) => {
       if (i % 2) {
         return (
