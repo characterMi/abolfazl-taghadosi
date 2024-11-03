@@ -43,8 +43,8 @@ const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
       className="w-[200%] md:w-full h-full absolute top-0 -left-1/2 md:left-0"
       key={tech.imgSrc}
       style={{ scale: tech.scale, opacity }}
-      aria-label={tech.label}
     >
+      <p className="absolute opacity-0">{tech.label}</p>
       <div className={`relative tech-container__${index + 1}`} aria-hidden>
         <Image
           src={tech.imgSrc}

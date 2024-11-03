@@ -21,7 +21,8 @@ const Hero = () => (
     </MotionDiv>
 
     <div className="flex-1">
-      <div aria-label="Abolfazl taghadosi">
+      <div>
+        <h1 className="absolute opacity-0">Abolfazl taghadosi</h1>
         <HeroTitle />
       </div>
 

@@ -65,7 +65,7 @@ const Header = () => {
             role="button"
             aria-controls="sidebar"
             aria-expanded={isActive}
-            id="menu-toggle"
+            aria-label="Menu toggle button"
           >
             {isTouchDevice && <WaveEffect condition={isActive} />}
             <div

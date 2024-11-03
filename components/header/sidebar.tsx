@@ -86,8 +86,6 @@ const Sidebar = ({
         exit="exit"
         className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-d-screen bg-gradient-to-r from-neutral-800 to-[#1f1f1f] text-white z-40 w-full md:w-max"
         id="sidebar"
-        aria-labelledby="menu-toggle"
-        role="menu"
       >
         <motion.nav
           data-lenis-prevent
@@ -119,7 +117,6 @@ const Sidebar = ({
                   animate="enter"
                   exit="exit"
                   key={item.title}
-                  role="menuitem"
                 >
                   <FlipLink {...item} containerClassName="sidebar-link" />
                 </motion.div>
