@@ -22,6 +22,7 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
             animate={isInView ? "animate" : ""}
             type="single-word"
             childClassName="mark leading-none"
+            animationProps={{ animate: { delay: 0.3 } }}
           >
             {word}
           </SlideUpAnimation>
@@ -34,7 +35,7 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
         containerClassName="font-semibold text-xs smart-watch:text-base lg:text-[1vw] gap-[0.8vw] md:gap-[0.3vw]"
         childClassName="leading-tight"
         animationProps={(i) => ({
-          animate: { delay: 0.2 + i * 0.025, duration: 0.8 },
+          animate: { delay: 0.5 + i * 0.025, duration: 0.8 },
         })}
       >
         {desc.split(" ")}
