@@ -2,7 +2,7 @@
 
 import Magnetic from "@/components/shared/magnetic";
 import WaveEffect from "@/components/shared/wave-effect";
-import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
 import {
   AnimatePresence,
   motion,

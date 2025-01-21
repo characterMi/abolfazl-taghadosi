@@ -1,6 +1,6 @@
 "use client";
 
-import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
 import { motion, useSpring } from "framer-motion";
 import { MouseEvent, useRef } from "react";
 

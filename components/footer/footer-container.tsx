@@ -59,7 +59,11 @@ const Curve = ({
   );
 };
 
-export const FooterProvider = ({ children }: { children: React.ReactNode }) => {
+export const FooterContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const footer = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({

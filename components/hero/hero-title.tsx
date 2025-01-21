@@ -36,8 +36,8 @@ export const HeroTitle = () => (
               strokeLinecap="round"
               fillRule="evenodd"
               fontSize="9pt"
-              stroke="#ff98a2"
-              fill="#ff98a2"
+              stroke="#56ccf2"
+              fill="#56ccf2"
               className="stroke-primary fill-primary translate-y-[150%]"
               variants={gVariants}
               initial="initial"
@@ -62,8 +62,8 @@ export const HeroTitle = () => (
               strokeLinecap="round"
               fillRule="evenodd"
               fontSize="9pt"
-              stroke="#ff98a2"
-              fill="#ff98a2"
+              stroke="#56ccf2"
+              fill="#56ccf2"
               className="stroke-primary fill-primary translate-y-[150%]"
               variants={gVariants}
               initial="initial"
