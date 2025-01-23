@@ -10,53 +10,15 @@ type ContainerRef = THREE.Points & {
 
 const STARS_COUNT = 500;
 
-const useParticlesAnimation = () => {
+export const useParticles = () => {
   const particlesAnimationData = useRef({
-    isInZoomInSection: false,
+    shouldZoomOut: false,
     positionY: 0,
     positionZ: -0.5,
   });
-  const lenis = useLenis()!;
-
-  useEffect(() => {
-    const zoomInSection =
-      document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
-
-    function handleScroll() {
-      const zoomInSectionOffsetTop = zoomInSection.offsetTop;
-
-      const lenisProgress = lenis.scroll / zoomInSectionOffsetTop;
-
-      if (lenisProgress >= 1) {
-        const scrollOffset =
-          (lenis.scroll - zoomInSectionOffsetTop) / zoomInSection.offsetHeight;
-
-        particlesAnimationData.current.isInZoomInSection = true;
-        particlesAnimationData.current.positionY = scrollOffset;
-      } else {
-        const scrollOffset =
-          lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
-        particlesAnimationData.current.isInZoomInSection = false;
-        particlesAnimationData.current.positionZ = scrollOffset - 0.5;
-      }
-    }
-
-    lenis?.on("scroll", handleScroll);
-
-    return () => lenis?.off("scroll", handleScroll);
-  }, [lenis]);
-
-  return {
-    shouldZoom: particlesAnimationData.current.isInZoomInSection,
-    y: particlesAnimationData.current.positionY,
-    z: particlesAnimationData.current.positionZ,
-  };
-};
-
-export const useParticles = () => {
   const pointsRef = useRef<ContainerRef>(null);
   const texture = useTexture("/images/1.png");
-  const { shouldZoom, y, z } = useParticlesAnimation();
+  const lenis = useLenis()!;
 
   const { positions, sizes } = useMemo(() => {
     const positions = new Float32Array(STARS_COUNT * 3);
@@ -73,15 +35,45 @@ export const useParticles = () => {
     return { positions, sizes };
   }, []);
 
+  useEffect(() => {
+    const zoomInSection =
+      document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
+
+    function handleScroll() {
+      const zoomInSectionOffsetTop = zoomInSection.offsetTop;
+
+      const lenisProgress = lenis.scroll / zoomInSectionOffsetTop;
+
+      if (lenisProgress >= 1) {
+        const scrollOffset =
+          (lenis.scroll - zoomInSectionOffsetTop) / zoomInSection.offsetHeight;
+
+        particlesAnimationData.current.shouldZoomOut = true;
+        particlesAnimationData.current.positionY = scrollOffset;
+      } else {
+        const scrollOffset =
+          lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
+        particlesAnimationData.current.shouldZoomOut = false;
+        particlesAnimationData.current.positionZ = scrollOffset - 0.5;
+      }
+    }
+
+    lenis?.on("scroll", handleScroll);
+
+    return () => lenis?.off("scroll", handleScroll);
+  }, [lenis]);
+
   useFrame(({ clock }) => {
     if (!pointsRef.current) return;
 
     pointsRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
 
-    if (shouldZoom) {
-      pointsRef.current.position.setY(y * 6);
+    const { positionY, positionZ, shouldZoomOut } =
+      particlesAnimationData.current;
+    if (shouldZoomOut) {
+      pointsRef.current.position.setY(-positionY * 6);
     } else {
-      pointsRef.current.position.setZ(z * 4);
+      pointsRef.current.position.setZ(-positionZ * 4);
     }
   });
 
