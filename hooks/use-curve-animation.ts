@@ -26,7 +26,7 @@ export function useCurveAnimation(card: RefObject<HTMLAnchorElement>) {
     const { movementY, clientX } = e;
     const cliRect = ref.current.getBoundingClientRect();
     x = (clientX - cliRect.left) / cliRect.width;
-    progress += isTouchDevice ? movementY * 0.05 : movementY;
+    progress += isTouchDevice ? movementY * 0.075 : movementY;
     setPath(progress);
   }
 
@@ -57,6 +57,14 @@ export function useCurveAnimation(card: RefObject<HTMLAnchorElement>) {
 
   useEffect(() => {
     setPath(progress);
+
+    function handleResize() {
+      setPath(progress);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return {

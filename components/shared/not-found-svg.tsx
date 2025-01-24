@@ -27,7 +27,7 @@ const Gradient = ({
   };
 
   useEffect(() => {
-    function handleMouseMove(e: MouseEvent) {
+    function handlePointerMove(e: PointerEvent) {
       if (!container.current) return;
 
       const { clientX, clientY } = e;
@@ -44,9 +44,9 @@ const Gradient = ({
       tracker.y.set(`${y}%`);
     }
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("pointermove", handlePointerMove);
 
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("pointermove", handlePointerMove);
   }, []);
 
   return (

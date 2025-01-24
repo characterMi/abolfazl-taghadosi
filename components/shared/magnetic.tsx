@@ -1,21 +1,17 @@
 "use client";
 
-import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
 import { motion, useSpring } from "framer-motion";
-import { MouseEvent, useRef } from "react";
+import { PointerEvent, useRef } from "react";
 
 const Magnetic = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isTouchDevice = useIsTouchDevice();
   const positionOptions = { stiffness: 100, damping: 5, mass: 0.5 };
 
   const x = useSpring(0, positionOptions),
     y = useSpring(0, positionOptions);
 
-  const handleMouseMove = (
-    e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
-  ) => {
-    if (!ref.current || isTouchDevice) return;
+  const handlePointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
 
     const { clientX, clientY } = e;
 
@@ -30,8 +26,8 @@ const Magnetic = ({ children }: { children: React.ReactNode }) => {
     <motion.div
       className="relative"
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => {
+      onPointerMove={handlePointerMove}
+      onPointerLeave={() => {
         x.set(0);
         y.set(0);
       }}
