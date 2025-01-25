@@ -1,8 +1,9 @@
 "use client";
 
 import { notFound } from "@/constants";
-import { motion, useMotionValue } from "framer-motion";
-import { RefObject, useEffect, useRef } from "react";
+import { useNotFoundPageAnimation } from "@/hooks/use-not-found-page-animation";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 type DefaultProps = {
   d: string;
@@ -12,63 +13,13 @@ type DefaultProps = {
   fontSize: string;
 };
 
-const Gradient = ({
-  index,
-  container,
-  children,
-}: {
-  container: RefObject<HTMLDivElement>;
-  index: number;
-  children: React.ReactNode;
-}) => {
-  const tracker = {
-    x: useMotionValue("-100%"),
-    y: useMotionValue("-100%"),
-  };
-
-  useEffect(() => {
-    function handlePointerMove(e: PointerEvent) {
-      if (!container.current) return;
-
-      const { clientX, clientY } = e;
-      const { height, left, top, width } =
-        container.current.getBoundingClientRect();
-
-      const percentX = width / 100;
-      const percentY = height / 100;
-
-      const x = (clientX - left) / percentX;
-      const y = (clientY - top) / percentY;
-
-      tracker.x.set(`${x}%`);
-      tracker.y.set(`${y}%`);
-    }
-
-    window.addEventListener("pointermove", handlePointerMove);
-
-    return () => window.removeEventListener("pointermove", handlePointerMove);
-  }, []);
-
-  return (
-    <motion.radialGradient
-      id={`grad_${index}`}
-      cx={tracker.x}
-      cy={tracker.y}
-      r="100%"
-      fx={tracker.x}
-      fy={tracker.y}
-    >
-      {children}
-    </motion.radialGradient>
-  );
-};
-
 const Svg = ({
   d,
   viewBox,
   index,
 }: (typeof notFound)[number] & { index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const tracker = useNotFoundPageAnimation(ref);
 
   const defaultProps: DefaultProps = {
     d,
@@ -85,10 +36,17 @@ const Svg = ({
     >
       <svg width="100%" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <Gradient index={index} container={ref}>
+          <motion.radialGradient
+            id={`grad_${index}`}
+            cx={tracker.x}
+            cy={tracker.y}
+            r="100%"
+            fx={tracker.x}
+            fy={tracker.y}
+          >
             <stop offset="0%" stopColor="#56ccf2" />
             <stop offset="100%" stopColor="transparent" />
-          </Gradient>
+          </motion.radialGradient>
         </defs>
 
         <path

@@ -1,19 +1,18 @@
 "use client";
 
-import { motion, useInView, useSpring } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import {
   type Dispatch,
-  PointerEvent,
   type RefObject,
   type SetStateAction,
-  useEffect,
   useRef,
   useState,
 } from "react";
 
 import { projects } from "@/constants";
 import { useCurveAnimation } from "@/hooks/use-curve-animation";
+import { useMainProjectsAnimation } from "@/hooks/use-main-projects-animation";
 import { fadeIn } from "@/utils/motion";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
@@ -85,6 +84,7 @@ const ProjectCard = ({
       onPointerLeave={() => {
         setActiveProject(index);
       }}
+      onContextMenu={(e) => e.preventDefault()}
       style={{
         zIndex: index,
       }}
@@ -123,45 +123,11 @@ const ProjectCard = ({
 
 const ProjectsContainer = ({ isInView }: { isInView: boolean }) => {
   const [activeProject, setActiveProject] = useState(0);
-
-  const smoothModalOptions = { damping: 20, stiffness: 200, mass: 0.5 };
-  const modal = {
-    x: useSpring(0, smoothModalOptions),
-    y: useSpring(0, smoothModalOptions),
-    scale: useSpring(0, smoothModalOptions),
-  };
-
-  function handleSetModalPosition(
-    e: globalThis.PointerEvent | PointerEvent<HTMLDivElement>
-  ) {
-    const { innerWidth } = window;
-    // we set the modal size to 25vw on desktop and 50vw on mobile as we did in css styles
-    const modalSize = innerWidth > 767 ? innerWidth / 4 : innerWidth / 2;
-
-    modal.x.set(e.clientX - modalSize / 2);
-    modal.y.set(e.clientY - modalSize / 2);
-  }
-
-  useEffect(() => {
-    window.addEventListener("pointermove", handleSetModalPosition);
-
-    return () => {
-      window.removeEventListener("pointermove", handleSetModalPosition);
-    };
-  }, []);
+  const { modal, projectsContainerRef } = useMainProjectsAnimation();
 
   return (
     <div className="p-4 lg:p-[5vw] relative">
-      <div
-        className="flex flex-col"
-        onPointerEnter={(e) => {
-          handleSetModalPosition(e);
-          modal.scale.set(1);
-        }}
-        onPointerLeave={() => {
-          modal.scale.set(0);
-        }}
-      >
+      <div className="flex flex-col" ref={projectsContainerRef}>
         {projects.map((project, index) => (
           <ProjectCard
             {...project}
