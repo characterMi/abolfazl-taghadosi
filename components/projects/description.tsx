@@ -17,10 +17,11 @@ export const Description = () => {
       exit="initial"
       ref={ref}
     >
-      Following projects showcases my skills and experience through{" "}
-      <mark className="dark-mark font-medium">real-world examples</mark> of my
-      work. It reflects my ability to solve complex problems, work with
-      different technologies, and manage projects effectively.
+      The following projects highlight my skills and experience through{" "}
+      <mark className="dark-mark font-medium">real-world examples</mark> of what
+      I&apos;ve built. They demonstrate my ability to tackle complex problems,
+      work across various technologies, and manage projects efficiently from
+      start to finish.
     </motion.p>
   );
 };

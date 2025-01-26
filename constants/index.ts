@@ -145,7 +145,7 @@ export const sidebarItems = [
 export const services = [
   {
     title: ["Front-end", "Development"],
-    desc: "Building modern and user-friendly websites and web applications using React and Next.js frameworks. while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best use experience while enhancing the quality and maintainability of projects.",
+    desc: "Building modern and user-friendly websites and web applications using React and Next.js frameworks. while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best user experience while enhancing the quality and maintainability of projects.",
   },
   {
     title: ["Motion &", "UI Design"],
@@ -252,7 +252,7 @@ export const aboutContent = [
   {
     title: "- My Journey",
     content:
-      "I've always been drawn to the idea of creating things that I enjoy and that others can benefit from. For me, programming is one of the best ways to achieve that. Much of my knowledge comes from countless hours spent on YouTube, learning and exploring new technologies. My love for problem-solving and mathematics naturally led me to the world of coding, where every new challenge is an opportunity to learn and grow.",
+      "I've always loved the idea of creating something meaningful—something I enjoy and others can benefit from. Programming become the perfect outlet for that passion. Most of what i know comes from countless hours diving into Youtube videos, experimenting, and exploring new technologies. My fascination with problem-solving and mathematics naturally guided me to coding, where every challenge feels like a chance to grow, improve, and make an impact.",
   },
   {
     title: "- Beyond the Code",
@@ -294,6 +294,10 @@ export const legends = [
   {
     name: "Olivier larose",
     link: "https://www.youtube.com/@olivierlarose1/",
+  },
+  {
+    name: "Cosden solutions",
+    link: "https://www.youtube.com/@cosdensolutions/",
   },
   {
     name: "Conner ardman",

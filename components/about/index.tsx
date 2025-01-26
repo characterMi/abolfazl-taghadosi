@@ -67,9 +67,9 @@ const About = () => {
       <SectionsWithoutAnimation isSectionInView={isInView} />
 
       <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-normal inline align-top">
-        Well, that was it! Want to see what I&apos;ve been working on? Scroll
-        down a bit and Checkout the projects below to explore some of the work
-        I&apos;ve done along the way.
+        And that&apos;s it! Curious to see what I&apos;ve been up to? Scroll
+        down and check out the projects below to explore some of the work
+        I&apos;ve created along the way.
       </p>
 
       <ArrowSvg />
