@@ -1,7 +1,6 @@
 "use client";
 
 import { allTech } from "@/constants";
-import type { ScaleValues } from "@/types";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -26,29 +25,41 @@ const SlideOutText = ({ scrollY }: { scrollY: MotionValue<number> }) => {
   );
 };
 
-const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
-  const scaleValues: ScaleValues = {
-    scale2: useTransform(scrollY, [0, 1], [0.2, 2]),
-    scale4: useTransform(scrollY, [0, 1], [0.15, 4]),
-    scale5: useTransform(scrollY, [0, 1], [0.1, 5]),
-    scale7: useTransform(scrollY, [0, 1], [0.07, 7]),
-    scale8: useTransform(scrollY, [0, 1], [0.06, 8]),
-    scale9: useTransform(scrollY, [0, 1], [0.05, 9]),
-  };
+const TechImage = ({
+  scrollY,
+  inputRange,
+  index,
+  label,
+  imgSrc,
+  top,
+  left,
+}: (typeof allTech)[number] & {
+  scrollY: MotionValue<number>;
+  inputRange: number[];
+  index: number;
+}) => {
+  const scale = useTransform(scrollY, inputRange, [0, 2]);
 
-  const opacity = useTransform(scrollY, [0, 0.025], [0, 1]);
-
-  return allTech(scaleValues).map((tech, index) => (
+  return (
     <motion.div
       className="w-[200%] md:w-full h-full absolute top-0 -left-1/2 md:left-0"
-      key={tech.imgSrc}
-      style={{ scale: tech.scale, opacity }}
+      key={imgSrc}
+      style={{
+        scale,
+      }}
     >
-      <p className="absolute opacity-0">{tech.label}</p>
-      <div className={`relative tech-container__${index + 1}`} aria-hidden>
+      <p className="absolute opacity-0">{label}</p>
+      <div
+        className={`relative tech-container__${index + 1}`}
+        aria-hidden
+        style={{
+          top: top,
+          left: left,
+        }}
+      >
         <Image
-          src={tech.imgSrc}
-          alt={tech.label}
+          src={imgSrc}
+          alt={label}
           width={25}
           height={25}
           className="object-cover w-auto h-full"
@@ -57,7 +68,7 @@ const TechImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
         />
       </div>
     </motion.div>
-  ));
+  );
 };
 
 export const ZoomInAnimation = () => {
@@ -83,7 +94,15 @@ export const ZoomInAnimation = () => {
       <div className="sticky h-screen top-0 pt-4 md:pt-10 lg:pt-[2.5vw] overflow-hidden">
         <SlideOutText scrollY={scrollYProgress} />
 
-        <TechImages scrollY={scrollYProgress} />
+        {allTech.map((tech, index) => (
+          <TechImage
+            key={tech.imgSrc}
+            scrollY={scrollYProgress}
+            inputRange={[index / allTech.length, index / allTech.length + 0.2]}
+            index={index}
+            {...tech}
+          />
+        ))}
 
         <div
           className="w-full h-full absolute top-0 overflow-hidden flex justify-center items-center"

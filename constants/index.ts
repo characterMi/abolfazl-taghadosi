@@ -6,7 +6,6 @@ import GymLovers from "@/public/projects/gym-lovers.png";
 import Lingo from "@/public/projects/lingo.png";
 import MarbleRace from "@/public/projects/marble-race.png";
 import MelodiMix from "@/public/projects/melodi-mix.png";
-import type { ScaleValues } from "@/types";
 
 export const notFound = [
   {
@@ -180,71 +179,84 @@ export const mainTech = [
   },
 ];
 
-export const allTech = (scaleValues: ScaleValues) => [
+export const allTech = [
   {
     label: "React JS",
     imgSrc: "/tech/react.svg",
-    scale: scaleValues["scale2"],
+    top: "90%",
+    left: "5%",
   },
   {
     label: "Next JS",
     imgSrc: "/tech/next-js.svg",
-    scale: scaleValues["scale5"],
+    top: "30%",
+    left: "20%",
   },
   {
     label: "TypeScript",
     imgSrc: "/tech/ts.svg",
-    scale: scaleValues["scale4"],
+    top: "10%",
+    left: "60%",
   },
   {
     label: "Tailwind CSS",
     imgSrc: "/tech/tailwind.svg",
-    scale: scaleValues["scale7"],
+    top: "25%",
+    left: "0%",
   },
   {
     label: "Three JS",
     imgSrc: "/tech/three-js.svg",
-    scale: scaleValues["scale8"],
+    top: "75%",
+    left: "95%",
   },
   {
     label: "Jest",
     imgSrc: "/tech/jest.svg",
-    scale: scaleValues["scale4"],
+    top: "80%",
+    left: "80%",
   },
   {
     label: "Git",
     imgSrc: "/tech/git.svg",
-    scale: scaleValues["scale2"],
+    top: "45%",
+    left: "5%",
   },
   {
     label: "sass",
     imgSrc: "/tech/sass.svg",
-    scale: scaleValues["scale9"],
+    top: "5%",
+    left: "25%",
   },
   {
     label: "MUI",
     imgSrc: "/tech/mui.svg",
-    scale: scaleValues["scale5"],
+    top: "75%",
+    left: "10%",
   },
   {
     label: "HTML",
     imgSrc: "/tech/html.svg",
-    scale: scaleValues["scale2"],
+    top: "35%",
+    left: "80%",
   },
   {
     label: "CSS",
     imgSrc: "/tech/css.svg",
-    scale: scaleValues["scale5"],
+    top: "95%",
+    left: "20%",
   },
   {
     label: "redux",
     imgSrc: "/tech/redux.svg",
-    scale: scaleValues["scale9"],
+    top: "80%",
+    left: "55%",
   },
   {
     label: "Bootstrap",
     imgSrc: "/tech/bootstrap.svg",
-    scale: scaleValues["scale9"],
+    top: "45%",
+    left: "95%",
   },
 ];
 
