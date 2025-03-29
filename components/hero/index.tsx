@@ -36,7 +36,7 @@ const Hero = () => (
           animationProps={{ animate: { delay: 4 } }}
           containerClassName="font-semibold text-[6vw] sm:text-[5vw] font-black"
         >
-          {"SOFTWARE DEVELOPER"}
+          {"SOFTWARE ENGINEER"}
         </SlideUpAnimation>
 
         <br />
