@@ -16,6 +16,7 @@ export const Description = () => {
       animate={isInView ? "animate" : ""}
       exit="initial"
       ref={ref}
+      style={{ willChange: "filter, opacity" }}
     >
       The following projects highlight my skills and experience through{" "}
       <mark className="dark-mark font-medium">real-world examples</mark> of what

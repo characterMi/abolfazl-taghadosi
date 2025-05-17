@@ -6,7 +6,7 @@ import "./globals.css";
 
 const font = Figtree({ subsets: ["latin"], preload: true });
 
-const title = "Abolfazl Taghadosi • Software Developer",
+const title = "Abolfazl Taghadosi • Software Engineer",
   description =
     "Transforming ideas into powerful digital experiences. Located in the Iran. Always pushing boundaries, never settling for less.",
   baseUrl = "https://abolfazl-taghadosi.vercel.app";

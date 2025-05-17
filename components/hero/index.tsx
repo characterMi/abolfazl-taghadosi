@@ -13,7 +13,7 @@ const Hero = () => (
       animate={{ display: "none", transition: { delay: 4.2 } }}
     >
       <MotionDiv
-        className="bg-primary w-[150%] rounded-b-[50%] absolute top-0 left-1/2 -translate-x-1/2"
+        className="bg-gradient-to-t from-dark-blue to-primary w-[150%] rounded-b-[50%] absolute top-0 left-1/2 -translate-x-1/2"
         variants={screenVariant}
         initial="initial"
         animate="animate"
@@ -36,7 +36,7 @@ const Hero = () => (
           animationProps={{ animate: { delay: 4 } }}
           containerClassName="font-semibold text-[6vw] sm:text-[5vw] font-black"
         >
-          {"SOFTWARE ENGINEER"}
+          {"FRONT-END DEVELOPER"}
         </SlideUpAnimation>
 
         <br />
@@ -45,7 +45,7 @@ const Hero = () => (
           animate={"animate"}
           type="single-word"
           animationProps={{ animate: { delay: 4.2 } }}
-          containerClassName="font-medium mt-4 sm:mt-2 lg:mt-[0.5vw] text-neutral-500 text-[3vw] sm:text-[1.8vw] lg:text-[1vw]"
+          containerClassName="font-medium mt-2 lg:mt-[1vw] text-neutral-500 text-[3vw] sm:text-[1.8vw] lg:text-[1vw]"
           style={{ direction: "ltr" }}
         >
           {`&copy; ${new Date().getFullYear()} Abolfazl taghadosi`}

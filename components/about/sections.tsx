@@ -71,6 +71,7 @@ export const SectionsWithAnimation = ({
                 isSectionInView && activeSection === i ? "animate" : "exit"
               }
               exit="exit"
+              style={{ willChange: "filter, opacity" }}
             >
               {item.content}
             </motion.p>
@@ -100,6 +101,7 @@ export const SectionsWithAnimation = ({
             initial="initial"
             animate={activeSection === 3 ? "animate" : "exit"}
             exit="exit"
+            style={{ willChange: "filter, opacity" }}
           >
             Throughout my learning journey, there have been several individuals
             who have had a profound impact on my growth as a developer. Their

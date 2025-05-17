@@ -47,6 +47,7 @@ const InnerCursor = ({
       {"VIEW".split("").map((letter, i) => (
         <motion.span
           className="pointer-events-none z-[1]"
+          style={{ willChange: "filter, opacity" }}
           key={letter}
           variants={fadeInWithBlur}
           custom={{ delay: (i + 1) * 0.1, duration: 0.2 }}
