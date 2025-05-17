@@ -23,7 +23,6 @@ const ArrowSvg = () => {
       height="12rem"
       viewBox="-620 350 350.000000 150.000000"
       preserveAspectRatio="xMidYMid meet"
-      className="inline"
       style={{
         transform: "rotateX(180deg)",
       }}
@@ -66,13 +65,18 @@ const About = () => {
 
       <SectionsWithoutAnimation isSectionInView={isInView} />
 
-      <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-normal inline align-top">
-        And that&apos;s it! Curious to see what I&apos;ve been up to? Scroll
-        down and check out the projects below to explore some of the work
-        I&apos;ve created along the way.
-      </p>
+      <div className="text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-normal">
+        <p className="text-neutral-900 inline align-top mr-1 sm:mr-2 lg:mr-[0.5vw]">
+          And that&apos;s it! Curious to see what I&apos;ve been up to? Scroll
+          down and check out the projects below to explore some of the work
+          I&apos;ve created along the
+        </p>
 
-      <ArrowSvg />
+        <div className="inline-flex">
+          <p className="text-neutral-900">way.</p>
+          <ArrowSvg />
+        </div>
+      </div>
     </section>
   );
 };

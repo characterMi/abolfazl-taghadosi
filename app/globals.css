@@ -95,7 +95,6 @@ body {
 .h-d-screen {
   height: 100vh;
   height: 100dvh;
-  transition: all 0.3;
 }
 
 .about-section__with-animation {
