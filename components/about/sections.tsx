@@ -46,7 +46,7 @@ export const SectionsWithAnimation = ({
         {aboutContent.map((item, i) => (
           <div
             key={item.title}
-            className="absolute top-1/2 -translate-y-1/2 h-[50vh]"
+            className="absolute top-[15%] sm:top-1/2 sm:-translate-y-1/2 h-[50vh]"
             style={{ zIndex: activeSection === i ? 1 : 0 }}
           >
             <SlideUpAnimation
@@ -72,14 +72,13 @@ export const SectionsWithAnimation = ({
               }
               exit="exit"
               style={{ willChange: "filter, opacity" }}
-            >
-              {item.content}
-            </motion.p>
+              dangerouslySetInnerHTML={{ __html: item.content }}
+            />
           </div>
         ))}
 
         <div
-          className="absolute top-1/2 -translate-y-1/2 h-[50vh]"
+          className="absolute top-[15%] sm:top-1/2 sm:-translate-y-1/2 h-[50vh]"
           style={{ zIndex: activeSection === 3 ? 1 : 0 }}
         >
           <SlideUpAnimation
@@ -161,9 +160,10 @@ export const SectionsWithoutAnimation = ({
             {item.title}
           </p>
 
-          <p className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw]">
-            {item.content}
-          </p>
+          <p
+            className="text-neutral-900 text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw]"
+            dangerouslySetInnerHTML={{ __html: item.content }}
+          />
         </div>
       ))}
 
