@@ -1,30 +1,15 @@
-import { screenVariant } from "@/utils/motion";
-import { MotionDiv } from "../shared/motion-div";
 import SlideUpAnimation from "../shared/slide-up-animation";
+import HeroAnimation from "./hero-animation";
 import { HeroInfo } from "./hero-info";
 import { HeroTitle } from "./hero-title";
 
 const Hero = () => (
   <section className="h-sm-screen flex flex-col gap-12 relative p-4 md:p-10 xl:p-[3vw] z-[1]">
-    <MotionDiv
-      aria-hidden
-      className="absolute top-0 left-0 z-10 w-full h-full overflow-hidden"
-      initial={{ display: "block" }}
-      animate={{ display: "none", transition: { delay: 4.2 } }}
-    >
-      <MotionDiv
-        className="bg-gradient-to-t from-dark-blue to-primary w-[150%] rounded-b-[50%] absolute top-0 left-1/2 -translate-x-1/2"
-        variants={screenVariant}
-        initial="initial"
-        animate="animate"
-      />
-    </MotionDiv>
+    <HeroAnimation />
 
     <div className="flex-1">
-      <div>
-        <h1 className="absolute opacity-0">Abolfazl taghadosi</h1>
-        <HeroTitle />
-      </div>
+      <h1 className="absolute opacity-0">Abolfazl taghadosi</h1>
+      <HeroTitle />
 
       <div
         style={{ direction: "rtl" }}

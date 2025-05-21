@@ -55,7 +55,7 @@ export const AllProjects = () => {
               aria-hidden
               className="w-full flex flex-wrap gap-4 lg:gap-[1vw] items-center justify-between px-4 lg:px-[1vw] py-8 lg:py-[2vw] text-neutral-900 cursor-pointer text-xl xss:text-2xl sm:text-3xl lg:text-[2vw] relative"
             >
-              <div className="absolute w-full h-0 top-0 left-0 bg-gradient-to-t from-primary to-light-blue group-hover:top-auto group-hover:bottom-0 group-hover:h-full transition-all duration-300" />
+              <div className="absolute w-full h-0 top-0 left-0 bg-gradient-to-t from-primary to-light-blue group-hover:top-auto group-hover:bottom-0 group-hover:h-full group-focus-visible:top-auto group-focus-visible:bottom-0 group-focus-visible:h-full transition-all duration-300" />
 
               <div className="flex items-center gap-4 z-[1] group-hover:translate-x-3 lg:group-hover:translate-x-[1vw] duration-500">
                 <SlideUpAnimation
@@ -75,7 +75,7 @@ export const AllProjects = () => {
               </div>
               <p className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden xss:block link focus:opacity-80">
                 <motion.span
-                  className="hidden xss:block text-neutral-900 relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-neutral-900 before:scale-0 group-hover:before:scale-100 before:transition-transform before:duration-500"
+                  className="hidden xss:block text-neutral-900 relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-neutral-900 before:scale-0 group-hover:before:scale-100 group-focus-visible:before:scale-100 before:transition-transform before:duration-500"
                   variants={slideUp}
                   initial="initial"
                   animate={isInView ? "animate" : ""}
@@ -89,7 +89,7 @@ export const AllProjects = () => {
               <p className="z-[1] xss:hidden link">
                 <ArrowIcon
                   mode="light"
-                  className="size-5 block xss:hidden group-hover:-translate-x-1/2"
+                  className="size-5 block xss:hidden group-hover:-translate-x-1/2 group-focus-visible:-translate-x-1/2"
                 />
               </p>
             </div>
