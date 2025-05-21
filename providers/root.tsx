@@ -23,6 +23,8 @@ const Root = ({ children }: { children: React.ReactNode }) => {
 
     window.scrollTo(0, 0);
 
+    lenisInstance.stop();
+
     function raf(time: number) {
       lenisInstance.raf(time);
       requestAnimationFrame(raf);
@@ -34,6 +36,7 @@ const Root = ({ children }: { children: React.ReactNode }) => {
       await wait(4800);
 
       window.document.body.style.setProperty("cursor", "auto");
+      lenisInstance.start();
     })();
   }, []);
 
