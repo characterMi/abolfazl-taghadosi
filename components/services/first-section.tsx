@@ -59,11 +59,11 @@ export const FirstSection = () => {
         <div className="text-3xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[5vw] font-black flex gap-4 xss:gap-8 lg:gap-[2vw] relative">
           <motion.div
             className="h-full lg:h-[18vw] w-1 lg:w-[0.25vw] bg-primary"
-            initial={{ scaleY: 0 }}
+            initial={{ transform: "scale(0)" }}
             animate={
               isInView
                 ? {
-                    scaleY: 1,
+                    transform: "scale(1)",
                     transition: { duration: 1, type: "tween", ease },
                   }
                 : {}

@@ -13,7 +13,7 @@ const ParticlesCanvas = () => (
     initial="initial"
     whileInView="animate"
   >
-    <Canvas camera={{ position: [0, 2, 0] }} className="pointer-events-none">
+    <Canvas camera={{ position: [0, 3, 0] }} className="pointer-events-none">
       <Particles />
     </Canvas>
   </motion.div>

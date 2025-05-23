@@ -1,6 +1,5 @@
 "use client";
 
-import { wait } from "@/lib";
 import Lenis from "lenis";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -23,21 +22,12 @@ const Root = ({ children }: { children: React.ReactNode }) => {
 
     window.scrollTo(0, 0);
 
-    lenisInstance.stop();
-
     function raf(time: number) {
       lenisInstance.raf(time);
       requestAnimationFrame(raf);
     }
 
     requestAnimationFrame(raf);
-
-    (async () => {
-      await wait(4800);
-
-      window.document.body.style.setProperty("cursor", "auto");
-      lenisInstance.start();
-    })();
   }, []);
 
   return <Context.Provider value={{ lenis }}>{children}</Context.Provider>;

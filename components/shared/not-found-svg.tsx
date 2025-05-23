@@ -3,15 +3,7 @@
 import { notFound } from "@/constants";
 import { useNotFoundPageAnimation } from "@/hooks/use-not-found-page-animation";
 import { motion } from "framer-motion";
-import { useRef } from "react";
-
-type DefaultProps = {
-  d: string;
-  vectorEffect: "non-scaling-stroke";
-  strokeLinecap: "round" | "inherit" | "butt" | "square" | undefined;
-  fillRule: "evenodd" | "inherit" | "nonzero" | undefined;
-  fontSize: string;
-};
+import { type SVGProps, useRef } from "react";
 
 const Svg = ({
   d,
@@ -21,13 +13,13 @@ const Svg = ({
   const ref = useRef<HTMLDivElement>(null);
   const tracker = useNotFoundPageAnimation(ref);
 
-  const defaultProps: DefaultProps = {
+  const defaultProps = {
     d,
     vectorEffect: "non-scaling-stroke",
     strokeLinecap: "round",
     fillRule: "evenodd",
     fontSize: "9pt",
-  };
+  } satisfies SVGProps<SVGPathElement>;
 
   return (
     <div

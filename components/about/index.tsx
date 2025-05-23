@@ -69,11 +69,11 @@ const About = () => {
         <p className="text-neutral-900 inline align-top mr-1 sm:mr-2 lg:mr-[0.5vw]">
           And that&apos;s it! Curious to see what I&apos;ve been up to? Scroll
           down and check out the projects below to explore some of the work
-          I&apos;ve created along the
+          I&apos;ve created along
         </p>
 
         <div className="inline-flex">
-          <p className="text-neutral-900">way.</p>
+          <p className="text-neutral-900">the way.</p>
           <ArrowSvg />
         </div>
       </div>

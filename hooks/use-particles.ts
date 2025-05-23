@@ -8,7 +8,7 @@ type ContainerRef = THREE.Points & {
   material: { uniforms: { uTime: { value: number } } };
 };
 
-const STARS_COUNT = 500;
+const STARS_COUNT = 300;
 
 export const useParticles = () => {
   const particlesAnimationData = useRef({
@@ -72,6 +72,7 @@ export const useParticles = () => {
       particlesAnimationData.current;
     if (shouldZoomOut) {
       pointsRef.current.position.setY(-positionY * 6);
+      pointsRef.current.rotation.y = -positionY;
     } else {
       pointsRef.current.position.setZ(-positionZ * 4);
     }

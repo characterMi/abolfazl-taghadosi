@@ -97,9 +97,9 @@ export const AllProjects = () => {
             <motion.hr
               className="h-[1px] border-none bg-gray-400"
               variants={{
-                initial: { scaleX: 0 },
+                initial: { transform: "scale(0)" },
                 animate: {
-                  scaleX: 1,
+                  transform: "scale(1)",
                   transition: { duration: 0.5, delay: 0.6 + i * 0.05 },
                 },
               }}

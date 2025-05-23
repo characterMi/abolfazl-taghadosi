@@ -1,21 +1,16 @@
 "use client";
 
 import { fadeInWithBlur } from "@/utils/motion";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export const Description = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
     <motion.p
       className="text-neutral-900 text-3xl lg:text-[2.5vw] leading-tight font-thin"
       variants={fadeInWithBlur}
       initial="initial"
-      animate={isInView ? "animate" : ""}
-      exit="initial"
-      ref={ref}
+      whileInView={"animate"}
+      viewport={{ once: true }}
       style={{ willChange: "filter, opacity" }}
     >
       The following projects highlight my skills and experience through{" "}

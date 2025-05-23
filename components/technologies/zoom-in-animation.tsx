@@ -79,6 +79,9 @@ export const ZoomInAnimation = () => {
     offset: ["start start", "end end"],
   });
 
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
+  const rotation = useTransform(scrollYProgress, [0, 1], ["0deg", "25deg"]);
+
   const clipPath = useTransform(
     scrollYProgress,
     [0, 1],
@@ -92,30 +95,35 @@ export const ZoomInAnimation = () => {
       id="zoom-in-animation"
     >
       <div className="sticky h-screen top-0 pt-4 md:pt-10 lg:pt-[2.5vw] overflow-hidden">
-        <SlideOutText scrollY={scrollYProgress} />
+        <motion.div className="h-full" style={{ scale, rotate: rotation }}>
+          <SlideOutText scrollY={scrollYProgress} />
 
-        {allTech.map((tech, index) => (
-          <TechImage
-            key={tech.imgSrc}
-            scrollY={scrollYProgress}
-            inputRange={[index / allTech.length, index / allTech.length + 0.2]}
-            index={index}
-            {...tech}
-          />
-        ))}
+          {allTech.map((tech, index) => (
+            <TechImage
+              key={tech.imgSrc}
+              scrollY={scrollYProgress}
+              inputRange={[
+                index / allTech.length,
+                index / allTech.length + 0.2,
+              ]}
+              index={index}
+              {...tech}
+            />
+          ))}
 
-        <div
-          className="w-full h-full absolute top-0 overflow-hidden flex justify-center items-center"
-          aria-hidden
-        >
-          <motion.div
-            className="relative w-full h-screen bg-white"
-            style={{
-              clipPath,
-              WebkitClipPath: clipPath,
-            }}
-          />
-        </div>
+          <div
+            className="w-full h-full absolute top-0 overflow-hidden flex justify-center items-center"
+            aria-hidden
+          >
+            <motion.div
+              className="relative w-full h-screen bg-white"
+              style={{
+                clipPath,
+                WebkitClipPath: clipPath,
+              }}
+            />
+          </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -28,7 +28,10 @@ const ScrollToExplode = () => {
     >
       <motion.div
         className="w-1 h-full bg-primary absolute"
-        animate={{ scaleY: [0, 1, 0], opacity: [0, 0.5, 1, 1, 0] }}
+        animate={{
+          transform: [`scaleY(0)`, `scaleY(1)`, `scaleY(0)`],
+          opacity: [0, 0.5, 1, 1, 0],
+        }}
         transition={{
           duration: 3,
           repeat: Infinity,
@@ -53,7 +56,7 @@ const ScrollToExplode = () => {
       <SlideUpAnimation
         animate={"animate"}
         type="single-word"
-        animationProps={{ animate: { delay: 4.8 } }}
+        animationProps={{ animate: { delay: 4.6 } }}
         containerClassName="ml-4 lg:ml-[1vw]"
         childClassName="leading-[0.85]"
       >
@@ -63,7 +66,7 @@ const ScrollToExplode = () => {
   );
 };
 
-export const HeroInfo = () => {
+export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
   const text =
     "Empowering brands and startups to thrive in the digital world. Together, we'll craft innovative, high-impact websites that set new standards. No fluff, just cutting-edge solutions.";
 
@@ -73,10 +76,10 @@ export const HeroInfo = () => {
         <ScrollToExplode />
 
         <SlideUpAnimation
-          animate={"animate"}
+          animate={isPageLoaded ? "animate" : ""}
           type="multiple-word"
           animationProps={(i) => ({
-            animate: { delay: 5.2 + i * 0.025, duration: 0.8 },
+            animate: { delay: 0.7 + i * 0.025, duration: 0.8 },
           })}
           containerClassName="text-[5vw] md:text-[1.5vw] lg:text-[1.2vw] lg:max-w-[30vw] gap-x-[0.8vw] md:gap-x-[0.3vw] leading-[0]"
           childClassName="leading-snug"
@@ -88,9 +91,9 @@ export const HeroInfo = () => {
       <motion.div
         variants={fadeIn}
         initial="initial"
-        animate="animate"
+        animate={isPageLoaded && "animate"}
         exit="initial"
-        custom={{ delay: 6.5 }}
+        custom={{ delay: 0.7 }}
       >
         <GithubLink />
       </motion.div>

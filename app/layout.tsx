@@ -57,6 +57,13 @@ export const metadata: Metadata = {
     card: "summary",
   },
   metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_BASE_URL,
+  },
+  category: "Portfolio",
+  classification: "Portfolio",
+  creator: "Abolfazl taghadosi",
+  publisher: "Abolfazl taghadosi",
 };
 
 export const viewport: Viewport = {
@@ -73,6 +80,9 @@ export default function RootLayout({
   return (
     <Root>
       <html lang="en">
+        <head>
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        </head>
         <body className={font.className}>{children}</body>
       </html>
     </Root>

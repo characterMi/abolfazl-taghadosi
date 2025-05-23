@@ -86,36 +86,7 @@ export const pathAnimation = (initialPath: string, targetPath: string) => ({
 });
 
 export const ease = [0.33, 1, 0.68, 1];
-
-export const screenVariant = {
-  initial: {
-    height: "150%",
-  },
-  animate: {
-    height: "0%",
-    transition: {
-      duration: 1,
-      delay: 3,
-      type: "tween",
-      ease,
-    },
-  },
-};
-
-export const gVariants = {
-  initial: {
-    translateY: "150%",
-  },
-  animate: (delay: number) => ({
-    translateY: "0%",
-    transition: {
-      delay: 1 + delay,
-      duration: 1,
-      type: "tween",
-      ease,
-    },
-  }),
-};
+export const ease2 = [0.87, 0, 0.13, 1];
 
 export type SlideUpVariant =
   | {
@@ -161,20 +132,20 @@ export const fadeInWithBlur = {
     opacity: 0,
     filter: "blur(5px)",
     WebkitFilter: "blur(5px)",
-    scale: 0.975,
+    transform: "scale(0.975)",
   },
   animate: (transition: Transition) => ({
     opacity: 1,
     filter: "blur(0px)",
     WebkitFilter: "blur(0px)",
-    scale: 1,
+    transform: "scale(1)",
     transition: { duration: 1, ...transition },
   }),
   exit: (transition: Transition) => ({
     opacity: 0,
     filter: "blur(5px)",
     WebkitFilter: "blur(5px)",
-    scale: 1.025,
+    transform: "scale(1.025)",
     transition: { duration: 1, ...transition },
   }),
 };
