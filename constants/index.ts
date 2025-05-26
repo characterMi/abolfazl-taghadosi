@@ -303,7 +303,7 @@ export const projects = [
   },
   {
     imgSrc: MelodiMix,
-    srcCode: "https://github.com/charactermi/melodi-mix",
+    srcCode: "https://github.com/charactermi/melodimix",
     title: "MelodiMix",
     year: 2024,
     backgroundColor: "#525252",

@@ -3,18 +3,18 @@
 import WaveEffect from "@/components/shared/wave-effect";
 import { useCustomCursorAnimation } from "@/hooks/use-custom-cursor-animation";
 import { wait } from "@/lib";
-import { fadeInWithBlur } from "@/utils/motion";
 import { motion, MotionValue } from "framer-motion";
 import { memo, RefObject, useEffect, useState } from "react";
+import ArrowIcon from "../shared/arrow-icon";
 
 const InnerCursor = ({
   isHoveredOnMenu,
-  isHoveredOnProjectCardOrGithubLink,
+  isHoveredOnProject,
   innerDivRef,
   innerDivScale,
 }: {
   isHoveredOnMenu: boolean;
-  isHoveredOnProjectCardOrGithubLink: boolean;
+  isHoveredOnProject: boolean;
   innerDivRef: RefObject<HTMLDivElement>;
   innerDivScale: { x: MotionValue<number>; y: MotionValue<number> };
 }) => {
@@ -39,24 +39,18 @@ const InnerCursor = ({
         }}
         ref={innerDivRef}
       >
-        <WaveEffect
-          condition={isHoveredOnMenu || isHoveredOnProjectCardOrGithubLink}
-        />
+        <WaveEffect shouldAnimate={isHoveredOnMenu || isHoveredOnProject} />
       </motion.div>
 
-      {"VIEW".split("").map((letter, i) => (
-        <motion.span
-          className="pointer-events-none z-[1]"
-          style={{ willChange: "filter, opacity" }}
-          key={letter}
-          variants={fadeInWithBlur}
-          custom={{ delay: (i + 1) * 0.1, duration: 0.2 }}
-          initial="initial"
-          animate={isHoveredOnProjectCardOrGithubLink ? "animate" : ""}
-        >
-          {letter}
-        </motion.span>
-      ))}
+      <motion.div
+        className="pointer-events-none z-[1] flex items-center gap-[0.1vw]"
+        initial={{ scale: 0 }}
+        animate={isHoveredOnProject ? { scale: 0.8 } : {}}
+        transition={{ delay: 0.15 }}
+      >
+        <span>VIEW</span>
+        <ArrowIcon mode="dark" className="size-[0.35vw]" />
+      </motion.div>
     </>
   );
 };
@@ -69,7 +63,7 @@ const Cursor = ({ menu }: { menu: React.RefObject<HTMLDivElement> }) => {
     smoothMouse,
     innerDivScale,
     isHoveredOnMenu,
-    isHoveredOnProjectCardOrGithubLink,
+    isHoveredOnProject,
   } = useCustomCursorAnimation(menu);
 
   return (
@@ -91,7 +85,7 @@ const Cursor = ({ menu }: { menu: React.RefObject<HTMLDivElement> }) => {
     >
       <InnerCursor
         isHoveredOnMenu={isHoveredOnMenu}
-        isHoveredOnProjectCardOrGithubLink={isHoveredOnProjectCardOrGithubLink}
+        isHoveredOnProject={isHoveredOnProject}
         innerDivRef={innerDivRef}
         innerDivScale={innerDivScale}
       />

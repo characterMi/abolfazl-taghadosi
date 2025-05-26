@@ -1,6 +1,6 @@
-import { useLenis } from "@/providers/root";
 import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import { useLenis } from "lenis/react";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 

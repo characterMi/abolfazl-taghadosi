@@ -47,7 +47,7 @@ const Header = () => {
         <div aria-hidden />
 
         <Magnetic>
-          <motion.div
+          <motion.button
             style={{
               scale: isActive ? 1 : 0 || menuScale,
               background: isTouchDevice
@@ -62,18 +62,16 @@ const Header = () => {
                 "after:rotate-45 before:-rotate-45 after:top-1/2 before:top-1/2"
             )}
             onClick={() => setIsActive((prev) => !prev)}
-            role="button"
-            aria-controls="sidebar"
             aria-expanded={isActive}
             aria-label="Menu toggle button"
           >
-            {isTouchDevice && <WaveEffect condition={isActive} />}
+            {isTouchDevice && <WaveEffect shouldAnimate={isActive} />}
             <div
               className="w-full h-full hover:scale-[3] pointer-events-auto"
               ref={ref}
               aria-hidden
             />
-          </motion.div>
+          </motion.button>
         </Magnetic>
       </header>
 

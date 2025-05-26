@@ -11,10 +11,7 @@ export function useCustomCursorAnimation(
   const cursorRef = useRef<HTMLDivElement>(null);
   const innerDivRef = useRef<HTMLDivElement>(null);
   const [isHoveredOnMenu, setIsHoveredOnMenu] = useState(false);
-  const [
-    isHoveredOnProjectCardOrGithubLink,
-    setIsHoveredOnProjectCardOrGithubLink,
-  ] = useState(false);
+  const [isHoveredOnProject, setIsHoveredOnProject] = useState(false);
 
   // The reason that we're using '2.5' is because we want the cursor to have a {{ 2.5vw }} width and height
   const cursorSize = isHoveredOnMenu
@@ -35,11 +32,10 @@ export function useCustomCursorAnimation(
   };
 
   useEffect(() => {
+    const controller = new AbortController();
     const links = document.querySelectorAll(".link");
     const projectCards =
       document.querySelectorAll<HTMLAnchorElement>(".project-card");
-    const githubLinks =
-      document.querySelectorAll<HTMLAnchorElement>(".github-link");
     const menuRefCurrent = menuRef.current;
 
     // Function definition...
@@ -67,50 +63,45 @@ export function useCustomCursorAnimation(
 
     function handleMouseEntersProjectCard() {
       smoothMouse.scale.set(3);
-      setIsHoveredOnProjectCardOrGithubLink(true);
+      setIsHoveredOnProject(true);
     }
 
     function handleMouseLeavesProjectCard() {
       smoothMouse.scale.set(1);
-      setIsHoveredOnProjectCardOrGithubLink(false);
+      setIsHoveredOnProject(false);
     }
 
-    window.document.addEventListener("mouseenter", handleSetOpacity);
-    window.document.addEventListener("mouseleave", handleRemoveOpacity);
-    menuRefCurrent?.addEventListener("mouseover", handleMouseOverOnMenu);
-    menuRefCurrent?.addEventListener("mouseleave", handleMouseLeaveMenu);
+    window.document.addEventListener("mouseenter", handleSetOpacity, {
+      signal: controller.signal,
+    });
+    window.document.addEventListener("mouseleave", handleRemoveOpacity, {
+      signal: controller.signal,
+    });
+    menuRefCurrent?.addEventListener("mouseover", handleMouseOverOnMenu, {
+      signal: controller.signal,
+    });
+    menuRefCurrent?.addEventListener("mouseleave", handleMouseLeaveMenu, {
+      signal: controller.signal,
+    });
     links.forEach((element) => {
-      element.addEventListener("mouseover", handleMouseOverOnLinks);
-      element.addEventListener("mouseleave", handleMouseLeaveLinks);
+      element.addEventListener("mouseover", handleMouseOverOnLinks, {
+        signal: controller.signal,
+      });
+      element.addEventListener("mouseleave", handleMouseLeaveLinks, {
+        signal: controller.signal,
+      });
     });
     projectCards.forEach((element) => {
-      element.addEventListener("mouseenter", handleMouseEntersProjectCard);
-      element.addEventListener("mouseleave", handleMouseLeavesProjectCard);
-    });
-
-    githubLinks.forEach((element) => {
-      element.addEventListener("mouseenter", handleMouseEntersProjectCard);
-      element.addEventListener("mouseleave", handleMouseLeavesProjectCard);
+      element.addEventListener("mouseenter", handleMouseEntersProjectCard, {
+        signal: controller.signal,
+      });
+      element.addEventListener("mouseleave", handleMouseLeavesProjectCard, {
+        signal: controller.signal,
+      });
     });
 
     return () => {
-      window.document.removeEventListener("mouseenter", handleSetOpacity);
-      window.document.removeEventListener("mouseleave", handleRemoveOpacity);
-      menuRefCurrent?.removeEventListener("mouseover", handleMouseOverOnMenu);
-      menuRefCurrent?.removeEventListener("mouseleave", handleMouseLeaveMenu);
-      links.forEach((element) => {
-        element.removeEventListener("mouseover", handleMouseOverOnLinks);
-        element.removeEventListener("mouseleave", handleMouseLeaveLinks);
-      });
-      projectCards.forEach((element) => {
-        element.removeEventListener("mouseenter", handleMouseEntersProjectCard);
-        element.removeEventListener("mouseleave", handleMouseLeavesProjectCard);
-      });
-
-      githubLinks.forEach((element) => {
-        element.removeEventListener("mouseenter", handleMouseEntersProjectCard);
-        element.removeEventListener("mouseleave", handleMouseLeavesProjectCard);
-      });
+      controller.abort();
     };
   }, []);
 
@@ -192,6 +183,6 @@ export function useCustomCursorAnimation(
     smoothMouse,
     innerDivScale,
     isHoveredOnMenu,
-    isHoveredOnProjectCardOrGithubLink,
+    isHoveredOnProject,
   };
 }

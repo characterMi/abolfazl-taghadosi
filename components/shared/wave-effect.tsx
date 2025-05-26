@@ -1,9 +1,9 @@
 import { waveAnimationVariants } from "@/utils/motion";
 import { AnimatePresence, motion } from "framer-motion";
 
-const WaveEffect = ({ condition }: { condition: boolean }) => (
+const WaveEffect = ({ shouldAnimate }: { shouldAnimate: boolean }) => (
   <AnimatePresence mode="wait">
-    {condition && (
+    {shouldAnimate && (
       <motion.span
         className="absolute rounded-[50%]"
         style={{

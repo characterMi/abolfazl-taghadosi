@@ -2,7 +2,6 @@ import FlipLink from "@/components/shared/flip-link";
 import Magnetic from "@/components/shared/magnetic";
 import SlideUpAnimation from "@/components/shared/slide-up-animation";
 import { sidebarItems, socials } from "@/constants";
-import { useLenis } from "@/providers/root";
 import {
   fadeIn,
   menuContainerSlide,
@@ -11,6 +10,7 @@ import {
   slide,
 } from "@/utils/motion";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 const Curve = () => (
