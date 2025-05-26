@@ -80,12 +80,14 @@ export const FooterContainer = ({
 
   return (
     <footer
-      className="min-h-[52rem] md:min-h-[28rem] h-screen bg-gradient-to-r from-neutral-950 to-neutral-900 py-6 px-4 sm:p-10 lg:p-[2.5vw] relative z-[1] flex flex-col"
+      className="bg-gradient-to-r h-full from-neutral-950 to-neutral-900 relative z-[1]"
       ref={footer}
       id="contact"
     >
       <Curve height={height} svgArrowAnimation={svgArrowAnimation} />
-      {children}
+      <div className="overflow-hidden min-h-[52rem] md:min-h-[28rem] h-screen flex flex-col py-6 px-4 sm:p-10 lg:p-[2.5vw]">
+        {children}
+      </div>
     </footer>
   );
 };

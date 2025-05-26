@@ -1,6 +1,7 @@
 import { socials } from "@/constants";
 import FlipLink from "../shared/flip-link";
 import Magnetic from "../shared/magnetic";
+import ExplodeAnimation from "./explode-animation";
 
 export const DesktopFooter = () => {
   return (
@@ -30,9 +31,10 @@ export const DesktopFooter = () => {
         </p>
       </div>
 
-      <p className="text-xs md:hidden lg:block lg:text-[0.8vw]">
-        &copy; {new Date().getFullYear()} ABOLFAZL TAGHADOSI
-      </p>
+      <div className="text-xs md:hidden lg:block lg:text-[0.8vw]">
+        &copy; {new Date().getFullYear()}{" "}
+        <ExplodeAnimation text="ABOLFAZL TAGHADOSI" />
+      </div>
     </div>
   );
 };

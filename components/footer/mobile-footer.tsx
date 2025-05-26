@@ -1,6 +1,7 @@
 import { socials } from "@/constants";
 import FlipLink from "../shared/flip-link";
 import GithubLink from "../shared/github-link";
+import ExplodeAnimation from "./explode-animation";
 
 export const MobileFooter = () => (
   <div className="flex flex-col md:hidden">
@@ -35,9 +36,13 @@ export const MobileFooter = () => (
           </div>
         </div>
 
-        <p className="text-xs sm:text-base" style={{ direction: "rtl" }}>
-          &copy; {new Date().getFullYear()} <br /> ABOLFAZL TAGHADOSI
-        </p>
+        <div className="text-xs sm:text-base" style={{ direction: "rtl" }}>
+          &copy; {new Date().getFullYear()} <br />
+          <ExplodeAnimation
+            text="ABOLFAZL TAGHADOSI"
+            style={{ direction: "ltr" }}
+          />
+        </div>
       </div>
     </div>
 
