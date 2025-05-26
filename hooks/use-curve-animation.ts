@@ -2,7 +2,10 @@ import { lerp } from "@/lib";
 import { PointerEvent, RefObject, useEffect, useRef } from "react";
 import { useIsTouchDevice } from "./use-is-touch-device";
 
-export function useCurveAnimation(card: RefObject<HTMLAnchorElement>) {
+export function useCurveAnimation(
+  card: RefObject<HTMLAnchorElement>,
+  isContainerInView: boolean
+) {
   const ref = useRef<SVGPathElement>(null);
   const isTouchDevice = useIsTouchDevice();
   let progress = 0;
@@ -56,8 +59,6 @@ export function useCurveAnimation(card: RefObject<HTMLAnchorElement>) {
   }
 
   useEffect(() => {
-    setPath(progress);
-
     function handleResize() {
       setPath(progress);
     }
@@ -66,6 +67,12 @@ export function useCurveAnimation(card: RefObject<HTMLAnchorElement>) {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (!isContainerInView) return;
+
+    setPath(progress);
+  }, [isContainerInView]);
 
   return {
     ref,

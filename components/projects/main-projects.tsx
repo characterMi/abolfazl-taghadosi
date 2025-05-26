@@ -29,7 +29,7 @@ const SvgCurve = ({
   card: RefObject<HTMLAnchorElement>;
 } & Pick<Props, "index" | "isContainerInView">) => {
   const { ref, handleMPointerEnter, handlePointerMove, handlePointerLeave } =
-    useCurveAnimation(card);
+    useCurveAnimation(card, isContainerInView);
 
   return (
     <motion.div
