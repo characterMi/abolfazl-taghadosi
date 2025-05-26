@@ -79,7 +79,7 @@ export const ZoomInAnimation = () => {
     offset: ["start start", "end end"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
   const rotation = useTransform(scrollYProgress, [0, 1], ["0deg", "25deg"]);
 
   const clipPath = useTransform(
@@ -94,8 +94,11 @@ export const ZoomInAnimation = () => {
       className="h-[500vh] relative shadow-[0_10px_0_#fff] z-[1]"
       id="zoom-in-animation"
     >
-      <div className="sticky h-screen top-0 pt-4 md:pt-10 lg:pt-[2.5vw] overflow-hidden">
-        <motion.div className="h-full" style={{ scale, rotate: rotation }}>
+      <div className="sticky h-screen top-0 overflow-hidden">
+        <motion.div
+          className="h-full pt-4 md:pt-10 lg:pt-[2.5vw]"
+          style={{ scale, rotate: rotation }}
+        >
           <SlideOutText scrollY={scrollYProgress} />
 
           {allTech.map((tech, index) => (
@@ -110,20 +113,20 @@ export const ZoomInAnimation = () => {
               {...tech}
             />
           ))}
-
-          <div
-            className="w-full h-full absolute top-0 overflow-hidden flex justify-center items-center"
-            aria-hidden
-          >
-            <motion.div
-              className="relative w-full h-screen bg-white"
-              style={{
-                clipPath,
-                WebkitClipPath: clipPath,
-              }}
-            />
-          </div>
         </motion.div>
+
+        <div
+          className="w-full h-full absolute top-0 flex justify-center items-center"
+          aria-hidden
+        >
+          <motion.div
+            className="relative w-full h-screen bg-white"
+            style={{
+              clipPath,
+              WebkitClipPath: clipPath,
+            }}
+          />
+        </div>
       </div>
     </div>
   );

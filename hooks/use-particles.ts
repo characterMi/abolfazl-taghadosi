@@ -8,7 +8,7 @@ type ContainerRef = THREE.Points & {
   material: { uniforms: { uTime: { value: number } } };
 };
 
-const STARS_COUNT = 300;
+const STARS_COUNT = 500;
 
 export const useParticles = () => {
   const particlesAnimationData = useRef({
