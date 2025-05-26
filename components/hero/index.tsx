@@ -3,7 +3,7 @@ import { HeroInfo } from "./hero-info";
 import { HeroTitle } from "./hero-title";
 
 const Hero = ({ isPageLoaded }: { isPageLoaded: boolean }) => (
-  <section className="h-sm-screen flex flex-col gap-12 relative z-[1]">
+  <section className="h-sm-screen min-h-max flex flex-col gap-12 relative z-[1]">
     <div className="flex-1">
       <HeroTitle isPageLoaded={isPageLoaded} />
 

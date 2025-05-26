@@ -77,19 +77,19 @@ const LoadingScreen = ({
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex w-11/12 sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12 gap-12 xl:gap-16 overflow-hidden">
         <motion.div
           variants={{
-            hidden: { transform: "translateY(-100%)" },
+            hidden: { transform: "translateY(-120%)" },
             animate: {
               transform: [
-                "translateY(-100%)",
+                "translateY(-120%)",
                 "translateY(0)",
                 "translateY(0)",
-                "translateY(100%)",
+                "translateY(120%)",
               ],
               transition: {
                 duration: 4,
                 delay: 1.4,
-                times: [0, 0.05, 0.95, 1],
-                ease: "linear",
+                times: [0, 0.1, 0.95, 1],
+                ease: "circInOut",
               },
             },
           }}
@@ -101,19 +101,19 @@ const LoadingScreen = ({
 
         <motion.div
           variants={{
-            hidden: { transform: "translateY(100%)" },
+            hidden: { transform: "translateY(120%)" },
             animate: {
               transform: [
-                "translateY(100%)",
+                "translateY(120%)",
                 "translateY(0%)",
                 "translateY(0%)",
-                "translateY(-100%)",
+                "translateY(-120%)",
               ],
               transition: {
                 duration: 4,
                 delay: 1.4,
-                times: [0, 0.05, 0.95, 1],
-                ease: "linear",
+                times: [0, 0.1, 0.95, 1],
+                ease: "circInOut",
               },
             },
           }}

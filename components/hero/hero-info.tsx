@@ -6,7 +6,7 @@ import { useState } from "react";
 import GithubLink from "../shared/github-link";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
-const ScrollToExplode = () => {
+const ScrollDown = () => {
   const { scrollY } = useScroll();
   const [isHidden, setIsHidden] = useState(false);
 
@@ -60,7 +60,7 @@ const ScrollToExplode = () => {
         containerClassName="ml-4 lg:ml-[1vw]"
         childClassName="leading-[0.85]"
       >
-        To Explode.
+        Down.
       </SlideUpAnimation>
     </motion.div>
   );
@@ -73,7 +73,7 @@ export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
   return (
     <div className="w-full flex flex-col md:flex-row gap-8 justify-between">
       <div className="flex gap-4 lg:gap-[8vw]">
-        <ScrollToExplode />
+        <ScrollDown />
 
         <SlideUpAnimation
           animate={isPageLoaded ? "animate" : ""}
