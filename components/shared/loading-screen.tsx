@@ -1,7 +1,6 @@
 import { ease2 } from "@/utils/motion";
 import { motion, useAnimationFrame } from "framer-motion";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { WelcomeTextSvgEN, WelcomeTextSvgFA } from "./welcome-text-svg";
 
 const LoadingScreen = ({
   setIsPageLoaded,
@@ -29,23 +28,25 @@ const LoadingScreen = ({
   return (
     <div className="size-full overflow-hidden fixed top-0 left-0 z-50 select-none">
       <motion.div
+        aria-hidden
         className="absolute top-0 left-0 w-1/2 h-full bg-neutral-800"
         initial={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
         animate={
           isLoadingAnimationCompleted && {
             clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-            transition: { delay: 6, ease: ease2, duration: 0.6 },
+            transition: { delay: 6.4, ease: ease2, duration: 0.6 },
           }
         }
         onAnimationComplete={() => setIsPageLoaded(true)}
       />
       <motion.div
+        aria-hidden
         className="absolute top-0 right-0 w-1/2 h-full bg-neutral-800"
         initial={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
         animate={
           isLoadingAnimationCompleted && {
             clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-            transition: { delay: 6, ease: ease2, duration: 0.6 },
+            transition: { delay: 6.4, ease: ease2, duration: 0.6 },
           }
         }
       />
@@ -63,8 +64,8 @@ const LoadingScreen = ({
               "inset(100% 0 0 0)",
             ],
             transition: {
-              duration: 4.8,
-              delay: 1.2,
+              duration: 0.8,
+              delay: 5.2,
               times: [0, 0.1, 0.9, 1],
               ease: "circInOut",
             },
@@ -74,54 +75,48 @@ const LoadingScreen = ({
         animate={isLoadingAnimationCompleted && "animate"}
       />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex w-11/12 sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12 gap-12 xl:gap-16 overflow-hidden">
-        <motion.div
-          variants={{
-            hidden: { transform: "translateY(-120%)" },
-            animate: {
-              transform: [
-                "translateY(-120%)",
-                "translateY(0)",
-                "translateY(0)",
-                "translateY(120%)",
-              ],
-              transition: {
-                duration: 4,
-                delay: 1.4,
-                times: [0, 0.1, 0.95, 1],
-                ease: "circInOut",
-              },
-            },
-          }}
-          initial="hidden"
-          animate={isLoadingAnimationCompleted && "animate"}
-        >
-          <WelcomeTextSvgEN />
-        </motion.div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
+        <h1 className="font-FF text-[30vw] sm:text-[25vw] md:text-[20vw] lg:text-[15vw] text-nowrap">
+          {/* For accessibility */}
+          <span className="sr-only">WELCOME</span>
 
-        <motion.div
-          variants={{
-            hidden: { transform: "translateY(120%)" },
-            animate: {
-              transform: [
-                "translateY(120%)",
-                "translateY(0%)",
-                "translateY(0%)",
-                "translateY(-120%)",
-              ],
-              transition: {
+          {"WELCOME".split("").map((letter, i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              initial={{
+                filter: "blur(10px)",
+                opacity: 0,
+                clipPath: "inset(100% 0 0 0)",
+              }}
+              animate={
+                isLoadingAnimationCompleted && {
+                  clipPath: [
+                    "inset(100% 0 0 0)",
+                    "inset(0 0 0 0)",
+                    "inset(0 0 0 0)",
+                    "inset(0 0 100% 0)",
+                  ],
+                  filter: [
+                    "blur(10px)",
+                    "blur(0px)",
+                    "blur(0px)",
+                    "blur(10px)",
+                  ],
+                  opacity: [0, 1, 1, 0],
+                }
+              }
+              transition={{
                 duration: 4,
-                delay: 1.4,
-                times: [0, 0.1, 0.95, 1],
-                ease: "circInOut",
-              },
-            },
-          }}
-          initial="hidden"
-          animate={isLoadingAnimationCompleted && "animate"}
-        >
-          <WelcomeTextSvgFA />
-        </motion.div>
+                delay: 1 + i * 0.05,
+                times: [0, 0.05, 0.95, 1],
+                ease: ease2,
+              }}
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </h1>
       </div>
 
       <motion.div
@@ -135,6 +130,7 @@ const LoadingScreen = ({
       >
         {[...Array(3)].map((_, index) => (
           <motion.div
+            aria-hidden
             key={index}
             className="flex flex-col"
             animate={{
@@ -153,12 +149,12 @@ const LoadingScreen = ({
           </motion.div>
         ))}
         <p className="text-neutral-400 text-[10vw] md:text-[5vw] flex justify-center items-center">
-          %
+          <span className="sr-only">{loadingSteps[loadingIndex]}</span>%
         </p>
       </motion.div>
 
       <motion.div
-        className="absolute bottom-[5%] left-1/2 -translate-x-1/2 font-FF tracking-widest text-[10vw] xss:text-[8vw] sm:text-[5vw]"
+        className="absolute bottom-[5%] left-1/2 -translate-x-1/2 font-FF tracking-wide text-[10vw] xss:text-[8vw] sm:text-[5vw]"
         animate={
           isLoadingAnimationCompleted && {
             opacity: 0,
