@@ -176,6 +176,28 @@ export function useCustomCursorAnimation(
     };
   }, [isHoveredOnMenu]);
 
+  useEffect(() => {
+    const handleMouseDown = () => {
+      if (isHoveredOnMenu || isHoveredOnProject) return;
+
+      smoothMouse.scale.set(0.75);
+    };
+
+    const handleMouseUp = () => {
+      if (isHoveredOnMenu || isHoveredOnProject) return;
+
+      smoothMouse.scale.set(1);
+    };
+
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isHoveredOnMenu, isHoveredOnProject]);
+
   return {
     cursorRef,
     innerDivRef,
