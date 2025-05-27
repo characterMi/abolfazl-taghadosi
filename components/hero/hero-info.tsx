@@ -67,9 +67,6 @@ const ScrollDown = () => {
 };
 
 export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
-  const text =
-    "Empowering brands and startups to thrive in the digital world. Together, we'll craft innovative, high-impact websites that set new standards. No fluff, just cutting-edge solutions.";
-
   return (
     <div className="w-full flex flex-col md:flex-row gap-8 justify-between">
       <div className="flex gap-4 lg:gap-[8vw]">
@@ -84,7 +81,9 @@ export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
           containerClassName="text-[5vw] md:text-[1.5vw] lg:text-[1.2vw] lg:max-w-[30vw] gap-x-[0.8vw] md:gap-x-[0.3vw] leading-[0]"
           childClassName="leading-snug"
         >
-          {text.split(" ")}
+          Empowering brands and startups to thrive in the digital world.
+          Together, we&apos;ll craft innovative, high-impact websites that set
+          new standards. No fluff, just cutting-edge solutions.
         </SlideUpAnimation>
       </div>
 

@@ -50,11 +50,19 @@ const ExplodeAnimation = ({ text, style }: Props) => {
       onClick={handleClick}
       style={style}
     >
+      <span className="sr-only">{text}</span>
+
       {text.split("").map((letter, i) => {
-        if (letter === " ") return <span key={i}>&nbsp;</span>;
+        if (letter === " ")
+          return (
+            <span aria-hidden key={i}>
+              &nbsp;
+            </span>
+          );
 
         return (
           <motion.span
+            aria-hidden
             key={i}
             initial={initial}
             animate={animate()}

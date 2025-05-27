@@ -35,9 +35,10 @@ const FlipLink = ({
         "link relative overflow-hidden inline-flex group w-max leading-tight",
         containerClassName
       )}
+      aria-label={title}
       {...linkProps}
     >
-      <span>
+      <span aria-hidden>
         {title.split("").map((letter, i) => {
           return letter === " " ? (
             " "

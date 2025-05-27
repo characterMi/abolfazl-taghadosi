@@ -10,15 +10,14 @@ type Props = {
   childClassName?: string;
   animate: string;
   style?: CSSProperties;
+  children: string;
 } & (
   | {
       type: "single-word";
-      children: string;
       animationProps?: SlideUpVariant;
     }
   | {
       type: "multiple-word";
-      children: string[];
       animationProps?: (custom: number) => SlideUpVariant;
     }
 );
@@ -51,9 +50,11 @@ const SlideUpAnimation = ({
         type === "single-word" ? textContainerDefaultClass : "flex flex-wrap"
       )}
     >
+      <span className="sr-only">{children}</span>
+
       {type === "multiple-word" ? (
-        children.map((word, i) => (
-          <span key={i} className={textContainerDefaultClass}>
+        children.split(" ").map((word, i) => (
+          <span key={i} className={textContainerDefaultClass} aria-hidden>
             <motion.span
               {...defaultProps}
               custom={animationProps?.(i)}
@@ -66,6 +67,7 @@ const SlideUpAnimation = ({
           {...defaultProps}
           custom={animationProps}
           dangerouslySetInnerHTML={{ __html: children }}
+          aria-hidden
         />
       )}
     </p>

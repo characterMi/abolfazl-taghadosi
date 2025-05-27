@@ -48,7 +48,7 @@ const TechImage = ({
         scale,
       }}
     >
-      <p className="absolute opacity-0">{label}</p>
+      <p className="sr-only">{label}</p>
       <div
         className={`relative tech-container__${index + 1}`}
         aria-hidden

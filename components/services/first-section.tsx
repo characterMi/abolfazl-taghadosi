@@ -38,7 +38,7 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
           animate: { delay: 0.5 + i * 0.025, duration: 0.8 },
         })}
       >
-        {desc.split(" ")}
+        {desc}
       </SlideUpAnimation>
     </div>
   );
@@ -47,8 +47,6 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
 export const FirstSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const text =
-    "Tired of websites that fail to engage or showcase your unique identity? I create exceptional digital experience that not only align with your brand but also drive meaningful growth for your business. Let's work together to turn your vision into reality!";
 
   return (
     <div
@@ -119,7 +117,10 @@ export const FirstSection = () => {
           containerClassName="text-xs smart-watch:text-base lg:text-[1vw] flex flex-wrap gap-1 lg:gap-[0.25vw]"
           childClassName="leading-tight"
         >
-          {text.split(" ")}
+          Tired of websites that fail to engage or showcase your unique
+          identity? I create exceptional digital experience that not only align
+          with your brand but also drive meaningful growth for your business.
+          Let&apos;s work together to turn your vision into reality!
         </SlideUpAnimation>
 
         {services.map((service, i) => (

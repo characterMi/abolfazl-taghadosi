@@ -26,7 +26,6 @@ const ArrowSvg = () => {
       style={{
         transform: "rotateX(180deg)",
       }}
-      aria-hidden
     >
       <g
         transform="translate(0.000000,900.000000) scale(0.100000,-0.100000) rotate(90)"
@@ -70,9 +69,10 @@ const About = () => {
           And that&apos;s it! Curious to see what I&apos;ve been up to? Scroll
           down and check out the projects below to explore some of the work
           I&apos;ve created along
+          <span className="sr-only">the way</span>
         </p>
 
-        <div className="inline-flex">
+        <div className="inline-flex" aria-hidden>
           <p className="text-neutral-900">the way.</p>
           <ArrowSvg />
         </div>
