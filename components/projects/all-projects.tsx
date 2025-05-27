@@ -70,12 +70,12 @@ export const AllProjects = () => {
 
                 <ArrowIcon
                   mode="light"
-                  className="size-4 lg:size-[1vw] hidden xss:block opacity-0 group-hover:opacity-100 translate-y-1/2 -translate-x-1/2 group-hover:translate-y-0 group-hover:translate-x-0"
+                  className="size-4 lg:size-[1vw]  invisible xss:block xss:visible opacity-0 group-hover:opacity-100 translate-y-1/2 -translate-x-1/2 group-hover:translate-y-0 group-hover:translate-x-0"
                 />
               </div>
-              <p className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden xss:block link focus:opacity-80">
+              <p className="font-bold uppercase z-[1] slide-up-animation leading-tight hidden invisible xss:block xss:visible link focus:opacity-80">
                 <motion.span
-                  className="hidden xss:block text-neutral-900 relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-neutral-900 before:scale-0 group-hover:before:scale-100 group-focus-visible:before:scale-100 before:transition-transform before:duration-500"
+                  className="hidden invisible xss:block xss:visible text-neutral-900 relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-neutral-900 before:scale-0 group-hover:before:scale-100 group-focus-visible:before:scale-100 before:transition-transform before:duration-500"
                   variants={slideUp}
                   initial="initial"
                   animate={isInView ? "animate" : ""}
@@ -86,10 +86,10 @@ export const AllProjects = () => {
                 </motion.span>
               </p>
 
-              <p className="z-[1] xss:hidden link">
+              <p className="z-[1] xss:hidden xss:invisible link">
                 <ArrowIcon
                   mode="light"
-                  className="size-5 block xss:hidden group-hover:-translate-x-1/2 group-focus-visible:-translate-x-1/2"
+                  className="size-5 block xss:hidden xss:invisible group-hover:-translate-x-1/2 group-focus-visible:-translate-x-1/2"
                 />
               </p>
             </div>

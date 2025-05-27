@@ -20,7 +20,7 @@ const ScrollDown = () => {
 
   return (
     <motion.div
-      className="text-nowrap hidden md:block text-3xl lg:text-[2.5vw] relative font-FF leading-[0.5] tracking-wide"
+      className="text-nowrap hidden invisible md:block md:visible text-3xl lg:text-[2.5vw] relative font-FF leading-[0.5] tracking-wide"
       variants={fadeIn}
       initial="initial"
       animate={isHidden ? "initial" : "animate"}

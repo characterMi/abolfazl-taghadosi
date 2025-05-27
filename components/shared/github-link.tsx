@@ -9,7 +9,7 @@ const GithubLink = () => (
     rel="noopener noreferrer"
     aria-label="Check my github"
   >
-    <div className="hidden smart-watch:flex justify-center items-center size-12 lg:size-[4vw] border border-primary group-hover:border-white group-focus:border-white bg-neutral-900">
+    <div className="hidden invisible smart-watch:flex smart-watch:visible justify-center items-center size-12 lg:size-[4vw] border border-primary group-hover:border-white group-focus:border-white bg-neutral-900">
       <Image
         src={"/icons/github.svg"}
         alt="Github icon"

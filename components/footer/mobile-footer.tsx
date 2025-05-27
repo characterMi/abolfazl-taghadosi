@@ -4,7 +4,7 @@ import GithubLink from "../shared/github-link";
 import ExplodeAnimation from "./explode-animation";
 
 export const MobileFooter = () => (
-  <div className="flex flex-col md:hidden">
+  <div className="flex flex-col md:hidden md:invisible">
     <div className="flex flex-col gap-y-2">
       <div className="flex flex-col gap-3 text-2xl sm:text-3xl">
         {socials.map((link) => (
