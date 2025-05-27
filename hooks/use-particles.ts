@@ -72,7 +72,6 @@ export const useParticles = () => {
       particlesAnimationData.current;
     if (shouldZoomOut) {
       pointsRef.current.position.setY(-positionY * 6);
-      pointsRef.current.rotation.y = -positionY;
     } else {
       pointsRef.current.position.setZ(-positionZ * 4);
     }
