@@ -2,6 +2,73 @@ import { ease2 } from "@/utils/motion";
 import { motion, useAnimationFrame } from "framer-motion";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 
+const WelcomeAnimation = ({
+  isLoadingAnimationCompleted,
+}: {
+  isLoadingAnimationCompleted: boolean;
+}) => {
+  const transition = (i: number = 0, times: number[] = [0, 0.05, 0.95, 1]) => ({
+    duration: 4,
+    delay: 1 + i * 0.05,
+    times,
+    ease: ease2,
+  });
+
+  return (
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
+      <h1 className="font-FF text-[30vw] sm:text-[25vw] md:text-[20vw] lg:text-[15vw] text-nowrap">
+        {/* For accessibility */}
+        <span className="sr-only">WELCOME</span>
+
+        {"WELCOME".split("").map((letter, i) => (
+          <motion.span
+            aria-hidden
+            key={i}
+            initial={{
+              scale: 1.2,
+            }}
+            animate={
+              isLoadingAnimationCompleted && {
+                scale: [1.2, 1, 1, 1],
+              }
+            }
+            transition={transition(i, [0, 0.4, 0.6, 1])}
+            className="inline-block"
+          >
+            <motion.span
+              initial={{
+                filter: "blur(10px)",
+                opacity: 0,
+                clipPath: "inset(100% 0 0 0)",
+              }}
+              animate={
+                isLoadingAnimationCompleted && {
+                  clipPath: [
+                    "inset(100% 0 0 0)",
+                    "inset(0 0 0 0)",
+                    "inset(0 0 0 0)",
+                    "inset(0 0 100% 0)",
+                  ],
+                  filter: [
+                    "blur(10px)",
+                    "blur(0px)",
+                    "blur(0px)",
+                    "blur(10px)",
+                  ],
+                  opacity: [0, 1, 1, 0],
+                }
+              }
+              transition={transition(i)}
+            >
+              {letter}
+            </motion.span>
+          </motion.span>
+        ))}
+      </h1>
+    </div>
+  );
+};
+
 const LoadingScreen = ({
   setIsPageLoaded,
 }: {
@@ -75,49 +142,9 @@ const LoadingScreen = ({
         animate={isLoadingAnimationCompleted && "animate"}
       />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
-        <h1 className="font-FF text-[30vw] sm:text-[25vw] md:text-[20vw] lg:text-[15vw] text-nowrap">
-          {/* For accessibility */}
-          <span className="sr-only">WELCOME</span>
-
-          {"WELCOME".split("").map((letter, i) => (
-            <motion.span
-              key={i}
-              aria-hidden
-              initial={{
-                filter: "blur(10px)",
-                opacity: 0,
-                clipPath: "inset(100% 0 0 0)",
-              }}
-              animate={
-                isLoadingAnimationCompleted && {
-                  clipPath: [
-                    "inset(100% 0 0 0)",
-                    "inset(0 0 0 0)",
-                    "inset(0 0 0 0)",
-                    "inset(0 0 100% 0)",
-                  ],
-                  filter: [
-                    "blur(10px)",
-                    "blur(0px)",
-                    "blur(0px)",
-                    "blur(10px)",
-                  ],
-                  opacity: [0, 1, 1, 0],
-                }
-              }
-              transition={{
-                duration: 4,
-                delay: 1 + i * 0.05,
-                times: [0, 0.05, 0.95, 1],
-                ease: ease2,
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </h1>
-      </div>
+      <WelcomeAnimation
+        isLoadingAnimationCompleted={isLoadingAnimationCompleted}
+      />
 
       <motion.div
         className="absolute top-1/3 -translate-y-1/3 left-1/2 -translate-x-1/2 flex h-[35vw] xss:h-[25vw] md:h-[15vw] leading-[1] overflow-hidden"
