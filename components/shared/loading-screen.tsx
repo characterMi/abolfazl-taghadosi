@@ -96,7 +96,7 @@ const LoadingScreen = ({
     <div className="size-full overflow-hidden fixed top-0 left-0 z-50 select-none">
       <motion.div
         aria-hidden
-        className="absolute top-0 left-0 w-1/2 h-full bg-neutral-800"
+        className="absolute top-0 left-0 h-full bg-neutral-800 w-[calc(50%+0.5px)]"
         initial={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
         animate={
           isLoadingAnimationCompleted && {
@@ -108,7 +108,7 @@ const LoadingScreen = ({
       />
       <motion.div
         aria-hidden
-        className="absolute top-0 right-0 w-1/2 h-full bg-neutral-800"
+        className="absolute top-0 right-0 h-full bg-neutral-800 w-[calc(50%+0.5px)]"
         initial={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
         animate={
           isLoadingAnimationCompleted && {
@@ -120,7 +120,7 @@ const LoadingScreen = ({
 
       <motion.div
         aria-hidden
-        className="absolute top-0 left-1/2 translate-x-1/2 h-full w-[0.1vw] bg-white"
+        className="absolute top-0 left-1/2 translate-x-1/2 w-[1px] h-full bg-white"
         variants={{
           hidden: { clipPath: "inset(0 0 100% 0)" },
           animate: {
