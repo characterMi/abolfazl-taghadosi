@@ -95,10 +95,7 @@ export const ZoomInAnimation = () => {
       id="zoom-in-animation"
     >
       <div className="sticky h-screen top-0 overflow-hidden">
-        <motion.div
-          className="h-full pt-4 md:pt-10 lg:pt-[2.5vw]"
-          style={{ scale, rotate: rotation }}
-        >
+        <motion.div className="h-full" style={{ scale, rotate: rotation }}>
           <SlideOutText scrollY={scrollYProgress} />
 
           {allTech.map((tech, index) => (
