@@ -1,68 +1,71 @@
 "use client";
 
-import { arrowSvg } from "@/constants";
-import { useInView, useScroll } from "framer-motion";
-import { useRef } from "react";
-import RevealAnimation from "../shared/reveal-animation";
-import { SectionsWithAnimation, SectionsWithoutAnimation } from "./sections";
-
-const ArrowSvg = () => {
-  const arrow = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: arrow,
-    offset: ["start 0.9", "start center"],
-  });
-
-  return (
-    <svg
-      ref={arrow}
-      version="1.0"
-      xmlns="http://www.w3.org/2000/svg"
-      width="4rem"
-      height="12rem"
-      viewBox="-620 350 350.000000 150.000000"
-      preserveAspectRatio="xMidYMid meet"
-      style={{
-        transform: "rotateX(180deg)",
-      }}
-    >
-      <g
-        transform="translate(0.000000,900.000000) scale(0.100000,-0.100000) rotate(90)"
-        className="fill-dark-blue"
-        stroke="none"
-      >
-        {arrowSvg.map((d, i) => {
-          const start = i / arrowSvg.length;
-          const end = start + 1 / arrowSvg.length;
-
-          return (
-            <RevealAnimation
-              d={d}
-              range={[start, end]}
-              progress={scrollYProgress}
-              key={d}
-            />
-          );
-        })}
-      </g>
-    </svg>
-  );
-};
+import { aboutContent } from "@/constants";
+import { useScroll } from "framer-motion";
+import { Fragment, useRef } from "react";
+import SlideUpAnimation from "../shared/slide-up-animation";
+import { ArrowSvg } from "./arrow-svg";
+import { SectionHeading } from "./heading";
+import { RevealText } from "./reveal-text";
 
 const About = () => {
   const container = useRef(null);
-  const isInView = useInView(container, { once: true });
+
+  const { scrollYProgress: headingScrollProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end end"],
+  });
+
+  const { scrollYProgress: textScrollProgress } = useScroll({
+    target: container,
+    offset: ["start 0.9", "end 0.1"],
+  });
+
+  const { scrollYProgress: placeholderScrollProgress } = useScroll({
+    target: container,
+    offset: ["start 1.1", "end 0.3"],
+  });
 
   return (
     <section
       id="about"
       className="bg-white px-4 md:px-10 lg:px-[2.5vw] pb-96 lg:pb-[30vw] z-[1] relative"
-      ref={container}
     >
-      <SectionsWithAnimation isSectionInView={isInView} />
+      <SlideUpAnimation
+        whileInView="animate"
+        type="single-word"
+        childClassName="text-neutral-900 leading-[0.85]"
+        containerClassName="text-4xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[6vw] font-black uppercase mb-6 sm:mb-10 lg:mb-[2.5vw]"
+      >
+        Who I Am?
+      </SlideUpAnimation>
 
-      <SectionsWithoutAnimation isSectionInView={isInView} />
+      <div
+        className="my-6 sm:my-12 lg:my-[3vw] space-y-6 lg:space-y-[2.5vw]"
+        ref={container}
+      >
+        {aboutContent.map(({ title, content }, i) => {
+          const start = i / aboutContent.length;
+          const end = start + 1 / aboutContent.length;
+
+          return (
+            <Fragment key={title}>
+              <SectionHeading
+                title={title}
+                range={[start, end]}
+                scrollProgress={headingScrollProgress}
+              />
+
+              <RevealText
+                texts={content.split("_")}
+                textScrollProgress={textScrollProgress}
+                placeholderScrollProgress={placeholderScrollProgress}
+                range={[start, end]}
+              />
+            </Fragment>
+          );
+        })}
+      </div>
 
       <div className="text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-normal">
         <p className="text-neutral-900 inline align-top mr-1 sm:mr-2 lg:mr-[0.5vw]">

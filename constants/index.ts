@@ -217,60 +217,68 @@ export const allTech = [
   },
 ];
 
+const legends = [
+  {
+    name: "Jonas Schmedtmann,",
+    link: "https://www.udemy.com/course/the-ultimate-react-course/",
+  },
+  {
+    name: "Maximilian Schwarzmüller,",
+    link: "https://www.udemy.com/course/nextjs-react-the-complete-guide/",
+  },
+  {
+    name: "Adrian from JSM,",
+    link: "https://www.youtube.com/@javascriptmastery/",
+  },
+  {
+    name: "Kevin Powell,",
+    link: "https://www.youtube.com/@kevinpowell/",
+  },
+  {
+    name: "Bruno Simon,",
+    link: "https://threejs-journey/",
+  },
+  {
+    name: "Dave Gray,",
+    link: "https://www.youtube.com/@davegrayteachescode/",
+  },
+  {
+    name: "Olivier larose,",
+    link: "https://www.youtube.com/@olivierlarose1/",
+  },
+  {
+    name: "Cosden solutions,",
+    link: "https://www.youtube.com/@cosdensolutions/",
+  },
+  {
+    name: "Conner ardman.",
+    link: "https://www.youtube.com/@connerardman/",
+  },
+];
+
 export const aboutContent = [
   {
     title: "- My Journey",
     content:
-      "I've always loved the idea of creating something meaningful, something I enjoy and others can benefit from. Programming become the perfect outlet for that passion. In the early days, I explored a few online courses, but soon I discovered something that completely changed the game for me: <span class='dark-mark font-bold'>YouTube</span>. It became my university. I spent countless hours learning from incredible creators and developers around the world, building up my skills piece by piece, project by project. I’m a self-taught developer, driven by curiosity and a love for building things that stands out. My love for problem-solving and mathematics made coding feel natural; each challenge is not just a problem to solve, but an opportunity to learn, and grow.",
+      "I've_always_loved_the_idea_of_creating_something_meaningful,_something_I_enjoy_and_others_can_benefit_from._Programming_become_the_perfect_outlet_for_that_passion._In_the_early_days,_I_explored_a_few_online_courses,_but_soon_I_discovered_something_that_completely_changed_the_game_for_me:_YouTube(mark)_It_became_my_university._I_spent_countless_hours_learning_from_incredible_creators_and_developers_around_the_world,_building_up_my_skills_piece_by_piece,_project_by_project._I’m_a_self-taught_developer,_driven_by_curiosity_and_a_love_for_building_things_that_stands_out._My_love_for_problem-solving_and_mathematics_made_coding_feel_natural;_each_challenge_is_not_just_a_problem_to_solve,_but_an_opportunity_to_learn,_and_grow.",
   },
   {
     title: "- Beyond the Code",
     content:
-      "While coding is my craft, my curiosity goes far beyond the screen. I'm deeply passionate about <span class='dark-mark font-bold'>art</span>; from painting and sculpting to playing music. My musical taste ranges from the intensity of rock and metal, to the complexity of classical and even a touch of phonk. Outside of creation, I thrive on <span class='dark-mark font-bold'>learning</span>, whether it’s diving into the latest tech trends, computer science, understanding AI, or exploring the inner workings of hardware and modern physics. Learning is not just a habit, it's part of who I am. You’ll often find me reading <span class='dark-mark font-bold'>philosophy</span> and <span class='dark-mark font-bold'>literature</span> from thinkers like Kafka, Nietzsche, Camus, Freud, or diving into epic worlds built by Tolkien, Martin, and Ferdowsi. I also enjoy working out, watching films and series, and playing chess, anything that challenges both body and mind. To me, building software is a fusion of logic and creativity, much like life itself.",
+      "While_coding_is_my_craft,_my_curiosity_goes_far_beyond_the_screen._I'm_deeply_passionate_about_art(mark);_from_painting_and_sculpting_to_playing_music._My_musical_taste_ranges_from_the_intensity_of_rock_and_metal,_to_the_complexity_of_classical_and_even_a_touch_of_phonk._Outside_of_creation,_I_thrive_on_learning(mark),_whether_it’s_diving_into_the_latest_tech_trends,_computer_science,_understanding_AI,_or_exploring_the_inner_workings_of_hardware_and_modern_physics._Learning_is_not_just_a_habit,_it's_part_of_who_I_am._You’ll_often_find_me_reading_philosophy(mark)_and_literature(mark)_from_thinkers_like_Kafka,_Nietzsche,_Camus,_Freud,_or_diving_into_epic_worlds_built_by_Tolkien,_Martin,_and_Ferdowsi._I_also_enjoy_working_out,_watching_films_and_series,_and_playing_chess,_anything_that_challenges_both_body_and_mind._To_me,_building_software_is_a_fusion_of_logic_and_creativity,_much_like_life_itself.",
   },
   {
     title: "- Future Goals and Vision",
     content:
-      "I’m currently focused on mastering <span class='dark-mark font-bold'>C</span> to strengthen my low-level understanding of computers, especially around memory management and system internals. After that, I plan to dive into <span class='dark-mark font-bold'>Rust</span>; both to build backends as a future fullstack developer and to create cross-platform apps with Tauri. I also aim to go deeper into <span class='dark-mark font-bold'>Three.js</span> and 3D on the web, explore <span class='dark-mark font-bold'>Web3</span>, and eventually learn <span class='dark-mark font-bold'>UI/UX design</span> to round out my skills. Along the way, I’m continuously learning about <span class='dark-mark font-bold'>system design</span>, <span class='dark-mark font-bold'>computer architecture</span>, and core <span class='dark-mark font-bold'>computer science</span> concepts. My goal? To become a <span class='dark-mark font-bold'>god-level programmer</span>, someone who understands the full stack, from silicon to pixel, and can build anything from scratch with both elegance and efficiency.",
-  },
-];
-
-export const legends = [
-  {
-    name: "Jonas Schmedtmann",
-    link: "https://www.udemy.com/course/the-ultimate-react-course/",
+      "I’m_currently_focused_on_mastering_C(mark)_to_strengthen_my_low-level_understanding_of_computers,_especially_around_memory_management_and_system_internals._After_that,_I_plan_to_dive_into_Rust(mark);_both_to_build_backends_as_a_future_fullstack_developer_and_to_create_cross-platform_apps_with_Tauri._I_also_aim_to_go_deeper_into_UI/UX design(mark)_to_round_out_my_skills._Along_the_way,_I’m_continuously_learning_about_system design(mark),_computer architecture(mark),_and_core_computer science(mark)_concepts._My_goal?_To_become_a_god-level programmer(mark),_someone_who_understands_the_full_stack,_from_silicon_to_pixel,_and_can_build_anything_from_scratch_with_both_elegance_and_efficiency.",
   },
   {
-    name: "Maximilian Schwarzmüller",
-    link: "https://www.udemy.com/course/nextjs-react-the-complete-guide/",
-  },
-  {
-    name: "Adrian from JSM",
-    link: "https://www.youtube.com/@javascriptmastery/",
-  },
-  {
-    name: "Kevin Powell",
-    link: "https://www.youtube.com/@kevinpowell/",
-  },
-  {
-    name: "Bruno Simon",
-    link: "https://threejs-journey/",
-  },
-  {
-    name: "Dave Gray",
-    link: "https://www.youtube.com/@davegrayteachescode/",
-  },
-  {
-    name: "Olivier larose",
-    link: "https://www.youtube.com/@olivierlarose1/",
-  },
-  {
-    name: "Cosden solutions",
-    link: "https://www.youtube.com/@cosdensolutions/",
-  },
-  {
-    name: "Conner ardman",
-    link: "https://www.youtube.com/@connerardman/",
+    title: "- Inspirations and Mentors",
+    content: `Throughout_my_learning_journey,_there_have_been_several_individuals_who_have_had_a_profound_impact_on_my_growth_as_a_developer._Their_teaching,_guidance,_and_content_have_inspired_me_and_shaped_my_approach_to_coding._I_owe_much_of_my_progress_to_${legends
+      .map(({ link, name }) => `${name}(${link}link)`)
+      .join(
+        "_"
+      )}_Each_of_them_has_played_a_key_role_in_helping_me_push_my_boundaries_and_explore_new_horizons_in_web_development.`,
   },
 ];
 

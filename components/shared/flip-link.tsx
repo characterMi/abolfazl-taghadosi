@@ -2,13 +2,14 @@
 
 import { socials } from "@/constants";
 import { ease } from "@/utils/motion";
+import { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = (typeof socials)[number] & {
   containerClassName?: string;
   childClassName?: string;
   isBlank?: boolean;
-};
+} & ComponentProps<"a">;
 
 const FlipLink = ({
   link,
@@ -16,6 +17,7 @@ const FlipLink = ({
   childClassName,
   containerClassName,
   isBlank,
+  ...props
 }: Props) => {
   const linkProps = isBlank
     ? {
@@ -37,6 +39,7 @@ const FlipLink = ({
       )}
       aria-label={title}
       {...linkProps}
+      {...props}
     >
       <span aria-hidden>
         {title.split("").map((letter, i) => {

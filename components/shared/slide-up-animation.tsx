@@ -6,11 +6,11 @@ import { CSSProperties } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
+  children: string;
+  animate: string;
   containerClassName?: string;
   childClassName?: string;
-  animate: string;
   style?: CSSProperties;
-  children: string;
 } & (
   | {
       type: "single-word";
@@ -23,8 +23,8 @@ type Props = {
 );
 
 const SlideUpAnimation = ({
-  type,
   children,
+  type,
   containerClassName,
   animate,
   animationProps,
