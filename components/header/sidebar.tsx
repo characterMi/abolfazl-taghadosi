@@ -40,6 +40,8 @@ const Sidebar = ({
   const lenis = useLenis();
 
   useEffect(() => {
+    lenis?.stop();
+
     const links = document.querySelectorAll<HTMLAnchorElement>(".sidebar-link");
     const handleScrollToSection = (e: MouseEvent) => {
       e.preventDefault();
@@ -62,6 +64,7 @@ const Sidebar = ({
     });
 
     return () => {
+      lenis?.start();
       links.forEach((element) => {
         element.removeEventListener("click", handleScrollToSection);
       });
@@ -71,11 +74,12 @@ const Sidebar = ({
   return (
     <>
       <motion.div
-        className="fixed left-0 top-0 w-screen h-screen z-[39] bg-gradient-to-r from-neutral-900/10 to-neutral-900"
+        className="hidden md:block fixed left-0 top-0 w-screen h-screen z-[39] bg-gradient-to-r from-neutral-900/10 to-neutral-900"
         variants={fadeIn}
         initial="initial"
         animate="animate"
         exit="initial"
+        onClick={() => setIsMenuActive(false)}
         aria-hidden
       />
 
