@@ -7,20 +7,29 @@ import { twMerge } from "tailwind-merge";
 
 type Props = {
   children: string;
-  animate: string;
   containerClassName?: string;
   childClassName?: string;
   style?: CSSProperties;
 } & (
   | {
-      type: "single-word";
-      animationProps?: SlideUpVariant;
+      animate?: undefined;
+      whileInView: string;
     }
   | {
-      type: "multiple-word";
-      animationProps?: (custom: number) => SlideUpVariant;
+      animate: string;
+      whileInView?: undefined;
     }
-);
+) &
+  (
+    | {
+        type: "single-word";
+        animationProps?: SlideUpVariant;
+      }
+    | {
+        type: "multiple-word";
+        animationProps?: (custom: number) => SlideUpVariant;
+      }
+  );
 
 const SlideUpAnimation = ({
   children,
@@ -30,11 +39,14 @@ const SlideUpAnimation = ({
   animationProps,
   childClassName,
   style,
+  whileInView,
 }: Props) => {
   const defaultProps = {
     variants: slideUp,
     initial: "initial",
     animate,
+    whileInView,
+    viewport: { once: true },
     exit: "exit",
     className: "leading-[0.85] " + childClassName,
     style,
