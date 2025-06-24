@@ -18,7 +18,9 @@ const WelcomeAnimation = ({
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
       <h1 className="font-FF text-[30vw] sm:text-[25vw] md:text-[20vw] lg:text-[15vw] text-nowrap">
         {/* For accessibility */}
-        <span className="sr-only">WELCOME</span>
+        <span className="sr-only" aria-live="polite">
+          {isLoadingAnimationCompleted && "WELCOME"}
+        </span>
 
         {"WELCOME".split("").map((letter, i) => (
           <motion.span
@@ -94,6 +96,7 @@ const LoadingScreen = ({
 
   return (
     <div className="size-full overflow-hidden fixed top-0 left-0 z-50 select-none">
+      {/* Two screens */}
       <motion.div
         aria-hidden
         className="absolute top-0 left-0 h-full bg-neutral-800 w-[calc(50%+0.5px)]"
@@ -118,6 +121,7 @@ const LoadingScreen = ({
         }
       />
 
+      {/* Horizontal line */}
       <motion.div
         aria-hidden
         className="absolute top-0 left-1/2 translate-x-1/2 w-[1px] h-full bg-white"
@@ -175,7 +179,10 @@ const LoadingScreen = ({
             ))}
           </motion.div>
         ))}
-        <p className="text-neutral-400 text-[10vw] md:text-[5vw] flex justify-center items-center">
+        <p
+          className="text-neutral-400 text-[10vw] md:text-[5vw] flex justify-center items-center"
+          aria-live="assertive"
+        >
           <span className="sr-only">{loadingSteps[loadingIndex]}</span>%
         </p>
       </motion.div>
