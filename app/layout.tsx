@@ -64,6 +64,13 @@ export const metadata: Metadata = {
   classification: "Portfolio",
   creator: "Abolfazl taghadosi",
   publisher: "Abolfazl taghadosi",
+  generator: "Next.js",
+  authors: [
+    {
+      name: "Abolfazl Taghadosi",
+      url: "https://github.com/characterMi/",
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -82,6 +89,18 @@ export default function RootLayout({
       <html lang="en">
         <head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <link
+            rel="preload"
+            as="font"
+            href="/fonts/FF.otf"
+            fetchPriority="high"
+          />
+          <link
+            rel="preload"
+            as="font"
+            href="/fonts/FF.ttf"
+            fetchPriority="high"
+          />
         </head>
         <body className={font.className}>{children}</body>
       </html>
