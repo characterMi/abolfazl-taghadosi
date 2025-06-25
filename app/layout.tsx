@@ -91,15 +91,17 @@ export default function RootLayout({
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link
             rel="preload"
+            href="/fonts/FF.ttf"
             as="font"
-            href="/fonts/FF.otf"
-            fetchPriority="high"
+            type="font/ttf"
+            crossOrigin="anonymous"
           />
           <link
             rel="preload"
+            href="/fonts/FF.otf"
             as="font"
-            href="/fonts/FF.ttf"
-            fetchPriority="high"
+            type="font/otf"
+            crossOrigin="anonymous"
           />
         </head>
         <body className={font.className}>{children}</body>

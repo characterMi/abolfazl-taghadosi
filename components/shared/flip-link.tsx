@@ -2,7 +2,7 @@
 
 import { socials } from "@/constants";
 import { ease } from "@/utils/motion";
-import { ComponentProps } from "react";
+import { ComponentProps, ForwardedRef, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = (typeof socials)[number] & {
@@ -11,74 +11,82 @@ type Props = (typeof socials)[number] & {
   isBlank?: boolean;
 } & ComponentProps<"a">;
 
-const FlipLink = ({
-  link,
-  title,
-  childClassName,
-  containerClassName,
-  isBlank,
-  ...props
-}: Props) => {
-  const linkProps = isBlank
-    ? {
-        target: "_blank",
-        rel: "noopener noreferrer",
-      }
-    : {};
-  const transition = (i: number) => ({
-    transition: `transform 500ms cubic-bezier(${ease})`,
-    transitionDelay: `${i * 0.015}s`,
-  });
+const FlipLink = forwardRef(
+  (
+    {
+      link,
+      title,
+      childClassName,
+      containerClassName,
+      isBlank,
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLAnchorElement>
+  ) => {
+    const linkProps = isBlank
+      ? {
+          target: "_blank",
+          rel: "noopener noreferrer",
+        }
+      : {};
+    const transition = (i: number) => ({
+      transition: `transform 500ms cubic-bezier(${ease})`,
+      transitionDelay: `${i * 0.015}s`,
+    });
 
-  return (
-    <a
-      href={link}
-      className={twMerge(
-        "link relative overflow-hidden inline-flex group w-max leading-tight",
-        containerClassName
-      )}
-      aria-label={title}
-      {...linkProps}
-      {...props}
-    >
-      <span aria-hidden>
-        {title.split("").map((letter, i) => {
-          return letter === " " ? (
-            " "
-          ) : (
-            <span
-              key={i}
-              className={twMerge(
-                "inline-block group-hover:-translate-y-full group-focus:-translate-y-full",
-                childClassName
-              )}
-              style={transition(i)}
-            >
-              {letter}
-            </span>
-          );
-        })}
-      </span>
-      <span className="absolute inset-0" aria-hidden>
-        {title.split("").map((letter, i) => {
-          return letter === " " ? (
-            " "
-          ) : (
-            <span
-              key={i}
-              className={twMerge(
-                "inline-block translate-y-full group-hover:translate-y-0 group-focus:translate-y-0",
-                childClassName
-              )}
-              style={transition(i)}
-            >
-              {letter}
-            </span>
-          );
-        })}
-      </span>
-    </a>
-  );
-};
+    return (
+      <a
+        ref={ref}
+        href={link}
+        className={twMerge(
+          "link relative overflow-hidden inline-flex group w-max leading-tight",
+          containerClassName
+        )}
+        aria-label={title}
+        {...linkProps}
+        {...props}
+      >
+        <span aria-hidden>
+          {title.split("").map((letter, i) => {
+            return letter === " " ? (
+              " "
+            ) : (
+              <span
+                key={i}
+                className={twMerge(
+                  "inline-block group-hover:-translate-y-full group-focus:-translate-y-full",
+                  childClassName
+                )}
+                style={transition(i)}
+              >
+                {letter}
+              </span>
+            );
+          })}
+        </span>
+        <span className="absolute inset-0" aria-hidden>
+          {title.split("").map((letter, i) => {
+            return letter === " " ? (
+              " "
+            ) : (
+              <span
+                key={i}
+                className={twMerge(
+                  "inline-block translate-y-full group-hover:translate-y-0 group-focus:translate-y-0",
+                  childClassName
+                )}
+                style={transition(i)}
+              >
+                {letter}
+              </span>
+            );
+          })}
+        </span>
+      </a>
+    );
+  }
+);
+
+FlipLink.displayName = "FlipLink";
 
 export default FlipLink;

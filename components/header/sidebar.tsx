@@ -11,7 +11,7 @@ import {
 } from "@/utils/motion";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 const Curve = () => (
   <svg
@@ -34,15 +34,17 @@ const Curve = () => (
 
 const Sidebar = ({
   setIsMenuActive,
+  firstFocusableElement,
 }: {
   setIsMenuActive: Dispatch<SetStateAction<boolean>>;
+  firstFocusableElement: HTMLButtonElement | null;
 }) => {
+  const lastFocusableElement = useRef<HTMLAnchorElement>(null);
   const lenis = useLenis();
 
   useEffect(() => {
-    lenis?.stop();
-
     const links = document.querySelectorAll<HTMLAnchorElement>(".sidebar-link");
+
     const handleScrollToSection = (e: MouseEvent) => {
       e.preventDefault();
 
@@ -59,12 +61,34 @@ const Sidebar = ({
       }
     };
 
+    // Focus trap...
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const lastElement = lastFocusableElement.current;
+
+      if (e.key === "Tab") {
+        if (e.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstFocusableElement) {
+            e.preventDefault();
+            lastElement?.focus();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstFocusableElement?.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
     links.forEach((element) => {
       element.addEventListener("click", handleScrollToSection);
     });
 
     return () => {
-      lenis?.start();
+      document.removeEventListener("keydown", handleKeyDown);
       links.forEach((element) => {
         element.removeEventListener("click", handleScrollToSection);
       });
@@ -139,9 +163,15 @@ const Sidebar = ({
               className="flex flex-wrap gap-4 lg:gap-[1vw] items-center uppercase text-sm lg:text-[1vw]"
               aria-labelledby="socials"
             >
-              {socials.map((link) => (
+              {socials.map((link, index) => (
                 <Magnetic key={link.title}>
-                  <FlipLink {...link} isBlank />
+                  <FlipLink
+                    {...link}
+                    isBlank
+                    ref={
+                      index === socials.length - 1 ? lastFocusableElement : null
+                    }
+                  />
                 </Magnetic>
               ))}
             </div>

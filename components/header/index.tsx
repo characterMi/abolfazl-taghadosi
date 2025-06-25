@@ -25,6 +25,7 @@ const Header = () => {
   const isTouchDevice = useIsTouchDevice();
 
   const menuScale = useSpring(0, { mass: 0.2 });
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const { scrollY } = useScroll();
 
@@ -48,20 +49,25 @@ const Header = () => {
 
         <Magnetic>
           <motion.button
+            ref={buttonRef}
             style={{
-              scale: isActive ? 1 : 0 || menuScale,
+              scale: menuScale,
               background: isTouchDevice
                 ? "radial-gradient(circle, #b6edff, #56ccf2)"
                 : "transparent",
             }}
             className={twMerge(
-              "pointer-events-none size-16 lg:size-[5vw] relative rounded-full after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto after:transition before:transition before:z-[1]",
+              "pointer-events-none size-16 lg:size-[5vw] relative rounded-full after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto after:hover:bg-primary after:focus-visible:bg-primary after:transition before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto before:hover:bg-primary before:focus-visible:bg-primary before:transition before:z-[1]",
               isTouchDevice &&
                 "bg-primary flex justify-center items-center overflow-hidden mobile-menu",
               isActive &&
                 "after:rotate-45 before:-rotate-45 after:top-1/2 before:top-1/2"
             )}
-            onClick={() => setIsActive((prev) => !prev)}
+            onClick={() => {
+              if (menuScale.get() === 1) {
+                setIsActive((prev) => !prev);
+              }
+            }}
             aria-expanded={isActive}
             aria-label="Menu toggle button"
           >
@@ -76,7 +82,12 @@ const Header = () => {
       </header>
 
       <AnimatePresence mode="wait">
-        {isActive && <Sidebar setIsMenuActive={setIsActive} />}
+        {isActive && (
+          <Sidebar
+            setIsMenuActive={setIsActive}
+            firstFocusableElement={buttonRef.current}
+          />
+        )}
       </AnimatePresence>
 
       {!isTouchDevice && <Cursor target={ref} />}
