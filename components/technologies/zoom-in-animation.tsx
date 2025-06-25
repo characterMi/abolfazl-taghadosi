@@ -8,6 +8,7 @@ import { useRef } from "react";
 const SlideOutText = ({ scrollY }: { scrollY: MotionValue<number> }) => {
   const translateX = useTransform(scrollY, [0, 1], ["0%", "-10%"]);
   const translateY = useTransform(scrollY, [0, 1], ["0%", "-300%"]);
+  const skewX = useTransform(scrollY, [0, 1], ["0deg", "50deg"]);
   const scale = useTransform(scrollY, [0, 1], [1, 2]);
 
   return (
@@ -16,6 +17,7 @@ const SlideOutText = ({ scrollY }: { scrollY: MotionValue<number> }) => {
       style={{
         translateY,
         translateX,
+        skewX,
         scale,
       }}
     >

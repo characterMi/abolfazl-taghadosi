@@ -18,12 +18,12 @@ const About = () => {
 
   const { scrollYProgress: textScrollProgress } = useScroll({
     target: container,
-    offset: ["start 0.9", "end 0.1"],
+    offset: ["start 0.9", "end 0.2"],
   });
 
   const { scrollYProgress: placeholderScrollProgress } = useScroll({
     target: container,
-    offset: ["start 1.1", "end 0.3"],
+    offset: ["start 1.1", "end 0.4"],
   });
 
   return (
