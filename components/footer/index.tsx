@@ -1,7 +1,10 @@
+"use client";
+
 import GithubLink from "../shared/github-link";
 import { DesktopFooter } from "./desktop-footer";
 import { FooterContainer } from "./footer-container";
 import { MobileFooter } from "./mobile-footer";
+import { Signature } from "./signature";
 
 const Footer = () => (
   <FooterContainer>
@@ -20,7 +23,9 @@ const Footer = () => (
         OPEN TO NEW & <br /> OPPORTUNITIES
       </h2>
 
-      <div className="absolute bottom-0 left-0 hidden invisible md:block md:visible">
+      <div className="absolute bottom-0 left-0 hidden invisible md:flex md:visible flex-col gap-5">
+        <Signature width="100%" />
+
         <GithubLink />
       </div>
     </div>

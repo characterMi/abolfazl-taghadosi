@@ -57,11 +57,13 @@ const Header = () => {
                 : "transparent",
             }}
             className={twMerge(
-              "pointer-events-none size-16 lg:size-[5vw] relative rounded-full after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto after:hover:bg-primary after:focus-visible:bg-primary after:transition before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto before:hover:bg-primary before:focus-visible:bg-primary before:transition before:z-[1]",
+              "pointer-events-none size-16 lg:size-[5vw] relative rounded-full after:block after:w-[40%] after:bg-white after:absolute after:top-[45%] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:m-auto after:transition before:block before:w-[40%] before:bg-white before:absolute before:top-[55%] before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:m-auto before:transition before:z-[1]",
               isTouchDevice &&
                 "bg-primary flex justify-center items-center overflow-hidden mobile-menu",
               isActive &&
-                "after:rotate-45 before:-rotate-45 after:top-1/2 before:top-1/2"
+                "after:rotate-45 before:-rotate-45 after:top-1/2 before:top-1/2",
+              !isTouchDevice &&
+                "after:hover:bg-primary after:focus-visible:bg-primary before:hover:bg-primary before:focus-visible:bg-primary"
             )}
             onClick={() => {
               if (menuScale.get() === 1) {
