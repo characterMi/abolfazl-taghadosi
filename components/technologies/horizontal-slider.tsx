@@ -1,6 +1,7 @@
 "use client";
 
 import { mainTech } from "@/constants";
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import {
   motion,
   useScroll,
@@ -10,6 +11,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 type TechType = {
   label: string;
@@ -19,7 +21,7 @@ type TechType = {
 type CardProps = { tech: TechType; index: number };
 
 const Card = ({ tech, index }: CardProps) => (
-  <div className="relative size-96 lg:size-[24vw] overflow-hidden border-primary border p-10 lg:p-[2.5vw] bg-neutral-900/50">
+  <div className="relative h-96 lg:h-[24vw] max-h-[80vh] max-w-[90vw] aspect-square overflow-hidden border-primary border p-10 lg:p-[2.5vw] bg-neutral-900/50">
     <p
       className="text-7xl lg:text-[4.5vw] absolute top-6 lg:top-[1.5vw] left-6 lg:left-[1.5vw] font-black mark"
       aria-hidden
@@ -35,7 +37,7 @@ const Card = ({ tech, index }: CardProps) => (
         alt={tech.label + " image"}
         width={25}
         height={25}
-        className="w-1/2 h-1/2 object-cover"
+        className="w-1/2 object-cover"
         loading="eager"
         priority
       />
@@ -48,6 +50,8 @@ const Card = ({ tech, index }: CardProps) => (
 );
 
 export const HorizontalSlider = () => {
+  const shouldReduceMotion = useReduceMotion();
+
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -69,11 +73,25 @@ export const HorizontalSlider = () => {
   return (
     <section
       ref={targetRef}
-      className="relative h-[300vh] uppercase"
+      className={twMerge(
+        "relative uppercase",
+        !shouldReduceMotion && "h-[300vh]"
+      )}
       aria-label="Technologies i use"
     >
-      <div className="flex h-screen items-center justify-center overflow-hidden sticky top-0">
-        <motion.div style={{ x, skewX }} className="flex gap-10 lg:gap-[2.5vw]">
+      <div
+        className={twMerge(
+          "flex items-center justify-center overflow-hidden sticky top-0",
+          !shouldReduceMotion && "h-screen"
+        )}
+      >
+        <motion.div
+          style={shouldReduceMotion ? undefined : { x, skewX }}
+          className={twMerge(
+            "flex gap-10 lg:gap-[2.5vw]",
+            shouldReduceMotion && "flex-wrap justify-center"
+          )}
+        >
           {mainTech.map((tech, index) => {
             return <Card tech={tech} index={index} key={tech.label} />;
           })}

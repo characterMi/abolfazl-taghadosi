@@ -43,13 +43,13 @@ const InnerCursor = ({
       </motion.div>
 
       <motion.div
-        className="pointer-events-none z-[1] flex items-center gap-[0.1vw]"
+        className="pointer-events-none z-[1] flex items-center gap-[0.2vw]"
         initial={{ scale: 0 }}
         animate={isHoveredOnProject ? { scale: 0.8 } : {}}
         transition={{ delay: 0.15 }}
       >
         <span>VIEW</span>
-        <ArrowIcon mode="dark" className="size-[0.35vw]" />
+        <ArrowIcon mode="dark" className="size-[0.35vw] -mt-[0.1vw]" />
       </motion.div>
     </>
   );

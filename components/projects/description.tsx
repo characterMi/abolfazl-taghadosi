@@ -1,11 +1,12 @@
 "use client";
 
 import { fadeInWithBlur } from "@/utils/motion";
-import { motion } from "framer-motion";
+import Motion from "../shared/motion";
 
 export const Description = () => {
   return (
-    <motion.p
+    <Motion
+      as="p"
       className="text-neutral-900 text-3xl lg:text-[2.5vw] leading-tight font-thin"
       variants={fadeInWithBlur}
       initial="initial"
@@ -18,6 +19,6 @@ export const Description = () => {
       I&apos;ve built. They demonstrate my ability to tackle complex problems,
       work across various technologies, and manage projects efficiently from
       start to finish.
-    </motion.p>
+    </Motion>
   );
 };

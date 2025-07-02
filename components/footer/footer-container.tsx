@@ -1,22 +1,37 @@
 "use client";
 
 import { footerArrowSvg } from "@/constants";
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
+import TornPaper from "@/public/images/torn-paper.svg";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
+import { twMerge } from "tailwind-merge";
 import RevealAnimation from "../shared/reveal-animation";
 
 const Curve = ({
   height,
   svgArrowAnimation,
+  shouldReduceMotion,
 }: {
   height: MotionValue<string>;
   svgArrowAnimation: MotionValue<number>;
+  shouldReduceMotion: boolean;
 }) => {
   return (
     <div
       className="absolute w-full top-0 left-0 z-10 pointer-events-none"
       aria-hidden
     >
+      {shouldReduceMotion && (
+        <Image
+          src={TornPaper}
+          alt=""
+          aria-hidden
+          className="absolute top-0 left-0 w-full object-cover pointer-events-none shadow-[0_10px_0_#fff] rotate-180"
+        />
+      )}
+
       <div className="absolute -top-60 left-1/2 -translate-x-1/2 rotate-45 min-[1768px]:hidden min-[1768px]:invisible">
         <svg
           version="1.0"
@@ -52,7 +67,7 @@ const Curve = ({
       <div className="w-full h-screen overflow-hidden flex flex-col items-center">
         <motion.div
           className="w-[110vw] rounded-b-[100%] bg-white shadow-[0_0_50px_#171717]"
-          style={{ height }}
+          style={{ height: shouldReduceMotion ? 0 : height }}
         />
       </div>
     </div>
@@ -64,6 +79,8 @@ export const FooterContainer = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const shouldReduceMotion = useReduceMotion();
+
   const footer = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -84,8 +101,17 @@ export const FooterContainer = ({
       ref={footer}
       id="contact"
     >
-      <Curve height={height} svgArrowAnimation={svgArrowAnimation} />
-      <div className="overflow-hidden h-screen min-h-max flex flex-col py-6 px-4 sm:p-10 lg:p-[2.5vw]">
+      <Curve
+        height={height}
+        svgArrowAnimation={svgArrowAnimation}
+        shouldReduceMotion={shouldReduceMotion}
+      />
+      <div
+        className={twMerge(
+          "overflow-hidden h-screen min-h-max flex flex-col py-6 px-4 sm:p-10 lg:p-[2.5vw]",
+          shouldReduceMotion && "md:pt-[12vw] lg:pt-[10vw]"
+        )}
+      >
         {children}
       </div>
     </footer>

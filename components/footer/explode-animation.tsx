@@ -1,8 +1,9 @@
 "use client";
 
 import { ease2 } from "@/utils/motion";
-import { motion, type TargetAndTransition } from "framer-motion";
+import { type TargetAndTransition } from "framer-motion";
 import { type CSSProperties, useState } from "react";
+import Motion from "../shared/motion";
 
 type Props = {
   text: string;
@@ -61,7 +62,8 @@ const ExplodeAnimation = ({ text, style }: Props) => {
           );
 
         return (
-          <motion.span
+          <Motion
+            as="span"
             aria-hidden
             key={i}
             initial={initial}
@@ -70,7 +72,7 @@ const ExplodeAnimation = ({ text, style }: Props) => {
             className="underline"
           >
             {letter}
-          </motion.span>
+          </Motion>
         );
       })}
     </p>

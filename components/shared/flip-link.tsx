@@ -1,6 +1,7 @@
 "use client";
 
 import { socials } from "@/constants";
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { ease } from "@/utils/motion";
 import { ComponentProps, ForwardedRef, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
@@ -23,6 +24,7 @@ const FlipLink = forwardRef(
     }: Props,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
+    const shouldReduceMotion = useReduceMotion();
     const linkProps = isBlank
       ? {
           target: "_blank",
@@ -39,7 +41,8 @@ const FlipLink = forwardRef(
         ref={ref}
         href={link}
         className={twMerge(
-          "link relative overflow-hidden inline-flex group w-max leading-tight",
+          "link relative overflow-hidden inline-flex w-max leading-tight",
+          !shouldReduceMotion && "group",
           containerClassName
         )}
         aria-label={title}
@@ -54,7 +57,7 @@ const FlipLink = forwardRef(
               <span
                 key={i}
                 className={twMerge(
-                  "inline-block group-hover:-translate-y-full group-focus:-translate-y-full",
+                  "inline-block group-hover:-translate-y-full group-focus-visible:-translate-y-full",
                   childClassName
                 )}
                 style={transition(i)}
@@ -65,22 +68,23 @@ const FlipLink = forwardRef(
           })}
         </span>
         <span className="absolute inset-0" aria-hidden>
-          {title.split("").map((letter, i) => {
-            return letter === " " ? (
-              " "
-            ) : (
-              <span
-                key={i}
-                className={twMerge(
-                  "inline-block translate-y-full group-hover:translate-y-0 group-focus:translate-y-0",
-                  childClassName
-                )}
-                style={transition(i)}
-              >
-                {letter}
-              </span>
-            );
-          })}
+          {!shouldReduceMotion &&
+            title.split("").map((letter, i) => {
+              return letter === " " ? (
+                " "
+              ) : (
+                <span
+                  key={i}
+                  className={twMerge(
+                    "inline-block translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0",
+                    childClassName
+                  )}
+                  style={transition(i)}
+                >
+                  {letter}
+                </span>
+              );
+            })}
         </span>
       </a>
     );

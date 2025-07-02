@@ -1,3 +1,4 @@
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { motion, MotionValue, useTransform } from "framer-motion";
 
 export const SectionHeading = ({
@@ -9,6 +10,7 @@ export const SectionHeading = ({
   range: [number, number];
   scrollProgress: MotionValue<number>;
 }) => {
+  const shouldReduceMotion = useReduceMotion();
   const scaleX = useTransform(scrollProgress, range, [1, 0]);
 
   return (
@@ -16,7 +18,7 @@ export const SectionHeading = ({
       <motion.span
         aria-hidden
         style={{
-          scaleX,
+          scaleX: shouldReduceMotion ? 0 : scaleX,
           transformOrigin: "left",
         }}
         className="size-full absolute bg-gradient-to-r from-white from-50% to-transparent"

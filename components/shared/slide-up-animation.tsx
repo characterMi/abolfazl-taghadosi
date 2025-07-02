@@ -1,12 +1,13 @@
 "use client";
 
 import { slideUp, type SlideUpVariant } from "@/utils/motion";
-import { motion } from "framer-motion";
 import { CSSProperties } from "react";
 import { twMerge } from "tailwind-merge";
+import Motion from "./motion";
 
 type Props = {
   children: string;
+  isHidden?: boolean;
   containerClassName?: string;
   childClassName?: string;
   style?: CSSProperties;
@@ -33,6 +34,7 @@ type Props = {
 
 const SlideUpAnimation = ({
   children,
+  isHidden,
   type,
   containerClassName,
   animate,
@@ -56,6 +58,7 @@ const SlideUpAnimation = ({
 
   return (
     <p
+      aria-hidden={isHidden}
       className={twMerge(
         "leading-tight",
         containerClassName,
@@ -67,7 +70,8 @@ const SlideUpAnimation = ({
       {type === "multiple-word" ? (
         children.split(" ").map((word, i) => (
           <span key={i} className={textContainerDefaultClass} aria-hidden>
-            <motion.span
+            <Motion
+              as="span"
               {...defaultProps}
               custom={animationProps?.(i)}
               dangerouslySetInnerHTML={{ __html: word }}
@@ -75,7 +79,8 @@ const SlideUpAnimation = ({
           </span>
         ))
       ) : (
-        <motion.span
+        <Motion
+          as="span"
           {...defaultProps}
           custom={animationProps}
           dangerouslySetInnerHTML={{ __html: children }}

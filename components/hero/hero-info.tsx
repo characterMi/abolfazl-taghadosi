@@ -1,9 +1,10 @@
 "use client";
 
 import { fadeIn } from "@/utils/motion";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import GithubLink from "../shared/github-link";
+import Motion from "../shared/motion";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 const ScrollDown = () => {
@@ -19,14 +20,14 @@ const ScrollDown = () => {
   });
 
   return (
-    <motion.div
+    <Motion
       className="text-nowrap hidden invisible md:block md:visible text-3xl lg:text-[2.5vw] relative font-FF leading-[0.5] tracking-wide"
       variants={fadeIn}
       initial="initial"
       animate={isHidden ? "initial" : "animate"}
       aria-hidden
     >
-      <motion.div
+      <Motion
         className="w-1 h-full bg-primary absolute"
         animate={{
           transform: [`scaleY(0)`, `scaleY(1)`, `scaleY(0)`],
@@ -45,7 +46,7 @@ const ScrollDown = () => {
       <SlideUpAnimation
         animate={"animate"}
         type="single-word"
-        animationProps={{ animate: { delay: 4.6 } }}
+        animationProps={{ animate: { delay: 0.7 } }}
         containerClassName="ml-4 lg:ml-[1vw]"
         childClassName="leading-[0.85]"
       >
@@ -56,13 +57,13 @@ const ScrollDown = () => {
       <SlideUpAnimation
         animate={"animate"}
         type="single-word"
-        animationProps={{ animate: { delay: 4.6 } }}
+        animationProps={{ animate: { delay: 0.7 } }}
         containerClassName="ml-4 lg:ml-[1vw]"
         childClassName="leading-[0.85]"
       >
         Down.
       </SlideUpAnimation>
-    </motion.div>
+    </Motion>
   );
 };
 
@@ -87,7 +88,7 @@ export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
         </SlideUpAnimation>
       </div>
 
-      <motion.div
+      <Motion
         variants={fadeIn}
         initial="initial"
         animate={isPageLoaded && "animate"}
@@ -95,7 +96,7 @@ export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
         custom={{ delay: 0.7 }}
       >
         <GithubLink />
-      </motion.div>
+      </Motion>
     </div>
   );
 };

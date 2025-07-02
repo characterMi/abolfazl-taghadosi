@@ -1,10 +1,12 @@
 import { waveAnimationVariants } from "@/utils/motion";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import Motion from "./motion";
 
 const WaveEffect = ({ shouldAnimate }: { shouldAnimate: boolean }) => (
   <AnimatePresence mode="wait">
     {shouldAnimate && (
-      <motion.span
+      <Motion
+        as="span"
         className="absolute rounded-[50%]"
         style={{
           background: "radial-gradient(circle, #56ccf2, #32a2c7 75%)",

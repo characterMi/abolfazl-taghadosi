@@ -1,6 +1,8 @@
 "use client";
 
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { motion, MotionValue, useTransform } from "framer-motion";
+import { twMerge } from "tailwind-merge";
 import FlipLink from "../shared/flip-link";
 
 type TextProps = {
@@ -20,23 +22,27 @@ const Text = ({
   elementType,
   link,
 }: TextProps) => {
+  const shouldReduceMotion = useReduceMotion();
   const textOpacity = useTransform(progress, range, [0, 1]);
   const placeholderOpacity = useTransform(placeholderProgress, range, [0, 1]);
 
   return (
     <span aria-hidden className="relative select-none cursor-text">
-      <motion.span
-        style={{ opacity: placeholderOpacity }}
-        className="absolute text-transparent top-1/2 -translate-y-1/2 left-0 bg-zinc-300 rounded-md z-[-1] leading-none"
-      >
-        {text}
-      </motion.span>
+      {!shouldReduceMotion && (
+        <motion.span
+          style={{ opacity: placeholderOpacity }}
+          className="absolute text-transparent top-1/2 -translate-y-1/2 left-0 bg-zinc-300 rounded-md z-[-1] leading-none"
+        >
+          {text}
+        </motion.span>
+      )}
 
       <motion.span
-        style={{ opacity: textOpacity }}
-        className={`text-neutral-900 bg-white ${
+        style={{ opacity: shouldReduceMotion ? 1 : textOpacity }}
+        className={twMerge(
+          "text-neutral-900 bg-white",
           elementType === "mark" && "text-dark-blue font-semibold"
-        }`}
+        )}
       >
         {elementType === "link" ? (
           <FlipLink

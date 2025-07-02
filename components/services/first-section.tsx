@@ -2,8 +2,9 @@
 
 import { services } from "@/constants";
 import { ease } from "@/utils/motion";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Motion from "../shared/motion";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 const Service = ({ desc, title }: (typeof services)[number]) => {
@@ -23,6 +24,7 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
             type="single-word"
             childClassName="mark leading-none"
             animationProps={{ animate: { delay: 0.3 } }}
+            isHidden
           >
             {word}
           </SlideUpAnimation>
@@ -55,7 +57,7 @@ export const FirstSection = () => {
     >
       <div className="h-max lg:h-screen flex gap-8 lg:gap-[2vw] pt-8 lg:pt-[2vw] lg:items-center uppercase lg:sticky top-0 z-10">
         <div className="text-3xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[5vw] font-black flex gap-4 xss:gap-8 lg:gap-[2vw] relative">
-          <motion.div
+          <Motion
             className="h-full lg:h-[18vw] w-1 lg:w-[0.25vw] bg-primary"
             initial={{ transform: "scale(0)" }}
             animate={
@@ -81,25 +83,28 @@ export const FirstSection = () => {
               animate={isInView ? "animate" : ""}
               type="single-word"
               animationProps={{ animate: { delay: 0.5 } }}
+              isHidden
             >
               Skills &
             </SlideUpAnimation>
-            <br />
+            <br aria-hidden />
 
             <SlideUpAnimation
               animate={isInView ? "animate" : ""}
               type="single-word"
               animationProps={{ animate: { delay: 0.6 } }}
+              isHidden
             >
               Services
             </SlideUpAnimation>
-            <br />
+            <br aria-hidden />
 
             <SlideUpAnimation
               animate={isInView ? "animate" : ""}
               type="single-word"
               animationProps={{ animate: { delay: 0.7 } }}
               childClassName="mark"
+              isHidden
             >
               I offer
             </SlideUpAnimation>

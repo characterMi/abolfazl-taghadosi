@@ -1,11 +1,14 @@
 "use client";
 
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import FlipLink from "../shared/flip-link";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 export const SecondSection = () => {
+  const shouldReduceMotion = useReduceMotion();
+
   const target = useRef(null);
   const isInView = useInView(target, { once: true });
 
@@ -25,27 +28,29 @@ export const SecondSection = () => {
       <div className="flex gap-4 xss:gap-8 lg:gap-[2vw] items-center uppercase text-3xl smart-watch:text-5xl xss:text-7xl sm:text-8xl lg:text-[6vw] font-black relative">
         <motion.div
           className="h-[30vw] w-1 lg:w-[0.25vw] bg-primary"
-          style={{ translateY: indicatorY }}
+          style={{ translateY: shouldReduceMotion ? 0 : indicatorY }}
           aria-hidden
         />
 
-        <div className="p-4 sm:p-10 leading-[0.8]" aria-label="Get in touch">
+        <div className="p-4 sm:p-10 leading-[0.8]" aria-label="Get in Touch!">
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
             type="single-word"
             animationProps={{ animate: { delay: 0.5 } }}
             childClassName="leading-[0.85]"
+            isHidden
           >
             Get in
           </SlideUpAnimation>
 
-          <br />
+          <br aria-hidden />
 
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
             type="single-word"
             animationProps={{ animate: { delay: 0.6 } }}
             childClassName="leading-[0.85] mark"
+            isHidden
           >
             Touch
           </SlideUpAnimation>
@@ -53,7 +58,7 @@ export const SecondSection = () => {
       </div>
 
       <motion.div
-        style={{ translateY: textY }}
+        style={{ translateY: shouldReduceMotion ? 0 : textY }}
         className="flex flex-col lg:justify-around h-full"
       >
         <p className="font-semibold text-xs smart-watch:text-base lg:text-[1vw] !leading-tight">

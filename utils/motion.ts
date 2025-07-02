@@ -25,17 +25,18 @@ export const menuSlide = {
 
 export const menuContainerSlide = {
   initial: {
-    x: "400px",
+    x: "200px",
   },
   enter: {
     x: "0px",
     transition: {
       duration: 0.8,
+      delay: 0.1,
       ease: menuEasing,
     },
   },
   exit: {
-    x: "400px",
+    x: "200px",
     transition: {
       duration: 0.8,
       ease: menuEasing,
@@ -52,7 +53,7 @@ export const slide = {
     transition: {
       duration: 0.8,
       ease: menuEasing,
-      delay: 0.05 * index,
+      delay: 0.2 + 0.05 * index,
     },
   }),
   exit: (index: number) => ({
@@ -73,14 +74,14 @@ export const pathAnimation = (initialPath: string, targetPath: string) => ({
     d: targetPath,
     transition: {
       duration: 1,
-      ease: [0.76, 0, 0.24, 1],
+      ease: menuEasing,
     },
   },
   exit: {
     d: initialPath,
     transition: {
       duration: 1,
-      ease: [0.76, 0, 0.24, 1],
+      ease: menuEasing,
     },
   },
 });

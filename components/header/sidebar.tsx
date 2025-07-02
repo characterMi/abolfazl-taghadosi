@@ -2,6 +2,7 @@ import FlipLink from "@/components/shared/flip-link";
 import Magnetic from "@/components/shared/magnetic";
 import SlideUpAnimation from "@/components/shared/slide-up-animation";
 import { sidebarItems, socials } from "@/constants";
+import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import {
   fadeIn,
   menuContainerSlide,
@@ -9,16 +10,18 @@ import {
   pathAnimation,
   slide,
 } from "@/utils/motion";
-import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { twMerge } from "tailwind-merge";
+import Motion from "../shared/motion";
 
 const Curve = () => (
   <svg
     className="absolute top-0 -left-24 w-28 h-full fill-neutral-800 stroke-none"
     aria-hidden
   >
-    <motion.path
+    <Motion
+      as="path"
       variants={pathAnimation(
         `M100 0 L100 ${window.innerHeight} Q-100 ${
           window.innerHeight / 2
@@ -31,6 +34,35 @@ const Curve = () => (
     />
   </svg>
 );
+
+const ReduceMotionButton = () => {
+  const isMotionReduced = useReduceMotion();
+
+  const handleClick = () => {
+    if (isMotionReduced) localStorage.removeItem("reduce-motion");
+    else localStorage.setItem("reduce-motion", "true");
+
+    window.location.reload();
+  };
+
+  return (
+    <Motion
+      as="button"
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      custom={{ delay: 0.5 }}
+      className={twMerge(
+        "absolute top-6 lg:top-[3.25vw] left-6 smart-watch:left-10 xss:left-14 sm:left-20 lg:left-[5vw] hover:text-primary focus-visible:text-primary active:scale-90",
+        !isMotionReduced && "transition"
+      )}
+      onClick={handleClick}
+    >
+      {isMotionReduced ? "PREFER MOTION" : "REDUCE MOTION"}
+    </Motion>
+  );
+};
 
 const Sidebar = ({
   setIsMenuActive,
@@ -97,7 +129,7 @@ const Sidebar = ({
 
   return (
     <>
-      <motion.div
+      <Motion
         className="hidden md:block fixed left-0 top-0 w-screen h-screen z-[39] bg-gradient-to-r from-neutral-900/10 to-neutral-900"
         variants={fadeIn}
         initial="initial"
@@ -107,7 +139,8 @@ const Sidebar = ({
         aria-hidden
       />
 
-      <motion.aside
+      <Motion
+        as="aside"
         variants={menuSlide}
         initial="initial"
         animate="enter"
@@ -115,7 +148,10 @@ const Sidebar = ({
         className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-d-screen bg-gradient-to-r from-neutral-800 to-[#1f1f1f] text-white z-40 w-full md:w-max"
         id="sidebar"
       >
-        <motion.nav
+        <ReduceMotionButton />
+
+        <Motion
+          as="nav"
           data-lenis-prevent
           className="w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden"
           variants={menuContainerSlide}
@@ -138,7 +174,7 @@ const Sidebar = ({
 
             <div className="flex flex-col gap-3 lg:gap-[0.75vw] text-4xl lg:text-[3vw] font-thin">
               {sidebarItems.map((item, index) => (
-                <motion.div
+                <Motion
                   variants={slide}
                   custom={index}
                   initial="initial"
@@ -147,7 +183,7 @@ const Sidebar = ({
                   key={item.title}
                 >
                   <FlipLink {...item} containerClassName="sidebar-link" />
-                </motion.div>
+                </Motion>
               ))}
             </div>
           </div>
@@ -176,10 +212,10 @@ const Sidebar = ({
               ))}
             </div>
           </div>
-        </motion.nav>
+        </Motion>
 
         <Curve />
-      </motion.aside>
+      </Motion>
     </>
   );
 };

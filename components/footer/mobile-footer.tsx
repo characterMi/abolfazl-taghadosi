@@ -39,7 +39,10 @@ export const MobileFooter = () => (
           </div>
         </div>
 
-        <div className="text-xs sm:text-base" style={{ direction: "rtl" }}>
+        <div
+          className="text-xs sm:text-base relative z-[5]"
+          style={{ direction: "rtl" }}
+        >
           &copy; {new Date().getFullYear()} <br />
           <ExplodeAnimation
             text="ABOLFAZL TAGHADOSI"

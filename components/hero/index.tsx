@@ -27,6 +27,7 @@ const Hero = ({ isPageLoaded }: { isPageLoaded: boolean }) => (
           type="single-word"
           animationProps={{ animate: { delay: 0.6 } }}
           containerClassName="font-medium mt-2 lg:mt-[1vw] text-neutral-500 text-[3vw] sm:text-[1.8vw] lg:text-[1.5vw] opacity-80"
+          childClassName="leading-none"
           style={{ direction: "ltr" }}
         >
           {`${new Date().getFullYear()} &copy; Edition`}
