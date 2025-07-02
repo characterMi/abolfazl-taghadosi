@@ -1,8 +1,10 @@
-import Root from "@/providers/root";
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Figtree } from "next/font/google";
 
 import "./globals.css";
+
+const Root = dynamic(() => import("@/providers/root"), { ssr: false });
 
 const font = Figtree({ subsets: ["latin"], preload: true });
 
@@ -85,27 +87,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Root>
-      <html lang="en">
-        <head>
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <link
-            rel="preload"
-            href="/fonts/FF.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/FF.otf"
-            as="font"
-            type="font/otf"
-            crossOrigin="anonymous"
-          />
-        </head>
-        <body className={font.className}>{children}</body>
-      </html>
-    </Root>
+    <html lang="en">
+      <head>
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <link
+          rel="preload"
+          href="/fonts/FF.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/FF.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className={font.className}>
+        <Root>{children}</Root>
+      </body>
+    </html>
   );
 }
