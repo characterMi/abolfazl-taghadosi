@@ -85,7 +85,7 @@ export const FooterContainer = ({
       id="contact"
     >
       <Curve height={height} svgArrowAnimation={svgArrowAnimation} />
-      <div className="overflow-hidden min-h-[52rem] md:min-h-[28rem] h-screen flex flex-col py-6 px-4 sm:p-10 lg:p-[2.5vw]">
+      <div className="overflow-hidden h-screen min-h-max flex flex-col py-6 px-4 sm:p-10 lg:p-[2.5vw]">
         {children}
       </div>
     </footer>

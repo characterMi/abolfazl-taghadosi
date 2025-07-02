@@ -17,7 +17,7 @@ const Footer = () => (
       </h2>
 
       <h2
-        className="hidden invisible md:block md:visible title"
+        className="hidden invisible md:block md:visible title mt-[20vw] lg:mt-[12vw]"
         style={{ direction: "rtl" }}
       >
         OPEN TO NEW & <br /> OPPORTUNITIES
