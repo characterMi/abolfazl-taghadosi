@@ -1,6 +1,7 @@
 import { wait } from "@/lib";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { ErrorBoundary } from "./error-boundary";
 
 const Particles = dynamic(() => import("../particles"), {
   ssr: false,
@@ -20,8 +21,16 @@ const LazyComponents = () => {
 
   return (
     <>
-      {isHeroAnimationCompleted && <CustomScroll />}
-      {isHeroAnimationCompleted && <Particles />}
+      {isHeroAnimationCompleted && (
+        <ErrorBoundary fallback={null}>
+          <CustomScroll />
+        </ErrorBoundary>
+      )}
+      {isHeroAnimationCompleted && (
+        <ErrorBoundary fallback={null}>
+          <Particles />
+        </ErrorBoundary>
+      )}
     </>
   );
 };

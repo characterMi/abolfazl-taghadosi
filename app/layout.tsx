@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@/components/shared/error-boundary";
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
 import { Figtree } from "next/font/google";
@@ -106,7 +107,9 @@ export default function RootLayout({
         />
       </head>
       <body className={font.className}>
-        <Root>{children}</Root>
+        <ErrorBoundary fallback={<>{children}</>}>
+          <Root>{children}</Root>
+        </ErrorBoundary>
       </body>
     </html>
   );

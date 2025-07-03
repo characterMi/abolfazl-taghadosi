@@ -15,8 +15,9 @@ import {
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { ErrorBoundary } from "../shared/error-boundary";
+import Sidebar from "./sidebar";
 
-const Sidebar = dynamic(() => import("./sidebar"));
 const Cursor = dynamic(() => import("./cursor"), {
   ssr: false,
 });
@@ -101,7 +102,11 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      {!isTouchDevice && !shouldReduceMotion && <Cursor target={ref} />}
+      {!isTouchDevice && !shouldReduceMotion && (
+        <ErrorBoundary fallback={null}>
+          <Cursor target={ref} />
+        </ErrorBoundary>
+      )}
     </>
   );
 };
