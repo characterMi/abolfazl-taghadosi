@@ -18,10 +18,15 @@ type TechType = {
   imgSrc: string;
 };
 
-type CardProps = { tech: TechType; index: number };
+type CardProps = { tech: TechType; index: number; shouldReduceMotion: boolean };
 
-const Card = ({ tech, index }: CardProps) => (
-  <div className="relative h-96 lg:h-[24vw] max-h-[80vh] max-w-[90vw] aspect-square overflow-hidden border-primary border p-10 lg:p-[2.5vw] bg-neutral-900/50">
+const Card = ({ tech, index, shouldReduceMotion }: CardProps) => (
+  <div
+    className={twMerge(
+      "relative h-96 lg:h-[24vw] max-h-[80vh] aspect-square overflow-hidden border-primary border p-10 lg:p-[2.5vw] bg-neutral-900/50",
+      shouldReduceMotion && "max-w-[90vw]"
+    )}
+  >
     <p
       className="text-7xl lg:text-[4.5vw] absolute top-6 lg:top-[1.5vw] left-6 lg:left-[1.5vw] font-black mark"
       aria-hidden
@@ -93,7 +98,14 @@ export const HorizontalSlider = () => {
           )}
         >
           {mainTech.map((tech, index) => {
-            return <Card tech={tech} index={index} key={tech.label} />;
+            return (
+              <Card
+                tech={tech}
+                index={index}
+                key={tech.label}
+                shouldReduceMotion={shouldReduceMotion}
+              />
+            );
           })}
         </motion.div>
       </div>
