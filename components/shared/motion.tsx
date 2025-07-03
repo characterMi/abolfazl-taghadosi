@@ -1,3 +1,5 @@
+"use client";
+
 import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { HTMLMotionProps, motion, SVGMotionProps } from "framer-motion";
 import { ForwardedRef, forwardRef, ReactHTML, ReactNode } from "react";

@@ -76,7 +76,7 @@ const LoadingScreen = ({
 }: {
   setIsPageLoaded: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const prevTime = useRef(performance.now());
+  const prevTime = useRef(1000);
   const [loadingIndex, setLoadingIndex] = useState(0);
   const loadingSteps = ["00", "33", "66", "99"];
   const maxIndex = loadingSteps.length;
@@ -88,6 +88,7 @@ const LoadingScreen = ({
   useAnimationFrame((time) => {
     if (loadingIndex > maxIndex) return;
 
+    // as soon as the time reaches the 2000, the animation runs.
     if (time - prevTime.current > 1000) {
       prevTime.current = time;
       setLoadingIndex((prev) => prev + 1);

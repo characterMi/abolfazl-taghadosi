@@ -50,11 +50,7 @@ const About = () => {
 
           return (
             <Fragment key={title}>
-              <SectionHeading
-                title={title}
-                range={[start, end]}
-                scrollProgress={headingScrollProgress}
-              />
+              <SectionHeading title={title} />
 
               <RevealText
                 texts={content.split("_")}

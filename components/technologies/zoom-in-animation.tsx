@@ -23,7 +23,7 @@ const SlideOutText = ({
   return (
     <motion.p
       className={twMerge(
-        "title m-4 md:m-10 lg:mt-[2.5vw]",
+        "title p-4 md:p-10 lg:pt-[2.5vw]",
         shouldReduceMotion && "text-center"
       )}
       style={
