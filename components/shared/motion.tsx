@@ -27,6 +27,11 @@ const Motion = forwardRef(
       initial,
       animate,
       exit,
+      whileInView,
+      whileTap,
+      whileHover,
+      whileFocus,
+      whileDrag,
       transition,
       ...rest
     }: MotionWrapperProps<T>,
@@ -42,6 +47,11 @@ const Motion = forwardRef(
         variants={shouldReduceMotion ? undefined : variants}
         initial={shouldReduceMotion ? undefined : initial}
         animate={shouldReduceMotion ? undefined : animate}
+        whileInView={shouldReduceMotion ? undefined : whileInView}
+        whileTap={shouldReduceMotion ? undefined : whileTap}
+        whileHover={shouldReduceMotion ? undefined : whileHover}
+        whileFocus={shouldReduceMotion ? undefined : whileFocus}
+        whileDrag={shouldReduceMotion ? undefined : whileDrag}
         exit={shouldReduceMotion ? undefined : exit}
         transition={shouldReduceMotion ? undefined : transition}
         {...rest}

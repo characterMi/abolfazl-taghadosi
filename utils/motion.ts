@@ -53,7 +53,7 @@ export const slide = {
     transition: {
       duration: 0.8,
       ease: menuEasing,
-      delay: 0.2 + 0.05 * index,
+      delay: 0.1 + 0.05 * index,
     },
   }),
   exit: (index: number) => ({
