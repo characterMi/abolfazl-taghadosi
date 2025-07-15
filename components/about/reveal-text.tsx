@@ -41,7 +41,7 @@ const Text = ({
         style={{ opacity: shouldReduceMotion ? 1 : textOpacity }}
         className={twMerge(
           "text-neutral-900 bg-white",
-          elementType === "mark" && "text-dark-blue font-semibold"
+          elementType === "mark" && "decoration-dark-blue underline font-normal"
         )}
       >
         {elementType === "link" ? (

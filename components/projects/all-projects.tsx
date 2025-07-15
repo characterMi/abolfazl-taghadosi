@@ -11,10 +11,9 @@ import Motion from "../shared/motion";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 const Title = ({ isInView }: { isInView: boolean }) => (
-  <div
-    className="uppercase w-full md:w-[37%] text-6xl md:text-[2.75rem] lg:text-[4vw] font-black mb-6 relative"
-    aria-label="All of my projects"
-  >
+  <div className="uppercase w-full md:w-[37%] text-6xl md:text-[2.75rem] lg:text-[4vw] font-black mb-6 relative">
+    <span className="sr-only">All of my projects</span>
+
     <SlideUpAnimation
       animate={isInView ? "animate" : ""}
       type="single-word"

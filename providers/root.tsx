@@ -10,10 +10,13 @@ const Root = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (isMotionReduced) {
       window.document.body.style.setProperty("cursor", "auto");
+      window.document.body.style.setProperty("overflow", "visible");
     }
 
     window.scrollTo({ behavior: "instant", top: 0 });
   }, []);
+
+  if (isMotionReduced) return children;
 
   return (
     <ReactLenis

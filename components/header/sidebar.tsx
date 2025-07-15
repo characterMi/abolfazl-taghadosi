@@ -35,13 +35,18 @@ const Curve = () => (
   </svg>
 );
 
-const ReduceMotionButton = () => {
+const ReduceMotionButton = ({
+  onScrollToTop,
+}: {
+  onScrollToTop: () => void;
+}) => {
   const isMotionReduced = useReduceMotion();
 
   const handleClick = () => {
     if (isMotionReduced) localStorage.removeItem("reduce-motion");
     else localStorage.setItem("reduce-motion", "true");
 
+    onScrollToTop();
     window.location.reload();
   };
 
@@ -87,7 +92,11 @@ const Sidebar = ({
       if (targetElement) {
         const offsetTop = targetElement.offsetTop;
 
-        lenis?.scrollTo(offsetTop);
+        if (lenis) {
+          lenis.scrollTo(offsetTop);
+        } else {
+          window.scrollTo({ behavior: "smooth", top: offsetTop });
+        }
 
         setIsMenuActive(false);
       }
@@ -148,7 +157,15 @@ const Sidebar = ({
         className="fixed right-0 px-2 lg:px-[0.5vw] top-0 h-d-screen bg-gradient-to-r from-neutral-800 to-[#1f1f1f] text-white z-40 w-full md:w-max"
         id="sidebar"
       >
-        <ReduceMotionButton />
+        <ReduceMotionButton
+          onScrollToTop={() => {
+            if (lenis) {
+              lenis.scrollTo(0);
+            } else {
+              window.scrollTo({ behavior: "smooth", top: 0 });
+            }
+          }}
+        />
 
         <Motion
           as="nav"

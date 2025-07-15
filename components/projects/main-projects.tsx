@@ -206,8 +206,9 @@ export const MainProjects = () => {
       <div
         className="uppercase text-neutral-900 text-4xl xss:text-5xl sm:text-7xl lg:text-[5vw] font-black mb-10 lg:mb-[2.5vw] relative z-[1]"
         style={{ direction: "rtl" }}
-        aria-label="Real world projects"
       >
+        <span className="sr-only">Real world projects</span>
+
         <SlideUpAnimation
           animate={isInView ? "animate" : ""}
           type="single-word"

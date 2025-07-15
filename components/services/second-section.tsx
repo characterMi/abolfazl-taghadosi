@@ -32,7 +32,9 @@ export const SecondSection = () => {
           aria-hidden
         />
 
-        <div className="p-4 sm:p-10 leading-[0.8]" aria-label="Get in Touch!">
+        <div className="p-4 sm:p-10 leading-[0.8]">
+          <span className="sr-only">Get in Touch!</span>
+
           <SlideUpAnimation
             animate={isInView ? "animate" : ""}
             type="single-word"
