@@ -9,11 +9,7 @@ type Props = {
   className?: string;
 };
 
-export const Signature = ({
-  width = "auto",
-  height = "auto",
-  className,
-}: Props) => {
+export const Signature = ({ width, height, className }: Props) => {
   const props = (transition: Transition) => ({
     initial: { pathLength: 0 },
     whileInView: { pathLength: 1 },

@@ -54,7 +54,7 @@ const ReduceMotionButton = () => {
       exit="initial"
       custom={{ delay: 0.5 }}
       className={twMerge(
-        "absolute top-6 lg:top-[3.25vw] left-6 smart-watch:left-10 xss:left-14 sm:left-20 lg:left-[5vw] hover:text-primary focus-visible:text-primary",
+        "absolute top-6 lg:top-[3.25vw] left-6 smart-watch:left-10 xss:left-14 sm:left-20 lg:left-[5vw] hover:text-primary focus-visible:text-primary lg:text-[1.2vw]",
         !isMotionReduced && "transition"
       )}
       onClick={handleClick}

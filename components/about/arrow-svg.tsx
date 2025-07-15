@@ -20,6 +20,7 @@ export const ArrowSvg = () => {
       height="12rem"
       viewBox="-620 350 350.000000 150.000000"
       preserveAspectRatio="xMidYMid meet"
+      className="w-16 h-48 lg:w-[5.5vw] lg:h-[17.5vw]"
       style={{
         transform: "rotateX(180deg)",
       }}
