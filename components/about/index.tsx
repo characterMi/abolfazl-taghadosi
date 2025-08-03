@@ -11,19 +11,14 @@ import { RevealText } from "./reveal-text";
 const About = () => {
   const container = useRef(null);
 
-  const { scrollYProgress: headingScrollProgress } = useScroll({
-    target: container,
-    offset: ["start end", "end end"],
-  });
-
   const { scrollYProgress: textScrollProgress } = useScroll({
     target: container,
-    offset: ["start 0.9", "end 0.2"],
+    offset: ["start center", "end center"],
   });
 
   const { scrollYProgress: placeholderScrollProgress } = useScroll({
     target: container,
-    offset: ["start 1.1", "end 0.4"],
+    offset: ["start 0.75", "end 0.75"],
   });
 
   return (

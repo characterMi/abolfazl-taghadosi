@@ -8,7 +8,7 @@ export const ArrowSvg = () => {
 
   const { scrollYProgress } = useScroll({
     target: arrow,
-    offset: ["start 0.9", "start center"],
+    offset: ["start center", "start start"],
   });
 
   return (
