@@ -101,15 +101,15 @@ export const sidebarItems = [
 export const services = [
   {
     title: ["Front-end", "Development"],
-    desc: "Building modern and user-friendly websites and web applications using React and Next.js frameworks. while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best user experience while enhancing the quality and maintainability of projects.",
+    desc: "Building modern, user-friendly, and High-performance websites and web applications using modern tools like React and Next.js, while implementing powerful and scalable code with TypeScript. I prioritize attractive designs and fast performance to deliver the best user experience while enhancing the quality and maintainability of projects.",
   },
   {
     title: ["Motion &", "UI Design"],
-    desc: "Creating beautiful, responsive and accessible designs using tailwindcss, and implementing smooth animations and engaging motion designs with framer-motion and gsap. i blend creativity with functionality, ensuring a delightful user journey.",
+    desc: "Creating beautiful, responsive and accessible designs using tailwindcss, and implementing smooth animations and engaging motion designs with framer-motion and gsap. The result is a delightful user journey where creativity meets functionality.",
   },
   {
     title: ["3D web", "Experiences"],
-    desc: "Step into the future of web experiences with 3D Graphics! Utilizing Three.js, I create immersive visual stories that captivate users and make content interactive. whether it's for gameplay, product showcases, or artistic displays, my 3D solutions will leave a lasting impression.",
+    desc: "Imagine a website that isn't just a flat page but an immersive world. Using Three.js, it's possible to create captivating 3D visuals that bring your content to life. From interactive product tours to stunning artistic displays, these experiences make your site a destination people want to explore.",
   },
 ];
 
@@ -260,12 +260,12 @@ export const aboutContent = [
   {
     title: "- My Journey",
     content:
-      "I've_always_loved_the_idea_of_creating_something_meaningful,_something_I_enjoy_and_others_can_benefit_from._Programming_become_the_perfect_outlet_for_that_passion._In_the_early_days,_I_explored_a_few_online_courses,_but_soon_I_discovered_something_that_completely_changed_the_game_for_me:_YouTube(mark)_It_became_my_university._I_spent_countless_hours_learning_from_incredible_creators_and_developers_around_the_world,_building_up_my_skills_piece_by_piece,_project_by_project._I’m_a_self-taught_developer,_driven_by_curiosity_and_a_love_for_building_things_that_stands_out._My_love_for_problem-solving_and_mathematics_made_coding_feel_natural;_To_me,_building_software_is_a_fusion_of_logic_and_creativity,_much_like_life_itself.",
+      "The_joy_of_creating_something_meaningful_has_always_been_a_part_of_me._Programming_became_the_best_way_to_express_that_passion.It_was_a_natural_fit_for_my_love_of_problem-solving_and_mathematics._In_the_early_days,_my_journey_started_with_a_few_online_courses._But_it_was_on_YouTube_that_I_truly_found_my_university.(mark)_I_spent_countless_hours_learning_from_incredible_creators_and_developers_around_the_world,_building_my_skills_piece_by_piece,project_by_project._This_path_made_me_a_self-taught_developer,_driven_by_curiosity_and_a_love_for_building_things_that_stand_out._To_me,_building_software_is_a_fusion_of_logic_and_creativity,_much_like_life_itself.",
   },
   {
     title: "- Beyond the Code",
     content:
-      "While_coding_is_my_craft,_my_curiosity_goes_far_beyond_the_screen._I'm_deeply_passionate_about_art;(mark)_from_painting_and_sculpting_to_playing_music._My_musical_taste_ranges_from_the_intensity_of_rock_and_metal,_to_the_complexity_of_classical_and_even_a_touch_of_phonk._Outside_of_creation,_I_thrive_on_learning,(mark)_whether_it’s_diving_into_the_latest_tech_trends,_computer_science,_understanding_AI,_or_exploring_the_inner_workings_of_hardware_and_modern_physics._Learning_is_not_just_a_habit,_it's_part_of_who_I_am._You’ll_often_find_me_reading_philosophy(mark)_and_literature(mark)_from_thinkers_like_Kafka,_Nietzsche,_Camus,_Freud,_or_diving_into_epic_worlds_built_by_Tolkien,_Martin,_and_Ferdowsi._I_also_enjoy_working_out,_watching_films_and_series,_and_playing_chess,_anything_that_challenges_both_body_and_mind._for_me,_each_challenge_is_not_just_a_problem_to_solve,_but_an_opportunity_to_learn,_and_grow.",
+      "While_coding_is_my_craft,_my_curiosity_goes_far_beyond_the_screen._I'm_deeply_passionate_about_art;(mark)_from_painting_and_sculpting_to_playing_music._My_musical_taste_ranges_from_the_intensity_of_rock_and_metal,_to_the_complexity_of_classical_and_even_a_touch_of_phonk._Outside_of_creation,_I_thrive_on_learning,(mark)_whether_it’s_diving_into_the_latest_tech_trends,_computer_science,_understanding_AI,_or_exploring_the_inner_workings_of_hardware_and_modern_physics._Learning_is_not_just_a_habit,_it's_part_of_who_I_am._You’ll_often_find_me_reading_philosophy(mark)_and_literature(mark)_from_thinkers_like_Kafka,_Nietzsche,_Camus,_Freud,_or_diving_into_epic_worlds_built_by_Tolkien,_Martin,_William_Shakespeare,_and_Ferdowsi._I_also_enjoy_working_out,_watching_films_and_series,_and_playing_chess,_anything_that_challenges_both_body_and_mind._Each_challenge,_to_me,_is_an_opportunity_to_learn_and_grow.",
   },
   {
     title: "- Future Goals and Vision",

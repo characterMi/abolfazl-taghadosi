@@ -76,6 +76,7 @@ const SlideUpAnimation = ({
               custom={animationProps?.(i)}
               dangerouslySetInnerHTML={{ __html: word }}
             />
+            &nbsp;
           </span>
         ))
       ) : (

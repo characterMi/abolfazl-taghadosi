@@ -16,7 +16,7 @@ const WelcomeAnimation = ({
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
-      <h1 className="font-FF text-[30vw] sm:text-[25vw] md:text-[20vw] lg:text-[15vw] text-nowrap">
+      <h1 className="font-FF text-[30vw] sm:text-[25vw] md:text-[20vw] lg:text-[15vw] text-nowrap whitespace-nowrap">
         {/* For accessibility */}
         <span className="sr-only" aria-live="polite">
           {isLoadingAnimationCompleted && "WELCOME"}

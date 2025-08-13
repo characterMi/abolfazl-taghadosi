@@ -44,34 +44,55 @@ body {
   overflow: hidden;
 }
 
+.hero-mark {
+  color: #32a2c7;
+}
+
 .gray-mark {
-  background: transparent;
   color: #a3a3a3;
-  background: -webkit-linear-gradient(to right, #8b8b8b, #a3a3a3);
-  background: linear-gradient(to right, #8b8b8b, #a3a3a3);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .mark {
-  background: transparent;
   color: #56ccf2;
-  background: -webkit-linear-gradient(to top, #5cd6ff, #b6edff);
-  background: linear-gradient(to top, #5cd6ff, #b6edff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .dark-mark {
-  background: transparent;
   color: #32a2c7;
-  background: -webkit-linear-gradient(to top, #32a2c7, #5cd6ff);
-  background: linear-gradient(to top, #32a2c7, #5cd6ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
+
+@supports (
+  (-webkit-background-clip: text) or (background-clip: text) or
+    (-moz-background-clip: text) or (-webkit-text-fill-color: transparent)
+) {
+  .hero-mark {
+    background: -webkit-linear-gradient(to right, #32a2c7, #5cd6ff, #32a2c7);
+    background: linear-gradient(to right, #32a2c7, #5cd6ff, #32a2c7);
+  }
+
+  .gray-mark {
+    background: -webkit-linear-gradient(to right, #8b8b8b, #a3a3a3);
+    background: linear-gradient(to right, #8b8b8b, #a3a3a3);
+  }
+
+  .mark {
+    background: -webkit-linear-gradient(to top, #5cd6ff, #b6edff);
+    background: linear-gradient(to top, #5cd6ff, #b6edff);
+  }
+
+  .dark-mark {
+    background: -webkit-linear-gradient(to top, #32a2c7, #5cd6ff);
+    background: linear-gradient(to top, #32a2c7, #5cd6ff);
+  }
+
+  .hero-mark,
+  .gray-mark,
+  .mark,
+  .dark-mark {
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .title {

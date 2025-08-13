@@ -8,7 +8,7 @@ const GithubLink = () => {
 
   return (
     <a
-      className="inline-flex group button-container overflow-hidden text-nowrap md:w-full outline-none link"
+      className="inline-flex group button-container overflow-hidden text-nowrap whitespace-nowrap md:w-full outline-none link"
       href="https://github.com/characterMi"
       target="_blank"
       rel="noopener noreferrer"
@@ -48,7 +48,7 @@ const GithubLink = () => {
           <ArrowIcon mode="light" className="size-[9px] lg:size-[0.8vw]" />
         </div>
         <div
-          className="flex items-center gap-2 lg:gap-[0.5vw] lg:text-[1.2vw] absolute -translate-x-1/2 text-nowrap top-0 bg-gradient-to-r from-primary to-dark-blue text-neutral-900 w-full h-full px-6 lg:px-[1.5vw]"
+          className="flex items-center gap-2 lg:gap-[0.5vw] lg:text-[1.2vw] absolute -translate-x-1/2 text-nowrap whitespace-nowrap top-0 bg-gradient-to-r from-primary to-dark-blue text-neutral-900 w-full h-full px-6 lg:px-[1.5vw]"
           style={{ transform: "translate3d(0, 0, 2em)" }}
           aria-hidden
         >

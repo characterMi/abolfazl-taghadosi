@@ -33,7 +33,7 @@ const Service = ({ desc, title }: (typeof services)[number]) => {
       <SlideUpAnimation
         animate={isInView ? "animate" : ""}
         type="multiple-word"
-        containerClassName="font-semibold text-xs smart-watch:text-base lg:text-[1vw] gap-[0.8vw] md:gap-[0.3vw]"
+        containerClassName="font-semibold text-xs smart-watch:text-base lg:text-[1vw]"
         childClassName="leading-tight"
         animationProps={(i) => ({
           animate: { delay: 0.5 + i * 0.025, duration: 0.8 },
@@ -74,7 +74,7 @@ export const FirstSection = () => {
             aria-hidden
           />
 
-          <div className="tracking-tighter leading-[0.8] p-4 sm:p-10 lg:p-[2.5vw] text-nowrap">
+          <div className="tracking-tighter leading-[0.8] p-4 sm:p-10 lg:p-[2.5vw] text-nowrap whitespace-nowrap">
             <span className="sr-only">Skills & Services I offer</span>
 
             <SlideUpAnimation
@@ -117,13 +117,13 @@ export const FirstSection = () => {
           animationProps={(i) => ({
             animate: { delay: 1 + i * 0.025, duration: 0.8 },
           })}
-          containerClassName="text-xs smart-watch:text-base lg:text-[1vw] flex flex-wrap gap-1 lg:gap-[0.25vw]"
+          containerClassName="text-xs smart-watch:text-base lg:text-[1vw]"
           childClassName="leading-tight"
         >
-          Tired of websites that fail to engage or showcase your unique
-          identity? I create exceptional digital experience that not only align
-          with your brand but also drive meaningful growth for your business.
-          Let&apos;s work together to turn your vision into reality!
+          Feeling like your website isn&apos;t quite hitting the mark? I get it.
+          I build unique digital experiences that truly represent your brand and
+          help you connect with your audience. Let&apos;s team up and bring your
+          vision to life.
         </SlideUpAnimation>
 
         {services.map((service, i) => (

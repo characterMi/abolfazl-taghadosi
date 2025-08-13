@@ -79,7 +79,7 @@ const HeroText = ({
 }) => (
   <h1
     className={twMerge(
-      "!leading-[0.9] uppercase mark !bg-gradient-to-r from-dark-blue via-primary to-dark-blue text-nowrap",
+      "!leading-[0.9] uppercase hero-mark text-nowrap whitespace-nowrap",
       shouldReduceMotion
         ? "text-[25vw] ml-[3vw]"
         : "text-[35vw] md:text-[25vw] flex items-center gap-[1.5vw]"

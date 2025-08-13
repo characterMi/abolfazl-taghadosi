@@ -64,16 +64,15 @@ export const SecondSection = () => {
         className="flex flex-col lg:justify-around h-full"
       >
         <p className="font-semibold text-xs smart-watch:text-base lg:text-[1vw] !leading-tight">
-          I&apos;m exited to hear from You! whether you have questions, ideas,
-          or want to collaborate,{" "}
+          Have a project in mind, a question, or just want to connect? Whatever
+          it is, I&apos;m ready to chat. Feel free to{" "}
           <FlipLink
             link="mailto:abol1385fx@gmail.com"
             title="reach out"
             childClassName="mark"
             isBlank
           />{" "}
-          and let&apos;s start a conversion that could lead to inspiring
-          possibilities. Your next big project awaits!
+          and let&apos;s explore what we could create together.
         </p>
       </motion.div>
     </div>

@@ -36,7 +36,6 @@ const Text = ({
           {text}
         </motion.span>
       )}
-
       <motion.span
         style={{ opacity: shouldReduceMotion ? 1 : textOpacity }}
         className={twMerge(
@@ -56,6 +55,7 @@ const Text = ({
           text
         )}
       </motion.span>
+      &nbsp;
     </span>
   );
 };
@@ -75,7 +75,7 @@ export const RevealText = ({
   const step = amount / texts.length;
 
   return (
-    <p className="text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-tight font-thin px-4 lg:px-[1vw] flex flex-wrap gap-1 xss:gap-1.5 sm:gap-2 lg:gap-[0.6vw]">
+    <p className="text-lg xss:text-xl sm:text-3xl lg:text-[2vw] !leading-normal font-thin px-4 lg:px-[1vw] flex flex-wrap">
       {/* For Accessibility */}
       <span
         className="sr-only"
