@@ -84,8 +84,7 @@ export const HeroInfo = ({ isPageLoaded }: { isPageLoaded: boolean }) => {
         >
           Transforming ideas into seamless digital experiences. I specialize in
           crafting innovative and responsive websites that help brands and
-          startups to thrive in the digital world. The result? A user-friendly
-          site that works as good as it looks.
+          startups to thrive in the digital world.
         </SlideUpAnimation>
       </div>
 
