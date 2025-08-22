@@ -444,7 +444,7 @@ export const socials = [
   },
   {
     title: "Email",
-    link: "mailto:abol1385fx@gmail.com",
+    link: "mailto:workabolfazltaghadosi@gmail.com",
   },
   {
     title: "Telegram",

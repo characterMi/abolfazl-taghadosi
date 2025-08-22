@@ -67,7 +67,7 @@ export const SecondSection = () => {
           Have a project in mind, a question, or just want to connect? Whatever
           it is, I&apos;m ready to chat. Feel free to{" "}
           <FlipLink
-            link="mailto:abol1385fx@gmail.com"
+            link="mailto:workabolfazltaghadosi@gmail.com"
             title="reach out"
             childClassName="mark"
             isBlank
