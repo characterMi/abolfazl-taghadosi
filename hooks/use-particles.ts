@@ -1,86 +1,71 @@
-import { useTexture } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import { useLenis } from "lenis/react";
-import { useEffect, useMemo, useRef } from "react";
-import * as THREE from "three";
+import { Geometry, Mesh, Transform } from "ogl";
+import { useEffect, useRef } from "react";
 
-type ContainerRef = THREE.Points & {
-  material: { uniforms: { uTime: { value: number } } };
-};
-
-const STARS_COUNT = 500;
+import {
+  generateParticleData,
+  initCamera,
+  initProgram,
+  initRenderer,
+  onLenisScroll,
+  updateScene,
+} from "@/lib";
 
 export const useParticles = () => {
-  const particlesAnimationData = useRef({
-    shouldZoomOut: false,
-    positionY: 0,
-    positionZ: -0.5,
-  });
-  const pointsRef = useRef<ContainerRef>(null);
-  const texture = useTexture("/images/1.png");
   const lenis = useLenis()!;
-
-  const { positions, sizes } = useMemo(() => {
-    const positions = new Float32Array(STARS_COUNT * 3);
-    const sizes = new Float32Array(STARS_COUNT);
-
-    for (let i = 0; i < STARS_COUNT; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 7;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 7;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 7;
-
-      sizes[i] = Math.random() * 20;
-    }
-
-    return { positions, sizes };
-  }, []);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const zoomInSection =
-      document.querySelector<HTMLDivElement>("#zoom-in-animation")!;
+    if (!canvasRef.current) return;
 
-    function handleScroll() {
-      const zoomInSectionOffsetTop = zoomInSection.offsetTop;
+    const renderer = initRenderer(canvasRef.current);
 
-      const lenisProgress = lenis.scroll / zoomInSectionOffsetTop;
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
 
-      if (lenisProgress >= 1) {
-        const scrollOffset =
-          (lenis.scroll - zoomInSectionOffsetTop) / zoomInSection.offsetHeight;
+    const camera = initCamera(gl);
 
-        particlesAnimationData.current.shouldZoomOut = true;
-        particlesAnimationData.current.positionY = scrollOffset;
-      } else {
-        const scrollOffset =
-          lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
-        particlesAnimationData.current.shouldZoomOut = false;
-        particlesAnimationData.current.positionZ = scrollOffset - 0.5;
-      }
-    }
+    const scene = new Transform();
 
-    lenis?.on("scroll", handleScroll);
+    const { positions, sizes } = generateParticleData();
 
-    return () => lenis?.off("scroll", handleScroll);
-  }, [lenis]);
+    const geometry = new Geometry(gl, {
+      position: { size: 3, data: positions, count: positions.length / 3 },
+      size: { size: 1, data: sizes, count: sizes.length },
+    });
 
-  useFrame(({ clock }) => {
-    if (!pointsRef.current) return;
+    const program = initProgram(gl);
 
-    pointsRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
+    const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
+    particles.setParent(scene);
 
-    const { positionY, positionZ, shouldZoomOut } =
-      particlesAnimationData.current;
-    if (shouldZoomOut) {
-      pointsRef.current.position.setY(-positionY * 6);
-    } else {
-      pointsRef.current.position.setZ(-positionZ * 4);
-    }
-  });
+    const updateFrame = () => {
+      updateScene(program, particles, () => renderer.render({ scene, camera }));
 
-  return {
-    pointsRef,
-    positions,
-    sizes,
-    texture,
-  };
+      requestAnimationFrame(updateFrame);
+    };
+
+    requestAnimationFrame(updateFrame);
+
+    const handleScroll = () =>
+      onLenisScroll(
+        lenis,
+        document.querySelector<HTMLDivElement>("#zoom-in-animation")!
+      );
+
+    const handleResize = () => {
+      renderer.width = window.innerWidth;
+      renderer.height = window.innerHeight;
+    };
+
+    lenis.on("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      lenis.off("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return canvasRef;
 };

@@ -23,31 +23,37 @@ export const notFound = [
 ];
 
 export const vertexShader = `
-    uniform float uTime;
-    uniform float uPixelRatio;
-    attribute float size;
+      precision highp float;
 
-    float random (vec2 st) {
-      return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 9.5453123);
-    }
+      uniform float uTime;
 
-    float noise(vec2 st) {
-      vec2 i = floor(st);
-      vec2 f = fract(st);
+      attribute vec3 position;
+      attribute float size;
 
-      float a = random(i);
-      float b = random(i + vec2(1.0, 0.0));
-      float c = random(i + vec2(0.0, 1.0));
-      float d = random(i + vec2(1.0, 1.0));
+      uniform mat4 modelViewMatrix;
+      uniform mat4 projectionMatrix;
 
-      vec2 u = f * f * (3.0 - 2.0 * f);
+      float random (vec2 st) {
+        return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 9.5453123);
+      }
 
-      return mix(a, b, u.x) +
-            (c - a)* u.y * (1.0 - u.x) +
-            (d - b) * u.x * u.y;
-    }
+      float noise(vec2 st) {
+        vec2 i = floor(st);
+        vec2 f = fract(st);
 
-    void main() {
+        float a = random(i);
+        float b = random(i + vec2(1.0, 0.0));
+        float c = random(i + vec2(0.0, 1.0));
+        float d = random(i + vec2(1.0, 1.0));
+
+        vec2 u = f * f * (3.0 - 2.0 * f);
+
+        return mix(a, b, u.x) +
+              (c - a)* u.y * (1.0 - u.x) +
+              (d - b) * u.x * u.y;
+      }
+
+      void main() {
         float moveX = noise(position.xy * 1.5 + uTime * 0.05);
         float moveY = noise(position.yz * 1.5 + uTime * 0.05);
         float moveZ = noise(position.xz * 1.5 + uTime * 0.05);
@@ -57,26 +63,25 @@ export const vertexShader = `
         moveZ = clamp(moveZ, -1.0, 1.0);
 
         vec3 newPosition = position + vec3(moveX, moveY, moveZ);
-        vec4 mvPosition = modelViewMatrix * vec4(newPosition, 1.0);
 
-        gl_PointSize = size * uPixelRatio;
-
-        gl_Position = projectionMatrix * mvPosition;
-    }
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+        gl_PointSize = size;
+      }
 `;
 
 export const fragmentShader = `
-    uniform sampler2D uAlphaMap;
-    uniform vec3 uColor;
+      precision highp float;
 
-    void main() {
+      uniform sampler2D uAlphaMap;
+      uniform vec3 uColor;
+
+      void main() {
         float alpha = texture2D(uAlphaMap, gl_PointCoord).r;
 
         if (alpha < 0.1) discard;
 
-        vec3 color = uColor;
-        gl_FragColor = vec4(color, alpha);
-    }
+        gl_FragColor = vec4(uColor, alpha);
+      }
 `;
 
 export const sidebarItems = [

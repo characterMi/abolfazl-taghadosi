@@ -2,7 +2,6 @@
 
 import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { fadeIn } from "@/utils/motion";
-import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { Particles } from "./particles";
 
@@ -19,9 +18,7 @@ const ParticlesCanvas = () => {
       initial="initial"
       whileInView="animate"
     >
-      <Canvas camera={{ position: [0, 2, 0] }} className="pointer-events-none">
-        <Particles />
-      </Canvas>
+      <Particles />
     </motion.div>
   );
 };
