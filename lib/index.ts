@@ -52,17 +52,17 @@ export const initProgram = (gl: OGLRenderingContext) => {
   });
 };
 
-const STARS_COUNT = window.innerWidth <= 768 ? 150 : 250;
+const STARS_COUNT = window.innerWidth <= 768 ? 200 : 400;
 
 export const generateParticleData = () => {
   const positions = new Float32Array(STARS_COUNT * 3);
   const sizes = new Float32Array(STARS_COUNT);
 
   for (let i = 0; i < STARS_COUNT; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 7;
+    positions[i * 3] = (Math.random() - 0.6) * 10;
     positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 7;
-    sizes[i] = Math.max(Math.random() * 20, 10);
+    sizes[i] = Math.max(Math.random() * 30, 15);
   }
 
   return { positions, sizes };
@@ -71,7 +71,7 @@ export const generateParticleData = () => {
 export const particlesAnimationData = {
   shouldZoomOut: false,
   positionZ: 0,
-  positionY: -0.3,
+  positionY: -0.4,
 };
 
 const startTime = performance.now();
@@ -86,7 +86,7 @@ export const updateScene = (
   program.uniforms.uTime.value = elapsed;
 
   if (particlesAnimationData.shouldZoomOut) {
-    particles.position.z = -particlesAnimationData.positionZ * 12;
+    particles.position.z = -particlesAnimationData.positionZ * 24;
   } else {
     particles.position.y = particlesAnimationData.positionY * 10;
   }
@@ -108,6 +108,6 @@ export const onLenisScroll = (lenis: Lenis, zoomInSection: HTMLDivElement) => {
     const scrollOffset =
       lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
     particlesAnimationData.shouldZoomOut = false;
-    particlesAnimationData.positionY = scrollOffset - 0.3;
+    particlesAnimationData.positionY = scrollOffset - 0.4;
   }
 };
