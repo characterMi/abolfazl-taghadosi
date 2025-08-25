@@ -59,7 +59,7 @@ export const generateParticleData = () => {
   const sizes = new Float32Array(STARS_COUNT);
 
   for (let i = 0; i < STARS_COUNT; i++) {
-    positions[i * 3] = (Math.random() - 0.6) * 10;
+    positions[i * 3] = (Math.random() - 0.5) * 10;
     positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 7;
     sizes[i] = Math.max(Math.random() * 30, 15);
