@@ -62,7 +62,7 @@ export const generateParticleData = () => {
     positions[i * 3] = (Math.random() - 0.6) * 10;
     positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 7;
-    sizes[i] = Math.max(Math.random() * 30, 15);
+    sizes[i] = Math.max(Math.random() * 20, 10);
   }
 
   return { positions, sizes };
