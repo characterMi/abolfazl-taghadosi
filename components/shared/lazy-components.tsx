@@ -3,9 +3,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ErrorBoundary } from "./error-boundary";
 
-const Particles = dynamic(() => import("../particles"), {
-  ssr: false,
-});
+const Particles = dynamic(() => import("../particles"));
 const CustomScroll = dynamic(() => import("../shared/custom-scroll"));
 
 const LazyComponents = () => {
