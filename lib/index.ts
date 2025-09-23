@@ -95,18 +95,19 @@ export const updateScene = (
 };
 
 // Run the particles animation on scroll...
-export const onLenisScroll = (lenis: Lenis, zoomInSection: HTMLDivElement) => {
+export const onLenisScroll = (lenis: Lenis | undefined, zoomInSection: HTMLDivElement) => {
   const zoomInSectionOffsetTop = zoomInSection.offsetTop;
+  const lenisScroll = lenis?.scroll || 0;
 
-  if (lenis.scroll >= zoomInSectionOffsetTop) {
+  if (lenisScroll >= zoomInSectionOffsetTop) {
     const scrollOffset =
-      (lenis.scroll - zoomInSectionOffsetTop) / zoomInSection.offsetHeight;
+      (lenisScroll - zoomInSectionOffsetTop) / zoomInSection.offsetHeight;
 
     particlesAnimationData.shouldZoomOut = true;
     particlesAnimationData.positionZ = scrollOffset;
   } else {
     const scrollOffset =
-      lenis.scroll / (zoomInSectionOffsetTop - window.innerHeight);
+      lenisScroll / (zoomInSectionOffsetTop - window.innerHeight);
     particlesAnimationData.shouldZoomOut = false;
     particlesAnimationData.positionY = scrollOffset - 0.4;
   }

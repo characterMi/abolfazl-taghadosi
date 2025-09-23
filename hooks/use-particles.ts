@@ -12,7 +12,7 @@ import {
 } from "@/lib";
 
 export const useParticles = () => {
-  const lenis = useLenis()!;
+  const lenis = useLenis();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -58,11 +58,11 @@ export const useParticles = () => {
       renderer.height = window.innerHeight;
     };
 
-    lenis.on("scroll", handleScroll);
+    lenis?.on("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
     return () => {
-      lenis.off("scroll", handleScroll);
+      lenis?.off("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
