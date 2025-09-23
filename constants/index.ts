@@ -2,6 +2,7 @@ import ATBMedia from "@/public/projects/atb-media.png";
 import CarGame from "@/public/projects/car-game.png";
 import DesignWave from "@/public/projects/design-wave.png";
 import FilmHub from "@/public/projects/film-hub.png";
+import GTA_VI from "@/public/projects/gta-vi.png";
 import GymLovers from "@/public/projects/gym-lovers.png";
 import Lingo from "@/public/projects/lingo.png";
 import MarbleRace from "@/public/projects/marble-race.png";
@@ -328,6 +329,13 @@ export const projects = [
     title: "FilmHub",
     year: 2023,
     backgroundColor: "#27272a",
+  },
+  {
+    imgSrc: GTA_VI,
+    srcCode: "https://github.com/charactermi/gta-vi",
+    title: "GTA VI",
+    year: 2025,
+    backgroundColor: "#fff9cb",
   },
   {
     imgSrc: MarbleRace,
