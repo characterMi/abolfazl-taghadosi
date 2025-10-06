@@ -69,6 +69,7 @@ export const generateParticleData = () => {
 };
 
 export const particlesAnimationData = {
+  shouldStop: false,
   shouldZoomOut: false,
   positionZ: 0,
   positionY: -0.4,
@@ -82,6 +83,8 @@ export const updateScene = (
   particles: Mesh<Geometry, Program>,
   onRender: () => void
 ) => {
+  if (particlesAnimationData.shouldStop) return;
+
   elapsed = (performance.now() - startTime) / 1000;
   program.uniforms.uTime.value = elapsed;
 
@@ -95,9 +98,17 @@ export const updateScene = (
 };
 
 // Run the particles animation on scroll...
-export const onLenisScroll = (lenis: Lenis | undefined, zoomInSection: HTMLDivElement) => {
+export const onLenisScroll = (
+  lenis: Lenis | undefined,
+  zoomInSection: HTMLDivElement,
+  aboutSectionOffsetTop: number
+) => {
   const zoomInSectionOffsetTop = zoomInSection.offsetTop;
   const lenisScroll = lenis?.scroll || 0;
+
+  particlesAnimationData.shouldStop = lenisScroll >= aboutSectionOffsetTop;
+
+  if (particlesAnimationData.shouldStop) return;
 
   if (lenisScroll >= zoomInSectionOffsetTop) {
     const scrollOffset =

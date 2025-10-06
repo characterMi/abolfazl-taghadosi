@@ -50,7 +50,8 @@ export const useParticles = () => {
     const handleScroll = () =>
       onLenisScroll(
         lenis,
-        document.querySelector<HTMLDivElement>("#zoom-in-animation")!
+        document.querySelector<HTMLDivElement>("#zoom-in-animation")!,
+        document.querySelector<HTMLDivElement>("#about")!.offsetTop
       );
 
     const handleResize = () => {
