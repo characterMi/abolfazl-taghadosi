@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import Image from "next/image";
 import {
   type Dispatch,
@@ -12,10 +12,12 @@ import {
 
 import { projects } from "@/constants";
 import { useCurveAnimation } from "@/hooks/use-curve-animation";
+import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
 import { useMainProjectsAnimation } from "@/hooks/use-main-projects-animation";
 import { useReduceMotion } from "@/hooks/use-reduce-motion";
 import { fadeIn } from "@/utils/motion";
 import { twMerge } from "tailwind-merge";
+import Magnetic from "../shared/magnetic";
 import SlideUpAnimation from "../shared/slide-up-animation";
 
 type Props = {
@@ -85,10 +87,7 @@ const ProjectCard = ({
       target="_blank"
       rel="noopener noreferrer"
       className="project-card flex justify-between w-full flex-col group"
-      onPointerEnter={() => {
-        setActiveProject(index);
-      }}
-      onPointerLeave={() => {
+      onPointerOver={() => {
         setActiveProject(index);
       }}
       onContextMenu={(e) => e.preventDefault()}
@@ -135,71 +134,67 @@ const ProjectCard = ({
   );
 };
 
-const ProjectsContainer = ({ isInView }: { isInView: boolean }) => {
-  const shouldReduceMotion = useReduceMotion();
-  const [activeProject, setActiveProject] = useState(0);
-  const { modal, projectsContainerRef } = useMainProjectsAnimation();
+const ProjectsContainer = ({
+  projectsContainerRef,
+  children,
+}: {
+  projectsContainerRef: RefObject<HTMLDivElement>;
+  children: React.ReactNode;
+}) => {
+  const isTouchDevice = useIsTouchDevice();
+  const isContainerInView = useInView(projectsContainerRef, {
+    margin: "0% 0% -80% 0%",
+  });
 
   return (
-    <div className="p-4 lg:p-[5vw] relative">
-      <div className="flex flex-col" ref={projectsContainerRef}>
-        {projects.map((project, index) => (
-          <ProjectCard
-            {...project}
-            index={index}
-            key={project.title}
-            isContainerInView={isInView}
-            setActiveProject={setActiveProject}
-            shouldReduceMotion={shouldReduceMotion}
-          />
-        ))}
-      </div>
+    <>
+      <AnimatePresence mode="wait">
+        {isTouchDevice && isContainerInView && (
+          <motion.div
+            className="fixed top-0 left-0 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            aria-live="polite"
+          >
+            <Magnetic>
+              <div className="flex items-center gap-2 px-4 py-10">
+                <div
+                  aria-hidden
+                  className="w-4 h-8 rounded-full border-2 border-dark-blue relative"
+                >
+                  <motion.div
+                    className="size-1.5 rounded-full bg-gradient-to-t from-dark-blue to-primary absolute left-1/4"
+                    animate={{ y: [5, 17, 5] }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                  />
+                </div>
 
-      {!shouldReduceMotion && (
-        <motion.div
-          aria-hidden
-          className="fixed top-0 left-0 size-[50vw] md:size-[25vw] overflow-hidden pointer-events-none z-40"
-          style={{
-            left: modal.x,
-            top: modal.y,
-            scale: modal.scale,
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              className="w-full h-full px-[2vw] flex items-center"
-              animate={{
-                y: `-${activeProject * 100}%`,
-                transition: {
-                  duration: 0.5,
-                  ease: [0.76, 0, 0.24, 1],
-                },
-              }}
-              style={{
-                backgroundColor: project.backgroundColor,
-              }}
-            >
-              <Image
-                src={project.imgSrc}
-                alt={project.title}
-                width={1200}
-                height={750}
-                className="w-full"
-                placeholder="blur"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-      )}
-    </div>
+                <p className="dark-mark text-lg font-bold">Grab to scroll</p>
+              </div>
+            </Magnetic>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="flex flex-col" ref={projectsContainerRef}>
+        {children}
+      </div>
+    </>
   );
 };
 
 export const MainProjects = () => {
+  const shouldReduceMotion = useReduceMotion();
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true });
+  const [activeProject, setActiveProject] = useState(0);
+
+  const { modal, projectsContainerRef } = useMainProjectsAnimation();
 
   return (
     <div className="mt-20 lg:mt-[5vw]">
@@ -231,8 +226,58 @@ export const MainProjects = () => {
         </SlideUpAnimation>
       </div>
 
-      <div ref={containerRef}>
-        <ProjectsContainer isInView={isInView} />
+      <div className="p-4 lg:p-[5vw] relative" ref={containerRef}>
+        <ProjectsContainer projectsContainerRef={projectsContainerRef}>
+          {projects.map((project, index) => (
+            <ProjectCard
+              {...project}
+              index={index}
+              key={project.title}
+              isContainerInView={isInView}
+              setActiveProject={setActiveProject}
+              shouldReduceMotion={shouldReduceMotion}
+            />
+          ))}
+        </ProjectsContainer>
+
+        {!shouldReduceMotion && (
+          <motion.div
+            aria-hidden
+            className="fixed top-0 left-0 size-[50vw] md:size-[25vw] overflow-hidden pointer-events-none z-40"
+            style={{
+              left: modal.x,
+              top: modal.y,
+              scale: modal.scale,
+            }}
+            transition={{ duration: 0.5 }}
+          >
+            {projects.map((project) => (
+              <motion.div
+                key={project.title}
+                className="w-full h-full px-[2vw] flex items-center"
+                animate={{
+                  y: `-${activeProject * 100}%`,
+                  transition: {
+                    duration: 0.5,
+                    ease: [0.76, 0, 0.24, 1],
+                  },
+                }}
+                style={{
+                  backgroundColor: project.backgroundColor,
+                }}
+              >
+                <Image
+                  src={project.imgSrc}
+                  alt={project.title}
+                  width={1200}
+                  height={750}
+                  className="w-full"
+                  placeholder="blur"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </div>
   );

@@ -52,7 +52,8 @@ export const initProgram = (gl: OGLRenderingContext) => {
   });
 };
 
-const STARS_COUNT = window.innerWidth <= 768 ? 200 : 400;
+const STARS_COUNT =
+  typeof window === "undefined" ? 400 : window.innerWidth <= 768 ? 200 : 400;
 
 export const generateParticleData = () => {
   const positions = new Float32Array(STARS_COUNT * 3);

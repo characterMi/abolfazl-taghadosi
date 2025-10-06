@@ -1,15 +1,4 @@
-import { useEffect, useState } from "react";
+import { IsTouchDeviceContext } from "@/providers/ContextProvider";
+import { useContext } from "react";
 
-export const useIsTouchDevice = () => {
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  useEffect(() => {
-    const handleTouchStart = () => setIsTouchDevice(true);
-
-    window.addEventListener("touchstart", handleTouchStart, { once: true });
-
-    return () => window.removeEventListener("touchstart", handleTouchStart);
-  }, []);
-
-  return isTouchDevice;
-};
+export const useIsTouchDevice = () => useContext(IsTouchDeviceContext);

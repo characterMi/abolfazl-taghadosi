@@ -1,9 +1,13 @@
 import { useSpring } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
 import { useIsTouchDevice } from "./use-is-touch-device";
 
 export function useMainProjectsAnimation() {
+  const lenis = useLenis();
   const projectsContainerRef = useRef<HTMLDivElement>(null);
+  const lockTimer = useRef<NodeJS.Timeout>();
+  const isLocked = useRef(false);
   const isTouchDevice = useIsTouchDevice();
 
   const smoothModalOptions = { damping: 20, stiffness: 200, mass: 0.5 };
@@ -14,77 +18,114 @@ export function useMainProjectsAnimation() {
   };
 
   useEffect(() => {
-    function handleSetModalPosition(e: MouseEvent | Touch) {
+    const projectsContainerRefCurrent = projectsContainerRef.current;
+
+    if (!projectsContainerRefCurrent) return;
+
+    function handleSetModalPosition(clientX: number, clientY: number) {
       const { innerWidth } = window;
       // we set the modal size to 25vw on desktop and 50vw on mobile as we did in css styles
       const modalSize = innerWidth > 767 ? innerWidth / 4 : innerWidth / 2;
 
-      modal.x.set(e.clientX - modalSize / 2);
-      modal.y.set(e.clientY - modalSize / 2);
+      modal.x.set(clientX - modalSize / 2);
+      modal.y.set(clientY - modalSize / 2);
     }
 
     function handleTouchMove(e: TouchEvent) {
-      handleSetModalPosition(e.touches[0]);
+      const touch = e.touches[0];
+
+      handleSetModalPosition(touch.clientX, touch.clientY);
+      lenis?.stop();
+
+      clearTimeout(lockTimer.current);
+      lockTimer.current = setTimeout(() => {
+        navigator.vibrate?.(50);
+        isLocked.current = true;
+      }, 500);
     }
 
-    function handleTouchStart(e: TouchEvent) {
-      handleSetModalPosition(e.touches[0]);
+    function handleMouseMove(e: MouseEvent) {
+      handleSetModalPosition(e.clientX, e.clientY);
+    }
+
+    function handlePointerEnter(e: TouchEvent | MouseEvent | Touch) {
+      e = e instanceof TouchEvent ? e.touches[0] : e;
+
+      handleSetModalPosition(e.clientX, e.clientY);
       modal.scale.set(1);
     }
 
     function handlePointerLeave() {
-      modal.scale.set(0);
+      lenis?.start();
+      clearTimeout(lockTimer.current);
+      if (!isLocked.current) modal.scale.set(0);
     }
 
-    function handleMouseEnter(e: MouseEvent) {
-      handleSetModalPosition(e);
-      modal.scale.set(1);
+    function handlePointerDown() {
+      isLocked.current = false;
+      if (isTouchDevice) {
+        modal.scale.set(0);
+      }
     }
 
     if (isTouchDevice) {
-      projectsContainerRef.current?.addEventListener(
+      projectsContainerRefCurrent.addEventListener(
         "touchstart",
-        handleTouchStart
+        handlePointerEnter
       );
-      projectsContainerRef.current?.addEventListener(
+      projectsContainerRefCurrent.addEventListener(
+        "touchmove",
+        handleTouchMove
+      );
+      projectsContainerRefCurrent.addEventListener(
         "touchend",
         handlePointerLeave
       );
-      window.addEventListener("touchmove", handleTouchMove);
     } else {
-      projectsContainerRef.current?.addEventListener(
+      projectsContainerRefCurrent.addEventListener(
         "mouseenter",
-        handleMouseEnter
+        handlePointerEnter
       );
-      projectsContainerRef.current?.addEventListener(
+      projectsContainerRefCurrent.addEventListener(
+        "mousemove",
+        handleMouseMove
+      );
+      projectsContainerRefCurrent.addEventListener(
         "mouseleave",
         handlePointerLeave
       );
-      window.addEventListener("mousemove", handleSetModalPosition);
     }
 
+    window.addEventListener("pointerdown", handlePointerDown);
+
     return () => {
-      if (isTouchDevice) {
-        projectsContainerRef.current?.removeEventListener(
-          "touchstart",
-          handleTouchStart
-        );
-        projectsContainerRef.current?.removeEventListener(
-          "touchend",
-          handlePointerLeave
-        );
-        window.removeEventListener("touchmove", handleTouchMove);
-      } else {
-        projectsContainerRef.current?.removeEventListener(
-          "mouseenter",
-          handleMouseEnter
-        );
-        projectsContainerRef.current?.removeEventListener(
-          "mouseleave",
-          handlePointerLeave
-        );
-        window.removeEventListener("mousemove", handleSetModalPosition);
-      }
+      projectsContainerRefCurrent.removeEventListener(
+        "touchstart",
+        handlePointerEnter
+      );
+      projectsContainerRefCurrent.removeEventListener(
+        "touchmove",
+        handleTouchMove
+      );
+      projectsContainerRefCurrent.removeEventListener(
+        "touchend",
+        handlePointerLeave
+      );
+
+      projectsContainerRefCurrent.removeEventListener(
+        "mouseenter",
+        handlePointerEnter
+      );
+      projectsContainerRefCurrent.removeEventListener(
+        "mousemove",
+        handleMouseMove
+      );
+      projectsContainerRefCurrent.removeEventListener(
+        "mouseleave",
+        handlePointerLeave
+      );
+
+      window.removeEventListener("pointerdown", handlePointerDown);
     };
   }, [isTouchDevice]);
 

@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import dynamic from "next/dynamic";
 import { Figtree } from "next/font/google";
 
-import "./globals.css";
+import ContextProvider from "@/providers/ContextProvider";
+import Root from "@/providers/root";
 
-const Root = dynamic(() => import("@/providers/root"), { ssr: false });
+import "./globals.css";
 
 const font = Figtree({ subsets: ["latin"], preload: true });
 
@@ -106,7 +106,9 @@ export default function RootLayout({
         />
       </head>
       <body className={font.className}>
-        <Root>{children}</Root>
+        <ContextProvider>
+          <Root>{children}</Root>
+        </ContextProvider>
       </body>
     </html>
   );
