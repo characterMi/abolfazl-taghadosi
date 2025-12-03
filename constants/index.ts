@@ -275,7 +275,7 @@ export const aboutContent = [
   {
     title: "- Inspirations and Mentors",
     content: `Throughout_my_learning_journey,_there_have_been_several_individuals_who_have_had_a_profound_impact_on_my_growth_as_a_developer._Their_teaching,_guidance,_and_content_have_inspired_me_and_shaped_my_approach_to_coding._I_owe_much_of_my_progress_to_${legends
-      .map(({ link, name }) => `${name}(${link}link)`)
+      .map(({ link, name }, index) => `${index === legends.length - 2 ? "and_" : ""}${name}(${link}link)`)
       .join(
         "_"
       )}_Each_of_them_has_played_a_key_role_in_helping_me_push_my_boundaries_and_explore_new_horizons_in_web_development.`,
